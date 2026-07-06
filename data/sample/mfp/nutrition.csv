@@ -1,0 +1,16 @@
+Date,Meal,Food,Calories,Protein (g),Carbohydrates (g),Fat (g),Saturated Fat (g),Trans Fat (g),Cholesterol (mg),Sodium (mg),Potassium (mg),Fiber (g),Sugar (g),Vitamin A (mcg),Vitamin C (mg),Calcium (mg),Iron (mg),Magnesium (mg),Zinc (mg)
+2026-01-01,Breakfast,Greek yogurt bowl,520,42,58,12,4,0,30,210,640,8,22,180,28,320,3.2,95,2.1
+2026-01-01,Dinner,Salmon rice plate,860,58,72,32,6,0,95,780,1180,9,12,220,34,180,4.5,140,3.6
+2026-01-02,Breakfast,Egg avocado toast,610,35,46,28,7,0,390,620,760,11,8,260,18,220,5.0,115,3.2
+2026-01-02,Dinner,Turkey chili,780,62,82,18,5,0,110,980,1320,18,14,340,44,260,6.8,170,4.0
+2026-01-03,Breakfast,Protein oats,560,48,70,10,3,0,20,310,720,12,18,160,24,300,4.1,135,2.8
+2026-01-03,Dinner,Chicken burrito bowl,910,64,96,26,8,0,120,1050,1220,15,10,280,30,240,5.4,155,3.9
+2026-01-04,Breakfast,Smoothie and toast,540,38,78,9,2,0,15,360,880,13,36,420,82,360,3.6,125,2.4
+2026-01-04,Dinner,Lean beef pasta,890,66,88,24,9,1,115,860,1040,10,16,210,22,280,6.2,145,5.3
+2026-01-05,Breakfast,Cottage cheese fruit,480,44,52,8,3,0,25,420,690,7,24,190,36,340,2.8,90,2.0
+2026-01-05,Dinner,Shrimp stir fry,820,60,92,18,4,0,180,1180,1250,12,19,310,68,260,5.1,160,3.1
+2026-01-06,Breakfast,Tofu scramble,590,40,62,20,4,0,0,700,840,14,9,360,58,420,6.4,180,3.5
+2026-01-06,Dinner,Chicken sweet potato,840,68,80,22,6,0,125,740,1360,11,17,520,40,210,4.7,150,3.8
+2026-01-07,Breakfast,Protein pancakes,620,50,76,14,4,0,80,540,720,9,21,220,20,300,3.9,110,2.7
+2026-01-07,Dinner,Tuna quinoa salad,760,64,66,24,5,0,70,900,1120,16,13,460,72,240,5.6,165,4.2
+

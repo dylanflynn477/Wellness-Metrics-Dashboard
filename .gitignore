@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+work/
+outputs/
+
+# Local health exports contain private data. Keep placeholders, not raw files.
+data/raw/mfp/*
+!data/raw/mfp/.gitkeep
+data/raw/apple_health/*
+!data/raw/apple_health/.gitkeep
+
+# Processed outputs may be generated from private data.
+data/processed/*
+!data/processed/.gitkeep
+
+# Power BI and local analysis artifacts
+dashboard/*.pbix
+dashboard/*.pbit
+notebooks/.ipynb_checkpoints/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
