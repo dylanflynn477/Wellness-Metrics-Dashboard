@@ -19,12 +19,17 @@
 
 ## Optional Connectors
 
-- Optional HealthKit bridge.
-- Optional MyFitnessPal API integration if a stable and permitted API is available.
-- Optional safe connector architecture so live adapters cannot break the daily model.
+- Keep MyFitnessPal export-based unless the private/approval-based official API becomes available.
+- Add a MyFitnessPal official API connector only if approved.
+- Add a HealthKit/iOS bridge connector for Apple Health live sync.
+- Add future third-party connectors that emit the same normalized daily tables.
+- Add manual CSV log connectors for data not covered by MFP or Apple Health.
+- Do not add authenticated scraping, credential storage, Selenium login flows, or site-restriction bypasses.
 
 ## Storage And App Options
 
 - Optional Streamlit preview app for quick local review.
-- Optional DuckDB or Postgres storage instead of CSV-only outputs.
+- Use CSV as the default local output.
+- Use SQLite when a single local database file is easier for Power BI or downstream analysis.
+- Evaluate DuckDB or Postgres only after the CSV and SQLite path is stable.
 

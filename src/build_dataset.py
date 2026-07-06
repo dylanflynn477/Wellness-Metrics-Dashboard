@@ -3,20 +3,19 @@
 from __future__ import annotations
 
 import argparse
+import sqlite3
 from pathlib import Path
 
 import pandas as pd
 
 try:
     from .config import PipelineConfig, default_config
-    from .ingest_apple_health import load_apple_health_data
-    from .ingest_mfp import load_mfp_data
+    from .connectors import AppleHealthExportConnector, MfpExportConnector
     from .transform_daily import DailyModels, build_daily_models, wide_to_long_nutrients
     from .utils import ensure_directories, setup_logging
 except ImportError:  # pragma: no cover - supports `python src/build_dataset.py`
     from config import PipelineConfig, default_config
-    from ingest_apple_health import load_apple_health_data
-    from ingest_mfp import load_mfp_data
+    from connectors import AppleHealthExportConnector, MfpExportConnector
     from transform_daily import DailyModels, build_daily_models, wide_to_long_nutrients
     from utils import ensure_directories, setup_logging
 
@@ -28,6 +27,15 @@ OUTPUT_FILES = {
     "daily_sleep": "daily_sleep.csv",
     "daily_body_metrics": "daily_body_metrics.csv",
     "dashboard_fact": "health_dashboard_fact.csv",
+}
+
+SQLITE_TABLES = {
+    "daily_nutrition": "daily_nutrition",
+    "daily_micronutrients": "daily_micronutrients",
+    "daily_activity": "daily_activity",
+    "daily_sleep": "daily_sleep",
+    "daily_body_metrics": "daily_body_metrics",
+    "dashboard_fact": "health_dashboard_fact",
 }
 
 
@@ -47,6 +55,7 @@ def main() -> None:
     logger = setup_logging(args.log_level)
     config = default_config()
     config = PipelineConfig(
+        app_env=config.app_env,
         raw_mfp_dir=args.mfp_dir or config.raw_mfp_dir,
         raw_apple_health_xml=args.apple_health_xml or config.raw_apple_health_xml,
         sample_mfp_dir=config.sample_mfp_dir,
@@ -58,7 +67,9 @@ def main() -> None:
         start_date=config.start_date,
         end_date=config.end_date,
         nutrient_output_mode=config.nutrient_output_mode,
-        use_sample_data_if_raw_missing=not args.no_sample_fallback,
+        output_mode=config.output_mode,
+        database_url=config.database_url,
+        use_sample_data_if_raw_missing=False if args.no_sample_fallback else config.use_sample_data_if_raw_missing,
     )
 
     ensure_directories([config.raw_mfp_dir, config.raw_apple_health_xml.parent, config.processed_dir])
@@ -67,9 +78,9 @@ def main() -> None:
         logger.info("Using synthetic sample data. Add real exports under data/raw/ to process personal data.")
 
     logger.info("Loading MyFitnessPal exports from %s", mfp_dir)
-    mfp_data = load_mfp_data(mfp_dir, config)
+    mfp_data = MfpExportConnector(mfp_dir=mfp_dir, config=config).load()
     logger.info("Loading Apple Health export from %s", apple_xml)
-    apple_data = load_apple_health_data(apple_xml)
+    apple_data = AppleHealthExportConnector(export_xml=apple_xml).load()
 
     models = build_daily_models(
         mfp_nutrition=mfp_data.daily_nutrition,
@@ -118,12 +129,37 @@ def write_outputs(models: DailyModels, config: PipelineConfig) -> dict[str, Path
         "dashboard_fact": models.dashboard_fact,
     }
 
+    output_paths: dict[str, Path] = {}
+    if config.output_mode in {"csv", "both"}:
+        output_paths.update(write_csv_outputs(frames, config))
+    if config.output_mode in {"sqlite", "both"}:
+        output_paths["sqlite_database"] = write_sqlite_outputs(frames, config)
+    return output_paths
+
+
+def write_csv_outputs(frames: dict[str, pd.DataFrame], config: PipelineConfig) -> dict[str, Path]:
     output_paths = {}
     for key, frame in frames.items():
         path = config.processed_dir / OUTPUT_FILES[key]
         frame.to_csv(path, index=False)
         output_paths[key] = path
     return output_paths
+
+
+def write_sqlite_outputs(frames: dict[str, pd.DataFrame], config: PipelineConfig) -> Path:
+    database_path = config.sqlite_database_path
+    ensure_directories([database_path.parent])
+    with sqlite3.connect(database_path) as connection:
+        for key, frame in frames.items():
+            prepare_sqlite_frame(frame).to_sql(SQLITE_TABLES[key], connection, if_exists="replace", index=False)
+    return database_path
+
+
+def prepare_sqlite_frame(frame: pd.DataFrame) -> pd.DataFrame:
+    output = frame.copy()
+    if "date" in output:
+        output["date"] = pd.to_datetime(output["date"], errors="coerce").dt.strftime("%Y-%m-%d")
+    return output
 
 
 def print_summary(
