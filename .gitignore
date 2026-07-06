@@ -7,14 +7,19 @@ venv/
 work/
 outputs/
 
+# Local environment and generated databases
+.env
+*.db
+
 # Local health exports contain private data. Keep placeholders, not raw files.
-data/raw/mfp/*
-!data/raw/mfp/.gitkeep
-data/raw/apple_health/*
-!data/raw/apple_health/.gitkeep
+data/raw/**
+!data/raw/
+!data/raw/**/
+!data/raw/**/.gitkeep
 
 # Processed outputs may be generated from private data.
-data/processed/*
+data/processed/**
+!data/processed/
 !data/processed/.gitkeep
 
 # Power BI and local analysis artifacts

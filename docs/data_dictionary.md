@@ -1,6 +1,8 @@
 # Data Dictionary
 
-This dictionary describes the generated CSV outputs in `data/processed/`.
+This dictionary describes the generated CSV outputs and equivalent SQLite tables in `data/processed/`.
+
+When `OUTPUT_MODE=sqlite` or `OUTPUT_MODE=both`, the table names are `daily_nutrition`, `daily_micronutrients`, `daily_activity`, `daily_sleep`, `daily_body_metrics`, and `health_dashboard_fact`.
 
 ## daily_nutrition.csv
 
