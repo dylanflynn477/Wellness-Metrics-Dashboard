@@ -13,11 +13,13 @@ try:
     from .connectors import AppleHealthExportConnector, MfpExportConnector
     from .transform_daily import DailyModels, build_daily_models, wide_to_long_nutrients
     from .utils import ensure_directories, setup_logging
+    from .validate_outputs import ValidationSummary, validate_processed_outputs
 except ImportError:  # pragma: no cover - supports `python src/build_dataset.py`
     from config import PipelineConfig, default_config
     from connectors import AppleHealthExportConnector, MfpExportConnector
     from transform_daily import DailyModels, build_daily_models, wide_to_long_nutrients
     from utils import ensure_directories, setup_logging
+    from validate_outputs import ValidationSummary, validate_processed_outputs
 
 
 OUTPUT_FILES = {
@@ -69,6 +71,7 @@ def main() -> None:
         nutrient_output_mode=config.nutrient_output_mode,
         output_mode=config.output_mode,
         database_url=config.database_url,
+        run_data_validation=config.run_data_validation,
         use_sample_data_if_raw_missing=False if args.no_sample_fallback else config.use_sample_data_if_raw_missing,
     )
 
@@ -94,6 +97,9 @@ def main() -> None:
     )
 
     outputs = write_outputs(models, config)
+    validation_summary = None
+    if config.run_data_validation:
+        validation_summary = validate_processed_outputs(config=config, outputs=outputs)
     print_summary(
         models=models,
         outputs=outputs,
@@ -102,6 +108,7 @@ def main() -> None:
         apple_records=apple_data.records_read,
         apple_workouts=apple_data.workouts_read,
         using_sample=using_sample,
+        validation_summary=validation_summary,
     )
 
 
@@ -170,6 +177,7 @@ def print_summary(
     apple_records: int,
     apple_workouts: int,
     using_sample: bool,
+    validation_summary: ValidationSummary | None = None,
 ) -> None:
     fact = models.dashboard_fact
     if fact.empty:
@@ -189,6 +197,14 @@ def print_summary(
     print("- Outputs:")
     for label, path in outputs.items():
         print(f"  - {label}: {path}")
+    if validation_summary is not None:
+        print("- Data quality:")
+        print(f"  - Issues: {validation_summary.issue_count}")
+        print(f"  - Error-level issues: {validation_summary.error_count}")
+        print(f"  - Warning-level issues: {validation_summary.warning_count}")
+        print(f"  - Micronutrient columns: {validation_summary.micronutrient_count}")
+        print(f"  - Report: {validation_summary.report_path}")
+        print(f"  - Issue CSV: {validation_summary.issues_path}")
 
 
 if __name__ == "__main__":

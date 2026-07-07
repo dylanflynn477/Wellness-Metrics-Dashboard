@@ -54,6 +54,7 @@ class PipelineConfig:
     nutrient_output_mode: NutrientOutputMode = "wide"
     output_mode: OutputMode = "csv"
     database_url: str = "sqlite:///data/processed/health_metrics.db"
+    run_data_validation: bool = True
     use_sample_data_if_raw_missing: bool = True
 
     @classmethod
@@ -91,6 +92,11 @@ class PipelineConfig:
             ),
             output_mode=validate_enum(values.get("OUTPUT_MODE"), defaults.output_mode, OUTPUT_MODE_VALUES, "OUTPUT_MODE"),
             database_url=env_string(values, "DATABASE_URL", defaults.database_url),
+            run_data_validation=parse_bool(
+                values.get("RUN_DATA_VALIDATION"),
+                defaults.run_data_validation,
+                "RUN_DATA_VALIDATION",
+            ),
             use_sample_data_if_raw_missing=parse_bool(
                 values.get("USE_SAMPLE_DATA_IF_RAW_MISSING"),
                 defaults.use_sample_data_if_raw_missing,
@@ -109,13 +115,32 @@ def read_environment(env_file: Path | str | None, environ: Mapping[str, str] | N
     """Read .env values first, then overlay process environment values."""
 
     values: dict[str, str] = {}
-    if env_file is not None and dotenv_values is not None:
+    if env_file is not None:
         path = Path(env_file)
         if path.exists():
-            values.update({key: value for key, value in dotenv_values(path).items() if value is not None})
+            if dotenv_values is not None:
+                values.update({key: value for key, value in dotenv_values(path).items() if value is not None})
+            else:
+                values.update(read_simple_env_file(path))
 
     source = os.environ if environ is None else environ
     values.update({key: str(value) for key, value in source.items() if value is not None})
+    return values
+
+
+def read_simple_env_file(path: Path) -> dict[str, str]:
+    """Parse simple KEY=value lines when python-dotenv is not installed yet."""
+
+    values: dict[str, str] = {}
+    for raw_line in path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        key = key.strip()
+        value = value.strip().strip("'").strip('"')
+        if key:
+            values[key] = value
     return values
 
 

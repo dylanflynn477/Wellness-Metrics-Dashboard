@@ -31,6 +31,7 @@ def test_config_loads_env_file_values(tmp_path: Path) -> None:
                 "NUTRIENT_OUTPUT_MODE=long",
                 "OUTPUT_MODE=both",
                 "DATABASE_URL=sqlite:///custom/processed/test.db",
+                "RUN_DATA_VALIDATION=false",
             ]
         ),
         encoding="utf-8",
@@ -51,6 +52,13 @@ def test_config_loads_env_file_values(tmp_path: Path) -> None:
     assert config.nutrient_output_mode == "long"
     assert config.output_mode == "both"
     assert config.sqlite_database_path == PROJECT_ROOT / "custom" / "processed" / "test.db"
+    assert config.run_data_validation is False
+
+
+def test_config_loads_run_data_validation() -> None:
+    config = PipelineConfig.from_env(env_file=None, environ={"RUN_DATA_VALIDATION": "true"})
+
+    assert config.run_data_validation is True
 
 
 def test_process_environment_overrides_env_file(tmp_path: Path) -> None:

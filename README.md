@@ -34,10 +34,13 @@ src/
   ingest_apple_health.py
   transform_daily.py
   build_dataset.py
+  validate_outputs.py
   utils.py
 docs/
   data_dictionary.md
   etl_notes.md
+  power_bi_dashboard_spec.md
+  real_data_import_guide.md
   roadmap.md
 tests/
 dashboard/               # Future Power BI file and screenshots
@@ -82,6 +85,8 @@ Generated outputs are written to `data/processed/`:
 - `daily_sleep.csv`
 - `daily_body_metrics.csv`
 - `health_dashboard_fact.csv`
+- `data_quality_report.md`
+- `data_quality_issues.csv`
 
 ## Configuration
 
@@ -99,6 +104,7 @@ Common settings:
 - `NUTRIENT_OUTPUT_MODE=wide` can be changed to `long`.
 - `OUTPUT_MODE=csv` can be changed to `sqlite` or `both`.
 - `DATABASE_URL=sqlite:///data/processed/health_metrics.db` controls the SQLite output path.
+- `RUN_DATA_VALIDATION=true` writes a data quality report after each build.
 
 The default modeled output normalizes bodyweight to `weight_lb` because that is the field expected by the first Power BI-ready fact table.
 
@@ -140,6 +146,12 @@ SQLite tables:
 - `health_dashboard_fact`
 
 Power BI can connect to the CSV files with the folder/text connectors, or to the SQLite database through an SQLite ODBC driver or another approved SQLite connector. CSV remains the simplest default; SQLite is useful when you want one local database file with all processed tables.
+
+## Data Quality
+
+When `RUN_DATA_VALIDATION=true`, the build writes `data_quality_report.md` and `data_quality_issues.csv` to `data/processed/`. The report checks date continuity, duplicate daily rows, missing or all-null fields, suspicious health values, target deltas, and detected micronutrients.
+
+For real exports, start with [docs/real_data_import_guide.md](docs/real_data_import_guide.md). For the report design layer, use [docs/power_bi_dashboard_spec.md](docs/power_bi_dashboard_spec.md).
 
 ## V1 Scope
 

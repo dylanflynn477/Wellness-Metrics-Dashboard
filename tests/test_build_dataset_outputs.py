@@ -1,12 +1,15 @@
 from __future__ import annotations
 
+import os
 import sqlite3
+import subprocess
+import sys
 from pathlib import Path
 
 import pandas as pd
 
 from src.build_dataset import OUTPUT_FILES, SQLITE_TABLES, resolve_input_paths, write_outputs
-from src.config import PipelineConfig
+from src.config import PROJECT_ROOT, PipelineConfig
 from src.ingest_apple_health import load_apple_health_data
 from src.ingest_mfp import load_mfp_data
 from src.transform_daily import DailyModels, build_daily_models
@@ -85,4 +88,34 @@ def test_sample_etl_still_writes_dashboard_csv_outputs(tmp_path: Path) -> None:
     assert set(outputs) == set(OUTPUT_FILES)
     assert not fact.empty
     assert "calories_7d_avg" in fact.columns
+
+
+def test_build_command_still_produces_core_outputs(tmp_path: Path) -> None:
+    env = {
+        **os.environ,
+        "OUTPUT_MODE": "csv",
+        "RUN_DATA_VALIDATION": "true",
+        "USE_SAMPLE_DATA_IF_RAW_MISSING": "true",
+    }
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            "src/build_dataset.py",
+            "--sample",
+            "--processed-dir",
+            str(tmp_path),
+        ],
+        cwd=PROJECT_ROOT,
+        env=env,
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+
+    for filename in OUTPUT_FILES.values():
+        assert (tmp_path / filename).exists()
+    assert (tmp_path / "data_quality_report.md").exists()
+    assert (tmp_path / "data_quality_issues.csv").exists()
+    assert "Data quality" in result.stdout
 
