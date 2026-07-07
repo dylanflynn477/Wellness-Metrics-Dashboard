@@ -24,7 +24,7 @@ Key themes:
 data/
   raw/
     mfp/                 # Put private MyFitnessPal CSV exports here
-    apple_health/        # Put private Apple Health export.xml here
+    apple_health/        # Put private HealthAutoExport CSV or Apple Health XML here
   sample/                # Synthetic public-safe sample exports
   processed/             # Generated dashboard-ready CSVs
 src/
@@ -74,7 +74,7 @@ python src/build_dataset.py
 If `data/raw/` is empty, the command automatically uses the synthetic sample data in `data/sample/` so the project is runnable immediately. To process real exports:
 
 1. Add MyFitnessPal CSV exports to `data/raw/mfp/`.
-2. Add Apple Health `export.xml` to `data/raw/apple_health/export.xml`.
+2. Add the extracted HealthAutoExport daily CSV to `data/raw/apple_health/HealthAutoExport.csv`.
 3. Run `python src/build_dataset.py`.
 
 Generated outputs are written to `data/processed/`:
@@ -83,6 +83,7 @@ Generated outputs are written to `data/processed/`:
 - `daily_micronutrients.csv`
 - `daily_activity.csv`
 - `daily_sleep.csv`
+- `daily_recovery.csv`
 - `daily_body_metrics.csv`
 - `health_dashboard_fact.csv`
 - `data_quality_report.md`
@@ -96,7 +97,10 @@ Common settings:
 
 - `USE_SAMPLE_DATA_IF_RAW_MISSING=true` keeps the repo runnable with synthetic sample data when `data/raw/` is empty.
 - `RAW_MFP_DIR=data/raw/mfp` points to local MyFitnessPal CSV exports.
-- `RAW_APPLE_HEALTH_XML=data/raw/apple_health/export.xml` points to the Apple Health export.
+- `APPLE_HEALTH_SOURCE=autoexport_csv` uses the extracted HealthAutoExport daily CSV. Valid values are `autoexport_csv`, `xml`, and `none`.
+- `RAW_APPLE_HEALTH_AUTOEXPORT_CSV=data/raw/apple_health/HealthAutoExport.csv` points to the extracted HealthAutoExport daily CSV.
+- `RAW_APPLE_HEALTH_XML=data/raw/apple_health/export.xml` points to the optional Apple Health XML export route.
+- `USE_AUTOEXPORT_NUTRITION=false` keeps MyFitnessPal as the nutrition source of truth. Enabling this is not recommended in v1.
 - `PROCESSED_DIR=data/processed` controls generated output location.
 - `CALORIE_TARGET` and `PROTEIN_TARGET_G` drive target deltas in the fact table. Leave either blank to omit that target.
 - `BODYWEIGHT_UNIT_PREFERENCE=lb` is used only for unitless MFP progress exports.
@@ -114,17 +118,27 @@ The existing command-line overrides still work:
 python src/build_dataset.py --mfp-dir data/raw/mfp --apple-health-xml data/raw/apple_health/export.xml --processed-dir data/processed
 ```
 
+For the default HealthAutoExport route:
+
+```bash
+python src/build_dataset.py --mfp-dir data/raw/mfp --apple-health-autoexport-csv data/raw/apple_health/HealthAutoExport.csv --processed-dir data/processed
+```
+
 ## Data Sources
 
 ### MyFitnessPal
 
 The MFP ingestion layer reads local CSV exports for nutrition, exercise, and progress or measurements. Nutrition parsing is flexible: columns are normalized, common names are mapped to stable dashboard fields, and additional numeric nutrient-like columns are preserved instead of being discarded.
 
+MyFitnessPal is the source of truth for calories, macros, micronutrients, meal-level nutrition, and nutrition targets. HealthAutoExport nutrition columns are ignored by default and should not be used for the final nutrition outputs in v1.
+
 Authenticated scraping is intentionally not implemented. The official MyFitnessPal API is private and approval-based, so this project treats MyFitnessPal as export-based unless an approved API integration is available later. The project does not store MyFitnessPal credentials, automate login flows, or bypass site restrictions.
 
 ### Apple Health
 
-The Apple Health parser reads local `export.xml` files and aggregates daily values for steps, energy burned, body mass, sleep, resting heart rate, HRV, and workouts when available.
+The default Apple Health route reads the extracted HealthAutoExport daily CSV at `data/raw/apple_health/HealthAutoExport.csv`. It captures Apple Health and Apple Watch metrics such as sleep, steps, active energy, resting energy, exercise time, stand time, resting heart rate, HRV, VO2 max, respiratory rate, and blood oxygen when those columns are available.
+
+The full Apple Health XML export remains available with `APPLE_HEALTH_SOURCE=xml`, but it is not required for v1. The full HealthAutoExport ZIP is also not required; place the extracted main daily CSV directly in `data/raw/apple_health/`.
 
 Apple Health live sync is not a Python/Selenium problem in this project. A future live integration should come through a HealthKit/iOS companion app or bridge that exports normalized data into the same connector boundary.
 
@@ -142,6 +156,7 @@ SQLite tables:
 - `daily_micronutrients`
 - `daily_activity`
 - `daily_sleep`
+- `daily_recovery`
 - `daily_body_metrics`
 - `health_dashboard_fact`
 
@@ -162,7 +177,8 @@ This project intentionally does not implement web scraping, authenticated scrapi
 The `src/connectors/` package is a lightweight adapter boundary around current local exports. Current connectors wrap:
 
 - MyFitnessPal manual CSV exports
-- Apple Health XML exports
+- HealthAutoExport daily CSV exports
+- Optional Apple Health XML exports
 
 Future connector candidates:
 

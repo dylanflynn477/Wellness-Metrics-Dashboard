@@ -21,7 +21,10 @@ def test_config_loads_env_file_values(tmp_path: Path) -> None:
                 "APP_ENV=test",
                 "USE_SAMPLE_DATA_IF_RAW_MISSING=false",
                 "RAW_MFP_DIR=custom/raw/mfp",
+                "APPLE_HEALTH_SOURCE=xml",
+                "RAW_APPLE_HEALTH_AUTOEXPORT_CSV=custom/raw/apple/HealthAutoExport.csv",
                 "RAW_APPLE_HEALTH_XML=custom/raw/apple/export.xml",
+                "USE_AUTOEXPORT_NUTRITION=true",
                 "PROCESSED_DIR=custom/processed",
                 "CALORIE_TARGET=",
                 "PROTEIN_TARGET_G=190",
@@ -42,7 +45,10 @@ def test_config_loads_env_file_values(tmp_path: Path) -> None:
     assert config.app_env == "test"
     assert config.use_sample_data_if_raw_missing is False
     assert config.raw_mfp_dir == PROJECT_ROOT / "custom" / "raw" / "mfp"
+    assert config.apple_health_source == "xml"
+    assert config.raw_apple_health_autoexport_csv == PROJECT_ROOT / "custom" / "raw" / "apple" / "HealthAutoExport.csv"
     assert config.raw_apple_health_xml == PROJECT_ROOT / "custom" / "raw" / "apple" / "export.xml"
+    assert config.use_autoexport_nutrition is True
     assert config.processed_dir == PROJECT_ROOT / "custom" / "processed"
     assert config.calorie_target is None
     assert config.protein_target_g == 190
@@ -76,6 +82,7 @@ def test_process_environment_overrides_env_file(tmp_path: Path) -> None:
         ("BODYWEIGHT_UNIT_PREFERENCE", "stone"),
         ("NUTRIENT_OUTPUT_MODE", "pivoted"),
         ("OUTPUT_MODE", "parquet"),
+        ("APPLE_HEALTH_SOURCE", "zip"),
     ],
 )
 def test_invalid_enum_values_raise_clear_errors(name: str, value: str) -> None:

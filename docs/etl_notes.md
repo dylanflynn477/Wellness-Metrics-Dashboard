@@ -13,7 +13,7 @@ Runtime settings are loaded in this order:
 1. Defaults in `src/config.py`.
 2. Local `.env` values copied from `.env.example`.
 3. Process environment variables.
-4. Existing command-line overrides such as `--mfp-dir`, `--apple-health-xml`, `--processed-dir`, and `--no-sample-fallback`.
+4. Existing command-line overrides such as `--mfp-dir`, `--apple-health-source`, `--apple-health-autoexport-csv`, `--apple-health-xml`, `--processed-dir`, and `--no-sample-fallback`.
 
 The `.env` file is ignored by git. Use it for local export paths, target values, output mode, and the SQLite database URL.
 
@@ -25,9 +25,15 @@ Nutrition columns are normalized to stable snake_case names. Common columns such
 
 ## Apple Health Parsing
 
-The Apple Health parser streams `export.xml` with `xml.etree.ElementTree.iterparse`, which avoids loading the full XML tree into memory. It extracts supported daily metrics from `Record` and `Workout` elements.
+The default Apple Health connector reads the extracted HealthAutoExport daily CSV from `data/raw/apple_health/HealthAutoExport.csv`. It does not parse the full HealthAutoExport ZIP in v1. The ZIP can be extracted outside the project, and only the main daily CSV needs to be placed under `data/raw/apple_health/`.
 
-Sleep hours are assigned to the calendar date of the sleep record start time. This is a practical first-pass convention for dashboarding and can be refined later if the report needs a different sleep-night model.
+HealthAutoExport is used for Apple Health and Apple Watch metrics: sleep, steps, active energy, resting energy, exercise time, stand time, resting heart rate, HRV, VO2 max, respiratory rate, blood oxygen, and similar wearable fields when present.
+
+Sleep cleaning prefers `Sleep Analysis [Total] (hr)`. If total sleep is missing, the parser uses `Core + Deep + REM`. It does not use `Sleep Analysis [Asleep] (hr)` as the primary value because some HealthAutoExport files populate stage columns while leaving asleep at zero.
+
+The Apple Health XML parser remains available with `APPLE_HEALTH_SOURCE=xml`. It streams `export.xml` with `xml.etree.ElementTree.iterparse` and can be expanded later as an optional connector.
+
+MyFitnessPal remains the source of truth for calories, macros, micronutrients, meal-level nutrition, and nutrition targets. HealthAutoExport nutrition columns are ignored by default.
 
 ## Data Modeling
 
@@ -35,12 +41,13 @@ The transform layer builds a complete date spine between the first and last obse
 
 ## Output Modes
 
-`OUTPUT_MODE=csv` preserves the original behavior and writes six CSV files:
+`OUTPUT_MODE=csv` preserves the original behavior and writes seven CSV files:
 
 - `daily_nutrition.csv`
 - `daily_micronutrients.csv`
 - `daily_activity.csv`
 - `daily_sleep.csv`
+- `daily_recovery.csv`
 - `daily_body_metrics.csv`
 - `health_dashboard_fact.csv`
 
@@ -57,7 +64,8 @@ Scraping, APIs, HealthKit bridges, or automated sync should be added as separate
 The current connector package wraps local exports only:
 
 - MyFitnessPal manual CSV export connector.
-- Apple Health XML export connector.
+- HealthAutoExport daily CSV connector.
+- Optional Apple Health XML export connector.
 
 Future connector candidates include a MyFitnessPal official API connector if approved, a HealthKit/iOS bridge connector, third-party connectors, and manual CSV logs. Authenticated scraping, credential capture, and browser automation are out of scope for this milestone.
 

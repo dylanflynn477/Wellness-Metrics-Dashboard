@@ -20,6 +20,7 @@ def test_dashboard_fact_adds_rolling_averages_and_target_deltas() -> None:
     micronutrients = pd.DataFrame({"date": dates, "vitamin_c_mg": [80, 95]})
     activity = pd.DataFrame({"date": dates, "steps": [8000, 9000], "active_energy_kcal": [500, 600]})
     sleep = pd.DataFrame({"date": dates, "sleep_hours": [7.5, 8.0]})
+    recovery = pd.DataFrame({"date": dates, "resting_hr": [58, 57], "hrv_ms": [65, 70]})
     body = pd.DataFrame({"date": dates, "weight_lb": [182.0, 181.5]})
 
     fact = build_dashboard_fact(
@@ -28,6 +29,7 @@ def test_dashboard_fact_adds_rolling_averages_and_target_deltas() -> None:
         daily_activity=activity,
         daily_sleep=sleep,
         daily_body_metrics=body,
+        daily_recovery=recovery,
         config=PipelineConfig(calorie_target=2100, protein_target_g=160),
     )
 
@@ -36,6 +38,7 @@ def test_dashboard_fact_adds_rolling_averages_and_target_deltas() -> None:
     assert fact.loc[1, "protein_7d_avg"] == 160
     assert fact.loc[1, "calorie_delta_from_target"] == 100
     assert fact.loc[1, "protein_delta_from_target"] == 10
+    assert fact.loc[1, "resting_hr"] == 57
     assert "vitamin_c_mg" in fact.columns
 
 
@@ -46,4 +49,3 @@ def test_wide_micronutrients_can_be_written_long() -> None:
 
     assert set(long["nutrient"]) == {"iron_mg", "zinc_mg"}
     assert set(long.columns) == {"date", "nutrient", "value"}
-

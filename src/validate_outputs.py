@@ -22,6 +22,7 @@ OUTPUT_FILES = {
     "daily_micronutrients": "daily_micronutrients.csv",
     "daily_activity": "daily_activity.csv",
     "daily_sleep": "daily_sleep.csv",
+    "daily_recovery": "daily_recovery.csv",
     "daily_body_metrics": "daily_body_metrics.csv",
     "dashboard_fact": "health_dashboard_fact.csv",
 }
@@ -31,6 +32,7 @@ SQLITE_TABLES = {
     "daily_micronutrients": "daily_micronutrients",
     "daily_activity": "daily_activity",
     "daily_sleep": "daily_sleep",
+    "daily_recovery": "daily_recovery",
     "daily_body_metrics": "daily_body_metrics",
     "dashboard_fact": "health_dashboard_fact",
 }
@@ -51,7 +53,7 @@ CORE_FACT_FIELDS = [
     "weight_lb",
     "steps",
     "active_energy_kcal",
-    "basal_energy_kcal",
+    "resting_energy_kcal",
     "sleep_hours",
     "resting_hr",
     "hrv_ms",
@@ -63,7 +65,24 @@ NON_MICRONUTRIENT_FACT_FIELDS = set(
     + [
         "saturated_fat_g",
         "trans_fat_g",
-        "in_bed_hours",
+        "apple_exercise_time_min",
+        "apple_stand_time_min",
+        "walking_running_distance_mi",
+        "flights_climbed",
+        "vo2_max",
+        "sleep_core_hours",
+        "sleep_deep_hours",
+        "sleep_rem_hours",
+        "sleep_awake_hours",
+        "sleep_in_bed_hours",
+        "respiratory_rate",
+        "blood_oxygen_pct",
+        "walking_heart_rate_avg",
+        "heart_rate_avg",
+        "heart_rate_min",
+        "heart_rate_max",
+        "wrist_temperature_f",
+        "mfp_exercise_calories",
         "calories_7d_avg",
         "protein_7d_avg",
         "weight_7d_avg",
@@ -407,4 +426,3 @@ def markdown_cell(value: object | None) -> str:
     if value is None or pd.isna(value):
         return ""
     return str(value).replace("|", "\\|")
-

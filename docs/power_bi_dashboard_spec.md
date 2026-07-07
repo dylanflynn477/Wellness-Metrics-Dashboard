@@ -10,12 +10,14 @@ Suggested tables:
 
 - `health_dashboard_fact`: main daily fact table from `data/processed/health_dashboard_fact.csv` or the SQLite table of the same name.
 - `daily_micronutrients`: optional separate nutrient table when `NUTRIENT_OUTPUT_MODE=long`.
+- `daily_recovery`: optional separate recovery table if you prefer not to use only the flattened fact fields.
 - `Date`: a dedicated date table related one-to-many to `health_dashboard_fact[date]`.
 
 Recommended relationships:
 
 - `Date[Date]` to `health_dashboard_fact[date]`
 - `Date[Date]` to `daily_micronutrients[date]` when using long nutrient output
+- `Date[Date]` to `daily_recovery[date]` if using recovery as a separate table
 
 ## Page 1: Executive Health Overview
 
@@ -72,8 +74,11 @@ Suggested visuals:
 - Sleep hours
 - Resting heart rate
 - HRV
+- Respiratory rate
+- Blood oxygen
 - Steps
 - Active energy
+- Resting energy
 - Workout minutes
 
 Use conditional formatting for suspicious or low-quality values surfaced by the data quality report.
@@ -154,4 +159,3 @@ RETURN
 - Use SQLite when you want a single local database file for multiple tables.
 - Keep the Power BI file out of git if it contains private health data.
 - Add screenshots only after sanitizing private values.
-

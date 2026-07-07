@@ -12,15 +12,39 @@ data/raw/mfp/
 
 The ETL can classify common nutrition, exercise, and progress or measurement exports. File names such as `nutrition.csv`, `food_diary.csv`, `exercise.csv`, and `progress.csv` are helpful but not required; the parser also looks at column names.
 
-## Where To Put Apple Health Export
+## Where To Put HealthAutoExport Data
 
-Place the Apple Health XML export here:
+For v1, use the extracted main HealthAutoExport daily CSV directly. Place it here:
+
+```text
+data/raw/apple_health/HealthAutoExport.csv
+```
+
+The full HealthAutoExport ZIP is not needed for v1. Extract the daily CSV locally and copy only that CSV into `data/raw/apple_health/`.
+
+The optional Apple Health XML route is still available for later comparison or fallback:
 
 ```text
 data/raw/apple_health/export.xml
 ```
 
-Apple Health exports are usually delivered as a zip. Unzip it locally and copy the `export.xml` file into the folder above.
+Switch sources with:
+
+```text
+APPLE_HEALTH_SOURCE=autoexport_csv
+APPLE_HEALTH_SOURCE=xml
+APPLE_HEALTH_SOURCE=none
+```
+
+`autoexport_csv` is the default.
+
+## Nutrition Source Of Truth
+
+MyFitnessPal CSV exports are the source of truth for calories, macros, micronutrients, meal-level nutrition, and nutrition targets.
+
+HealthAutoExport is the source of truth for Apple Health and Apple Watch metrics such as sleep, steps, active energy, resting energy, resting heart rate, HRV, VO2 max, exercise time, stand time, respiratory rate, and blood oxygen when available.
+
+Do not use HealthAutoExport nutrition columns for the final nutrition outputs in v1. `USE_AUTOEXPORT_NUTRITION=false` is the default and recommended setting.
 
 ## Run The ETL
 
@@ -91,10 +115,12 @@ If columns are missing or values look strange:
 
 - Open the source CSV and confirm it has a date-like column.
 - Check whether nutrient names include units in unexpected formats.
+- For HealthAutoExport, confirm the extracted daily CSV has columns like `Step Count (count)`, `Active Energy (kcal)`, `Resting Heart Rate (count/min)`, or `Sleep Analysis [Total] (hr)`.
+- If `Sleep Analysis [Asleep] (hr)` is zero, check whether `Core`, `Deep`, and `REM` stage columns are populated. The parser uses total sleep first, then stage totals.
 - Confirm decimal and thousands separators are standard, such as `1,250` or `1250.5`.
 - Run with sample data to confirm the pipeline itself is working.
 - Inspect `data_quality_issues.csv` for missing fields or all-null columns.
 - If a MyFitnessPal export uses a new naming pattern, add a synonym in `src/ingest_mfp.py` rather than hard-coding a one-off transformation.
+- If a HealthAutoExport column uses a new naming pattern, add a mapping in `src/connectors/apple_health_autoexport_csv.py`.
 
 Keep future API, scraping, or live-sync work separate from this import flow. The v1 contract is exported files in, modeled dashboard tables out.
-

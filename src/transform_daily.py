@@ -28,7 +28,7 @@ FACT_BASE_COLUMNS = [
     "weight_lb",
     "steps",
     "active_energy_kcal",
-    "basal_energy_kcal",
+    "resting_energy_kcal",
     "sleep_hours",
     "resting_hr",
     "hrv_ms",
@@ -51,12 +51,29 @@ FACT_PREFERRED_ORDER = [
     "weight_lb",
     "steps",
     "active_energy_kcal",
-    "basal_energy_kcal",
+    "resting_energy_kcal",
+    "apple_exercise_time_min",
+    "apple_stand_time_min",
+    "walking_running_distance_mi",
+    "flights_climbed",
+    "vo2_max",
     "sleep_hours",
-    "in_bed_hours",
+    "sleep_core_hours",
+    "sleep_deep_hours",
+    "sleep_rem_hours",
+    "sleep_awake_hours",
+    "sleep_in_bed_hours",
     "resting_hr",
     "hrv_ms",
+    "respiratory_rate",
+    "blood_oxygen_pct",
+    "walking_heart_rate_avg",
+    "heart_rate_avg",
+    "heart_rate_min",
+    "heart_rate_max",
+    "wrist_temperature_f",
     "workout_minutes",
+    "mfp_exercise_calories",
 ]
 
 
@@ -66,6 +83,7 @@ class DailyModels:
     daily_micronutrients: pd.DataFrame
     daily_activity: pd.DataFrame
     daily_sleep: pd.DataFrame
+    daily_recovery: pd.DataFrame
     daily_body_metrics: pd.DataFrame
     dashboard_fact: pd.DataFrame
     missing_fields: list[str]
@@ -80,11 +98,13 @@ def build_daily_models(
     apple_sleep: pd.DataFrame,
     apple_body_metrics: pd.DataFrame,
     config: PipelineConfig,
+    apple_recovery: pd.DataFrame | None = None,
 ) -> DailyModels:
     daily_nutrition = normalize_daily_frame(mfp_nutrition)
     daily_micronutrients = normalize_daily_frame(mfp_micronutrients)
     daily_activity = combine_activity(apple_activity, mfp_activity)
     daily_sleep = normalize_daily_frame(apple_sleep)
+    daily_recovery = normalize_daily_frame(apple_recovery)
     daily_body_metrics = combine_body_metrics(apple_body_metrics, mfp_body_metrics)
 
     dashboard_fact = build_dashboard_fact(
@@ -92,6 +112,7 @@ def build_daily_models(
         daily_micronutrients=daily_micronutrients,
         daily_activity=daily_activity,
         daily_sleep=daily_sleep,
+        daily_recovery=daily_recovery,
         daily_body_metrics=daily_body_metrics,
         config=config,
     )
@@ -101,6 +122,7 @@ def build_daily_models(
         daily_micronutrients=daily_micronutrients,
         daily_activity=daily_activity,
         daily_sleep=daily_sleep,
+        daily_recovery=daily_recovery,
         daily_body_metrics=daily_body_metrics,
         dashboard_fact=dashboard_fact,
         missing_fields=missing_fields,
@@ -112,14 +134,26 @@ def combine_activity(apple_activity: pd.DataFrame, mfp_activity: pd.DataFrame) -
     mfp = normalize_daily_frame(mfp_activity)
     combined = merge_on_date([apple, mfp], suffixes=("_apple", "_mfp"))
     if combined.empty:
-        return pd.DataFrame(columns=["date", "steps", "active_energy_kcal", "basal_energy_kcal", "workout_minutes"])
+        return pd.DataFrame(columns=["date", "steps", "active_energy_kcal", "resting_energy_kcal", "workout_minutes"])
 
     output = pd.DataFrame({"date": combined["date"]})
-    for column in ["steps", "active_energy_kcal", "basal_energy_kcal"]:
+    for column in [
+        "steps",
+        "active_energy_kcal",
+        "resting_energy_kcal",
+        "apple_stand_time_min",
+        "walking_running_distance_mi",
+        "flights_climbed",
+        "vo2_max",
+        "mfp_exercise_calories",
+    ]:
         output[column] = combined[column] if column in combined else pd.NA
 
-    apple_workout = combined["workout_minutes_apple"] if "workout_minutes_apple" in combined else combined.get("workout_minutes")
+    apple_workout = combined["apple_exercise_time_min"] if "apple_exercise_time_min" in combined else None
+    if apple_workout is None:
+        apple_workout = combined["workout_minutes_apple"] if "workout_minutes_apple" in combined else combined.get("workout_minutes")
     mfp_workout = combined["workout_minutes_mfp"] if "workout_minutes_mfp" in combined else pd.Series(pd.NA, index=combined.index)
+    output["apple_exercise_time_min"] = apple_workout if apple_workout is not None else pd.Series(pd.NA, index=combined.index)
     output["workout_minutes"] = apple_workout.combine_first(mfp_workout) if apple_workout is not None else mfp_workout
     return output.sort_values("date")
 
@@ -129,14 +163,12 @@ def combine_body_metrics(apple_body: pd.DataFrame, mfp_body: pd.DataFrame) -> pd
     mfp = normalize_daily_frame(mfp_body)
     combined = merge_on_date([apple, mfp], suffixes=("_apple", "_mfp"))
     if combined.empty:
-        return pd.DataFrame(columns=["date", "weight_lb", "resting_hr", "hrv_ms"])
+        return pd.DataFrame(columns=["date", "weight_lb"])
 
     output = pd.DataFrame({"date": combined["date"]})
     apple_weight = combined["weight_lb_apple"] if "weight_lb_apple" in combined else combined.get("weight_lb")
     mfp_weight = combined["weight_lb_mfp"] if "weight_lb_mfp" in combined else pd.Series(pd.NA, index=combined.index)
     output["weight_lb"] = apple_weight.combine_first(mfp_weight) if apple_weight is not None else mfp_weight
-    for column in ["resting_hr", "hrv_ms"]:
-        output[column] = combined[column] if column in combined else pd.NA
     return output.sort_values("date")
 
 
@@ -147,12 +179,14 @@ def build_dashboard_fact(
     daily_sleep: pd.DataFrame,
     daily_body_metrics: pd.DataFrame,
     config: PipelineConfig,
+    daily_recovery: pd.DataFrame | None = None,
 ) -> pd.DataFrame:
     frames = [
         normalize_daily_frame(daily_nutrition),
         normalize_daily_frame(pivot_micronutrients_if_needed(daily_micronutrients)),
         normalize_daily_frame(daily_activity),
         normalize_daily_frame(daily_sleep),
+        normalize_daily_frame(daily_recovery),
         normalize_daily_frame(daily_body_metrics),
     ]
     date_spine = build_date_spine(frames, config)

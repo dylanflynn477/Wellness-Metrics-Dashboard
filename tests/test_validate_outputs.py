@@ -34,7 +34,7 @@ def complete_fact_row(date: str, **overrides: object) -> dict[str, object]:
         "weight_lb": 182,
         "steps": 9000,
         "active_energy_kcal": 650,
-        "basal_energy_kcal": 1800,
+        "resting_energy_kcal": 1800,
         "sleep_hours": 7.5,
         "resting_hr": 58,
         "hrv_ms": 65,

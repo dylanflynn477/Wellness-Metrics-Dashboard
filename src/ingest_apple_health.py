@@ -38,21 +38,62 @@ class AppleHealthData:
     daily_activity: pd.DataFrame
     daily_sleep: pd.DataFrame
     daily_body_metrics: pd.DataFrame
+    daily_recovery: pd.DataFrame
     records_read: int
     workouts_read: int
+
+
+def empty_apple_health_data() -> AppleHealthData:
+    """Return empty normalized Apple Health tables."""
+
+    return AppleHealthData(
+        daily_activity=empty_daily_frame(
+            [
+                "steps",
+                "active_energy_kcal",
+                "resting_energy_kcal",
+                "apple_exercise_time_min",
+                "apple_stand_time_min",
+                "walking_running_distance_mi",
+                "flights_climbed",
+                "vo2_max",
+                "workout_minutes",
+            ]
+        ),
+        daily_sleep=empty_daily_frame(
+            [
+                "sleep_hours",
+                "sleep_core_hours",
+                "sleep_deep_hours",
+                "sleep_rem_hours",
+                "sleep_awake_hours",
+                "sleep_in_bed_hours",
+            ]
+        ),
+        daily_body_metrics=empty_daily_frame(["weight_lb"]),
+        daily_recovery=empty_daily_frame(
+            [
+                "resting_hr",
+                "hrv_ms",
+                "respiratory_rate",
+                "blood_oxygen_pct",
+                "walking_heart_rate_avg",
+                "heart_rate_avg",
+                "heart_rate_min",
+                "heart_rate_max",
+                "wrist_temperature_f",
+            ]
+        ),
+        records_read=0,
+        workouts_read=0,
+    )
 
 
 def load_apple_health_data(export_xml: Path) -> AppleHealthData:
     """Parse an Apple Health ``export.xml`` file if it exists."""
 
     if not Path(export_xml).exists():
-        return AppleHealthData(
-            daily_activity=empty_daily_frame(["steps", "active_energy_kcal", "basal_energy_kcal", "workout_minutes"]),
-            daily_sleep=empty_daily_frame(["sleep_hours", "in_bed_hours"]),
-            daily_body_metrics=empty_daily_frame(["weight_lb", "resting_hr", "hrv_ms"]),
-            records_read=0,
-            workouts_read=0,
-        )
+        return empty_apple_health_data()
 
     quantity_rows: list[dict[str, Any]] = []
     sleep_rows: list[dict[str, Any]] = []
@@ -83,7 +124,15 @@ def load_apple_health_data(export_xml: Path) -> AppleHealthData:
     activity = build_activity_frame(quantity_rows, workout_rows)
     sleep = build_sleep_frame(sleep_rows)
     body_metrics = build_body_metrics_frame(quantity_rows)
-    return AppleHealthData(activity, sleep, body_metrics, records_read, workouts_read)
+    recovery = build_recovery_frame(quantity_rows)
+    return AppleHealthData(
+        daily_activity=activity,
+        daily_sleep=sleep,
+        daily_body_metrics=body_metrics,
+        daily_recovery=recovery,
+        records_read=records_read,
+        workouts_read=workouts_read,
+    )
 
 
 def parse_quantity_record(attrs: dict[str, str]) -> dict[str, Any] | None:
@@ -101,6 +150,8 @@ def parse_quantity_record(attrs: dict[str, str]) -> dict[str, Any] | None:
         value = convert_energy_to_kcal(value, unit)
     elif metric == "weight_lb":
         value = convert_weight_to_lb(value, unit)
+    if metric == "basal_energy_kcal":
+        metric = "resting_energy_kcal"
 
     return {"date": date, "metric": metric, "value": value}
 
@@ -113,7 +164,7 @@ def parse_sleep_record(attrs: dict[str, str]) -> dict[str, Any] | None:
 
     hours = (end - start).total_seconds() / 3600
     value = attrs.get("value", "")
-    metric = "sleep_hours" if value in SLEEP_ASLEEP_VALUES else "in_bed_hours"
+    metric = "sleep_hours" if value in SLEEP_ASLEEP_VALUES else "sleep_in_bed_hours"
     return {"date": start.date(), "metric": metric, "value": hours}
 
 
@@ -136,40 +187,52 @@ def parse_workout(attrs: dict[str, str]) -> dict[str, Any] | None:
 
 
 def build_activity_frame(quantity_rows: list[dict[str, Any]], workout_rows: list[dict[str, Any]]) -> pd.DataFrame:
-    rows = [row for row in quantity_rows if row["metric"] in {"steps", "active_energy_kcal", "basal_energy_kcal", "workout_minutes"}]
+    rows = [row for row in quantity_rows if row["metric"] in {"steps", "active_energy_kcal", "resting_energy_kcal", "workout_minutes"}]
     rows.extend(workout_rows)
     if not rows:
-        return empty_daily_frame(["steps", "active_energy_kcal", "basal_energy_kcal", "workout_minutes"])
+        return empty_daily_frame(["steps", "active_energy_kcal", "resting_energy_kcal", "apple_exercise_time_min", "workout_minutes"])
     frame = pd.DataFrame(rows)
     daily = frame.pivot_table(index="date", columns="metric", values="value", aggfunc="sum").reset_index()
-    for column in ["steps", "active_energy_kcal", "basal_energy_kcal", "workout_minutes"]:
+    for column in ["steps", "active_energy_kcal", "resting_energy_kcal", "workout_minutes"]:
         if column not in daily:
             daily[column] = pd.NA
-    return daily[["date", "steps", "active_energy_kcal", "basal_energy_kcal", "workout_minutes"]].sort_values("date")
+    daily["apple_exercise_time_min"] = daily["workout_minutes"]
+    return daily[["date", "steps", "active_energy_kcal", "resting_energy_kcal", "apple_exercise_time_min", "workout_minutes"]].sort_values("date")
 
 
 def build_sleep_frame(sleep_rows: list[dict[str, Any]]) -> pd.DataFrame:
     if not sleep_rows:
-        return empty_daily_frame(["sleep_hours", "in_bed_hours"])
+        return empty_daily_frame(["sleep_hours", "sleep_in_bed_hours"])
     frame = pd.DataFrame(sleep_rows)
     daily = frame.pivot_table(index="date", columns="metric", values="value", aggfunc="sum").reset_index()
-    for column in ["sleep_hours", "in_bed_hours"]:
+    for column in ["sleep_hours", "sleep_in_bed_hours"]:
         if column not in daily:
             daily[column] = pd.NA
-    daily["sleep_hours"] = daily["sleep_hours"].combine_first(daily["in_bed_hours"])
-    return daily[["date", "sleep_hours", "in_bed_hours"]].sort_values("date")
+    daily["sleep_hours"] = daily["sleep_hours"].combine_first(daily["sleep_in_bed_hours"])
+    return daily[["date", "sleep_hours", "sleep_in_bed_hours"]].sort_values("date")
 
 
 def build_body_metrics_frame(quantity_rows: list[dict[str, Any]]) -> pd.DataFrame:
-    rows = [row for row in quantity_rows if row["metric"] in {"weight_lb", "resting_hr", "hrv_ms"}]
+    rows = [row for row in quantity_rows if row["metric"] == "weight_lb"]
     if not rows:
-        return empty_daily_frame(["weight_lb", "resting_hr", "hrv_ms"])
+        return empty_daily_frame(["weight_lb"])
     frame = pd.DataFrame(rows)
     daily = frame.pivot_table(index="date", columns="metric", values="value", aggfunc="mean").reset_index()
-    for column in ["weight_lb", "resting_hr", "hrv_ms"]:
+    if "weight_lb" not in daily:
+        daily["weight_lb"] = pd.NA
+    return daily[["date", "weight_lb"]].sort_values("date")
+
+
+def build_recovery_frame(quantity_rows: list[dict[str, Any]]) -> pd.DataFrame:
+    rows = [row for row in quantity_rows if row["metric"] in {"resting_hr", "hrv_ms"}]
+    if not rows:
+        return empty_daily_frame(["resting_hr", "hrv_ms"])
+    frame = pd.DataFrame(rows)
+    daily = frame.pivot_table(index="date", columns="metric", values="value", aggfunc="mean").reset_index()
+    for column in ["resting_hr", "hrv_ms"]:
         if column not in daily:
             daily[column] = pd.NA
-    return daily[["date", "weight_lb", "resting_hr", "hrv_ms"]].sort_values("date")
+    return daily[["date", "resting_hr", "hrv_ms"]].sort_values("date")
 
 
 def apple_record_date(attrs: dict[str, str]) -> object | None:
@@ -202,4 +265,3 @@ def convert_duration_to_minutes(value: float, unit: str | None) -> float:
     if normalized in {"s", "sec", "second", "seconds"}:
         return value / 60
     return value
-

@@ -21,10 +21,12 @@ DEFAULT_ENV_FILE = PROJECT_ROOT / ".env"
 BodyweightUnit = Literal["lb", "kg"]
 NutrientOutputMode = Literal["wide", "long"]
 OutputMode = Literal["csv", "sqlite", "both"]
+AppleHealthSource = Literal["autoexport_csv", "xml", "none"]
 
 BODYWEIGHT_UNIT_VALUES = {"lb", "kg"}
 NUTRIENT_OUTPUT_MODE_VALUES = {"wide", "long"}
 OUTPUT_MODE_VALUES = {"csv", "sqlite", "both"}
+APPLE_HEALTH_SOURCE_VALUES = {"autoexport_csv", "xml", "none"}
 
 TRUE_VALUES = {"1", "true", "t", "yes", "y", "on"}
 FALSE_VALUES = {"0", "false", "f", "no", "n", "off"}
@@ -37,8 +39,10 @@ class PipelineConfig:
     app_env: str = "development"
 
     raw_mfp_dir: Path = PROJECT_ROOT / "data" / "raw" / "mfp"
+    raw_apple_health_autoexport_csv: Path = PROJECT_ROOT / "data" / "raw" / "apple_health" / "HealthAutoExport.csv"
     raw_apple_health_xml: Path = PROJECT_ROOT / "data" / "raw" / "apple_health" / "export.xml"
     sample_mfp_dir: Path = PROJECT_ROOT / "data" / "sample" / "mfp"
+    sample_apple_health_autoexport_csv: Path = PROJECT_ROOT / "data" / "sample" / "apple_health" / "HealthAutoExport.csv"
     sample_apple_health_xml: Path = PROJECT_ROOT / "data" / "sample" / "apple_health" / "export.xml"
     processed_dir: Path = PROJECT_ROOT / "data" / "processed"
 
@@ -55,6 +59,8 @@ class PipelineConfig:
     output_mode: OutputMode = "csv"
     database_url: str = "sqlite:///data/processed/health_metrics.db"
     run_data_validation: bool = True
+    apple_health_source: AppleHealthSource = "autoexport_csv"
+    use_autoexport_nutrition: bool = False
     use_sample_data_if_raw_missing: bool = True
 
     @classmethod
@@ -70,8 +76,14 @@ class PipelineConfig:
         return cls(
             app_env=env_string(values, "APP_ENV", defaults.app_env),
             raw_mfp_dir=env_path(values, "RAW_MFP_DIR", defaults.raw_mfp_dir),
+            raw_apple_health_autoexport_csv=env_path(
+                values,
+                "RAW_APPLE_HEALTH_AUTOEXPORT_CSV",
+                defaults.raw_apple_health_autoexport_csv,
+            ),
             raw_apple_health_xml=env_path(values, "RAW_APPLE_HEALTH_XML", defaults.raw_apple_health_xml),
             sample_mfp_dir=defaults.sample_mfp_dir,
+            sample_apple_health_autoexport_csv=defaults.sample_apple_health_autoexport_csv,
             sample_apple_health_xml=defaults.sample_apple_health_xml,
             processed_dir=env_path(values, "PROCESSED_DIR", defaults.processed_dir),
             calorie_target=parse_optional_float(values.get("CALORIE_TARGET"), defaults.calorie_target, "CALORIE_TARGET"),
@@ -96,6 +108,17 @@ class PipelineConfig:
                 values.get("RUN_DATA_VALIDATION"),
                 defaults.run_data_validation,
                 "RUN_DATA_VALIDATION",
+            ),
+            apple_health_source=validate_enum(
+                values.get("APPLE_HEALTH_SOURCE"),
+                defaults.apple_health_source,
+                APPLE_HEALTH_SOURCE_VALUES,
+                "APPLE_HEALTH_SOURCE",
+            ),
+            use_autoexport_nutrition=parse_bool(
+                values.get("USE_AUTOEXPORT_NUTRITION"),
+                defaults.use_autoexport_nutrition,
+                "USE_AUTOEXPORT_NUTRITION",
             ),
             use_sample_data_if_raw_missing=parse_bool(
                 values.get("USE_SAMPLE_DATA_IF_RAW_MISSING"),

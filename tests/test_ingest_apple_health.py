@@ -29,12 +29,13 @@ def test_apple_health_xml_parses_daily_metrics(tmp_path: Path) -> None:
     activity = result.daily_activity.set_index("date")
     sleep = result.daily_sleep.set_index("date")
     body = result.daily_body_metrics.set_index("date")
+    recovery = result.daily_recovery.set_index("date")
 
     assert activity.iloc[0]["steps"] == 1200
     assert activity.iloc[0]["active_energy_kcal"] == pytest.approx(100, rel=0.01)
+    assert activity.iloc[0]["apple_exercise_time_min"] == 45
     assert activity.iloc[0]["workout_minutes"] == 45
     assert sleep.iloc[0]["sleep_hours"] == 8
     assert body.iloc[0]["weight_lb"] == pytest.approx(180.78, rel=0.01)
-    assert body.iloc[0]["resting_hr"] == 56
-    assert body.iloc[0]["hrv_ms"] == 67
-
+    assert recovery.iloc[0]["resting_hr"] == 56
+    assert recovery.iloc[0]["hrv_ms"] == 67
