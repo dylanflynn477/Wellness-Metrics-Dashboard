@@ -51,7 +51,7 @@ RECOVERY_FIELDS = [
 ]
 
 FIELD_ALIASES = {
-    "date": ["date", "day", "calendar_date"],
+    "date": ["date", "date_time", "datetime", "day", "calendar_date"],
     "steps": ["step_count_count", "step_count", "steps"],
     "active_energy_kcal": ["active_energy_kcal", "active_energy_burned_kcal"],
     "resting_energy_kcal": ["resting_energy_kcal", "basal_energy_kcal", "basal_energy_burned_kcal"],
@@ -127,13 +127,14 @@ class AppleHealthAutoExportCsvConnector:
     source_type: str = "manual_export"
 
     def load(self) -> AppleHealthData:
-        if not self.export_csv.exists():
+        export_csv = resolve_autoexport_csv(self.export_csv)
+        if export_csv is None:
             LOGGER.warning("HealthAutoExport CSV not found at %s; Apple Health tables will be empty.", self.export_csv)
             return empty_apple_health_data()
 
-        frame = pd.read_csv(self.export_csv, encoding="utf-8-sig")
+        frame = pd.read_csv(export_csv, encoding="utf-8-sig")
         if frame.empty:
-            LOGGER.warning("HealthAutoExport CSV at %s is empty.", self.export_csv)
+            LOGGER.warning("HealthAutoExport CSV at %s is empty.", export_csv)
             return empty_apple_health_data()
         if self.use_autoexport_nutrition:
             LOGGER.warning(
@@ -156,6 +157,17 @@ class AppleHealthAutoExportCsvConnector:
             records_read=len(frame),
             workouts_read=0,
         )
+
+
+def resolve_autoexport_csv(configured_path: Path) -> Path | None:
+    """Resolve the configured AutoExport CSV, including date-stamped exports."""
+
+    if configured_path.exists():
+        return configured_path
+    if not configured_path.parent.exists():
+        return None
+    candidates = sorted(configured_path.parent.glob("HealthAutoExport*.csv"))
+    return candidates[0] if candidates else None
 
 
 def build_autoexport_activity(frame: pd.DataFrame, date_column: str) -> pd.DataFrame:

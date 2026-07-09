@@ -154,7 +154,7 @@ def combine_activity(apple_activity: pd.DataFrame, mfp_activity: pd.DataFrame) -
         apple_workout = combined["workout_minutes_apple"] if "workout_minutes_apple" in combined else combined.get("workout_minutes")
     mfp_workout = combined["workout_minutes_mfp"] if "workout_minutes_mfp" in combined else pd.Series(pd.NA, index=combined.index)
     output["apple_exercise_time_min"] = apple_workout if apple_workout is not None else pd.Series(pd.NA, index=combined.index)
-    output["workout_minutes"] = apple_workout.combine_first(mfp_workout) if apple_workout is not None else mfp_workout
+    output["workout_minutes"] = combine_first_nonempty(apple_workout, mfp_workout, combined.index)
     return output.sort_values("date")
 
 
@@ -168,8 +168,25 @@ def combine_body_metrics(apple_body: pd.DataFrame, mfp_body: pd.DataFrame) -> pd
     output = pd.DataFrame({"date": combined["date"]})
     apple_weight = combined["weight_lb_apple"] if "weight_lb_apple" in combined else combined.get("weight_lb")
     mfp_weight = combined["weight_lb_mfp"] if "weight_lb_mfp" in combined else pd.Series(pd.NA, index=combined.index)
-    output["weight_lb"] = apple_weight.combine_first(mfp_weight) if apple_weight is not None else mfp_weight
+    output["weight_lb"] = combine_first_nonempty(apple_weight, mfp_weight, combined.index)
     return output.sort_values("date")
+
+
+def combine_first_nonempty(
+    primary: pd.Series | None,
+    fallback: pd.Series | None,
+    index: pd.Index,
+) -> pd.Series:
+    """Combine two optional series without triggering pandas all-empty concat warnings."""
+
+    empty = pd.Series(pd.NA, index=index)
+    if primary is None:
+        return fallback if fallback is not None else empty
+    if fallback is None or fallback.isna().all():
+        return primary
+    if primary.isna().all():
+        return fallback
+    return primary.combine_first(fallback)
 
 
 def build_dashboard_fact(
