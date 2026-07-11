@@ -208,7 +208,15 @@ def build_dashboard_fact(
     ]
     date_spine = build_date_spine(frames, config)
     if date_spine.empty:
-        columns = FACT_BASE_COLUMNS + ["calories_7d_avg", "protein_7d_avg", "weight_7d_avg", "sleep_7d_avg"]
+        columns = FACT_BASE_COLUMNS + [
+            "calories_7d_avg",
+            "protein_7d_avg",
+            "weight_7d_avg",
+            "sleep_7d_avg",
+            "resting_hr_7d_avg",
+            "hrv_7d_avg",
+            "weight_measurement_flag",
+        ]
         return pd.DataFrame(columns=columns)
 
     fact = merge_on_date([date_spine] + frames)
@@ -222,6 +230,9 @@ def build_dashboard_fact(
     fact["protein_7d_avg"] = pd.to_numeric(fact["protein_g"], errors="coerce").rolling(7, min_periods=1).mean()
     fact["weight_7d_avg"] = pd.to_numeric(fact["weight_lb"], errors="coerce").rolling(7, min_periods=1).mean()
     fact["sleep_7d_avg"] = pd.to_numeric(fact["sleep_hours"], errors="coerce").rolling(7, min_periods=1).mean()
+    fact["resting_hr_7d_avg"] = pd.to_numeric(fact["resting_hr"], errors="coerce").rolling(7, min_periods=1).mean()
+    fact["hrv_7d_avg"] = pd.to_numeric(fact["hrv_ms"], errors="coerce").rolling(7, min_periods=1).mean()
+    fact["weight_measurement_flag"] = pd.to_numeric(fact["weight_lb"], errors="coerce").notna().astype("int8")
 
     if config.calorie_target is not None:
         fact["calorie_delta_from_target"] = pd.to_numeric(fact["calories"], errors="coerce") - config.calorie_target
@@ -294,7 +305,15 @@ def wide_to_long_nutrients(frame: pd.DataFrame) -> pd.DataFrame:
 
 
 def order_fact_columns(fact: pd.DataFrame) -> pd.DataFrame:
-    rolling_columns = ["calories_7d_avg", "protein_7d_avg", "weight_7d_avg", "sleep_7d_avg"]
+    rolling_columns = [
+        "calories_7d_avg",
+        "protein_7d_avg",
+        "weight_7d_avg",
+        "sleep_7d_avg",
+        "resting_hr_7d_avg",
+        "hrv_7d_avg",
+        "weight_measurement_flag",
+    ]
     target_columns = [column for column in ["calorie_delta_from_target", "protein_delta_from_target"] if column in fact]
     known = FACT_PREFERRED_ORDER + rolling_columns + target_columns
     extra_columns = sorted([column for column in fact.columns if column not in known])

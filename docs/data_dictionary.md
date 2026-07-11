@@ -141,6 +141,9 @@ Main daily-grain fact table for Power BI.
 | protein_7d_avg | Seven-day rolling average protein. |
 | weight_7d_avg | Seven-day rolling average bodyweight. |
 | sleep_7d_avg | Seven-day rolling average sleep. |
+| resting_hr_7d_avg | Seven-calendar-day rolling average resting heart rate, ignoring missing daily readings. |
+| hrv_7d_avg | Seven-calendar-day rolling average HRV SDNN, ignoring missing daily readings. |
+| weight_measurement_flag | `1` when bodyweight was recorded on that date and `0` otherwise; useful for filtering sparse weigh-ins in Power BI. |
 | calorie_delta_from_target | Calories minus configured calorie target. |
 | protein_delta_from_target | Protein minus configured protein target. |
 | additional micronutrient fields | Any extra nutrient fields preserved from MFP exports. |

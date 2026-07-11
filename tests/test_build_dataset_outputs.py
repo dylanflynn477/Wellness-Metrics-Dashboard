@@ -89,6 +89,9 @@ def test_sample_etl_still_writes_dashboard_csv_outputs(tmp_path: Path) -> None:
     assert set(outputs) == set(OUTPUT_FILES)
     assert not fact.empty
     assert "calories_7d_avg" in fact.columns
+    assert "resting_hr_7d_avg" in fact.columns
+    assert "hrv_7d_avg" in fact.columns
+    assert "weight_measurement_flag" in fact.columns
     assert "daily_recovery" in outputs
     assert "respiratory_rate" in fact.columns
     assert fact.loc[0, "calories"] != 9999

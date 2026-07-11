@@ -87,6 +87,9 @@ NON_MICRONUTRIENT_FACT_FIELDS = set(
         "protein_7d_avg",
         "weight_7d_avg",
         "sleep_7d_avg",
+        "resting_hr_7d_avg",
+        "hrv_7d_avg",
+        "weight_measurement_flag",
         "calorie_delta_from_target",
         "protein_delta_from_target",
     ]
