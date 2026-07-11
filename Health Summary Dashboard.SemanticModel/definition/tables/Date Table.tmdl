@@ -1,0 +1,199 @@
+table 'Date Table'
+	lineageTag: 3a6e57e6-df0c-49a6-bf78-ca2f42d86fd5
+	dataCategory: Time
+
+	measure 'Avg Calories' =
+			
+			AVERAGE(health_dashboard_fact[calories])
+		lineageTag: 78ec7d93-0ad4-4713-b394-07cee6ddb979
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Protein' =
+			
+			AVERAGE(health_dashboard_fact[protein_g])
+		lineageTag: 3c1cb7e8-ac5e-4573-9ade-e96b2ab5408f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Carbs' =
+			
+			AVERAGE(health_dashboard_fact[carbs_g])
+		lineageTag: f0d81522-8583-4eef-bf63-dbeab1e0b274
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Fat' =
+			
+			AVERAGE(health_dashboard_fact[fat_g])
+		lineageTag: b1e06179-918a-41cf-bef7-22e26d7ebcb2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Fiber' =
+			
+			AVERAGE(health_dashboard_fact[fiber_g])
+		lineageTag: ea82313f-f838-4524-acf1-ed0d44b6da6f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Sodium' =
+			
+			AVERAGE(health_dashboard_fact[sodium_mg])
+		lineageTag: 23ff8aaa-c445-48bc-8d6c-27ddecf0a6e8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Sleep' =
+			
+			AVERAGE(health_dashboard_fact[sleep_hours])
+		lineageTag: ae89cfdb-56ce-46e0-89ba-d399d56a1b6e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Resting HR' =
+			
+			AVERAGE(health_dashboard_fact[resting_hr])
+		lineageTag: ec752c15-5924-4de8-9029-1c8351cd09a1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg HRV' =
+			
+			AVERAGE(health_dashboard_fact[hrv_ms])
+		lineageTag: e2931aef-8af4-462d-aac9-9c5c32636edd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Calorie Target' =
+			
+			2400
+		formatString: 0
+		lineageTag: bcf20b78-136e-4282-a0c0-dfaca204d521
+
+	measure 'Protein Target' =
+			
+			175
+		formatString: 0
+		lineageTag: 7911a928-bf1a-4ed7-a0c6-b06b8019e9ac
+
+	measure 'Logged Nutrition Days' =
+			
+			CALCULATE(
+			    COUNTROWS(health_dashboard_fact),
+			    NOT ISBLANK(health_dashboard_fact[calories])
+			)
+		formatString: 0
+		lineageTag: 47a6d0a8-b7aa-48c0-898b-6ab7596fa56e
+
+	measure 'Protein Hit Days' =
+			
+			CALCULATE(
+			    COUNTROWS(health_dashboard_fact),
+			    FILTER(
+			        health_dashboard_fact,
+			        NOT ISBLANK(health_dashboard_fact[calories])
+			            && health_dashboard_fact[calories] >= 1200
+			            && NOT ISBLANK(health_dashboard_fact[protein_g])
+			            && health_dashboard_fact[protein_g] >= [Protein Target]
+			    )
+			)
+		formatString: 0
+		lineageTag: a7004b77-1eb9-4502-843e-0dd6f239b80e
+
+	measure 'Protein Adherence %' =
+			
+			DIVIDE([Protein Hit Days], [Valid Nutrition Days])
+		lineageTag: 68568047-147f-4e49-b3aa-1dcc3ea10769
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Latest Weight' =
+			
+			VAR LatestDate =
+			    MAXX(
+			        FILTER(
+			            health_dashboard_fact,
+			            NOT ISBLANK(health_dashboard_fact[weight_lb])
+			        ),
+			        health_dashboard_fact[date]
+			    )
+			RETURN
+			CALCULATE(
+			    AVERAGE(health_dashboard_fact[weight_lb]),
+			    health_dashboard_fact[date] = LatestDate
+			)
+		lineageTag: 24572ce0-e173-4c41-9ce8-b7dc2d91a6ea
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Valid Nutrition Days' =
+			
+			CALCULATE(
+			    COUNTROWS(health_dashboard_fact),
+			    FILTER(
+			        health_dashboard_fact,
+			        NOT ISBLANK(health_dashboard_fact[calories])
+			            && health_dashboard_fact[calories] >= 1200
+			            && NOT ISBLANK(health_dashboard_fact[protein_g])
+			    )
+			)
+		formatString: 0
+		lineageTag: 0b3b2278-9901-43ab-9fc5-6f73c352f4a2
+
+	column Date
+		isKey
+		formatString: General Date
+		lineageTag: 7bd64760-0248-4e1a-a31a-cdd361e306de
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year = YEAR('Date Table'[Date])
+		formatString: 0
+		lineageTag: dc309d95-2563-4112-b3c9-efd6d003ad55
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number' = MONTH('Date Table'[Date])
+		formatString: 0
+		lineageTag: 40010f1e-0ec7-4ab4-bc0c-8e8d5f8e92e2
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month = FORMAT('Date Table'[Date], "MMM")
+		lineageTag: 0ac1f69c-a693-40a3-92e9-73c3e2feb214
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week Start' =
+			
+			'Date Table'[Date] - WEEKDAY('Date Table'[Date], 2) + 1
+		formatString: General Date
+		lineageTag: 06fc19ee-3553-4bc7-bce2-64cd01c8bf18
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day Name' = FORMAT('Date Table'[Date], "ddd")
+		lineageTag: 93c56ca2-e54a-4ffb-b88a-2b64f509f5bd
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Date Table' = calculated
+		mode: import
+		source =
+				
+				CALENDAR(
+				    MIN(health_dashboard_fact[date]),
+				    MAX(health_dashboard_fact[date])
+				)
+
+	annotation PBI_Id = d02a4bc8c71a45a58224c66b6e3dfb19
+

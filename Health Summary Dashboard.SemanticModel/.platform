@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Health Summary Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "0ae259b3-e8aa-4a05-a643-7915e070d8f6"
+  }
+}

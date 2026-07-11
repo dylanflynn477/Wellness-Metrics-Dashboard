@@ -1,0 +1,99 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "756e1d6eeab884236445",
+  "position": {
+    "x": 639.541437783616,
+    "y": 485.46453307857655,
+    "z": 12000,
+    "height": 236.00668736565561,
+    "width": 639.541437783616,
+    "tabOrder": 12000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Date Table"
+                    }
+                  },
+                  "Property": "Date"
+                }
+              },
+              "queryRef": "Date Table.Date",
+              "nativeQueryRef": "Date",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "health_dashboard_fact"
+                        }
+                      },
+                      "Property": "weight_7d_avg"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(health_dashboard_fact.weight_7d_avg)",
+              "nativeQueryRef": "Sum of weight_7d_avg"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "health_dashboard_fact"
+                        }
+                      },
+                      "Property": "weight_lb"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(health_dashboard_fact.weight_lb)",
+              "nativeQueryRef": "Sum of weight_lb"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Date Table"
+                  }
+                },
+                "Property": "Date"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

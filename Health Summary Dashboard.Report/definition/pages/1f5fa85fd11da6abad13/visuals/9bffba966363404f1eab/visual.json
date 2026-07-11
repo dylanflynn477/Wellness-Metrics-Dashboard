@@ -1,0 +1,99 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "9bffba966363404f1eab",
+  "position": {
+    "x": 0,
+    "y": 266.57750179125867,
+    "z": 9000,
+    "height": 182.20205397659421,
+    "width": 639.541437783616,
+    "tabOrder": 9000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Date Table"
+                    }
+                  },
+                  "Property": "Date"
+                }
+              },
+              "queryRef": "Date Table.Date",
+              "nativeQueryRef": "Date",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "health_dashboard_fact"
+                        }
+                      },
+                      "Property": "calories_7d_avg"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(health_dashboard_fact.calories_7d_avg)",
+              "nativeQueryRef": "Sum of calories_7d_avg"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "health_dashboard_fact"
+                        }
+                      },
+                      "Property": "calories"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(health_dashboard_fact.calories)",
+              "nativeQueryRef": "Sum of calories"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Date Table"
+                  }
+                },
+                "Property": "Date"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
