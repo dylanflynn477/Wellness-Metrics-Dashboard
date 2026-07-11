@@ -133,7 +133,7 @@ def test_apple_health_source_routing_uses_autoexport_sample() -> None:
 
     apple_data = load_apple_health_source(config, autoexport_csv, apple_xml)
 
-    assert apple_data.records_read == 7
+    assert apple_data.records_read == 222
     assert "respiratory_rate" in apple_data.daily_recovery.columns
 
 

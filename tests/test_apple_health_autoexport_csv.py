@@ -44,12 +44,12 @@ def test_autoexport_csv_loads_activity_sleep_and_recovery_sample() -> None:
 
     result = AppleHealthAutoExportCsvConnector(config.sample_apple_health_autoexport_csv).load()
 
-    assert result.records_read == 7
-    assert result.daily_activity.loc[0, "steps"] == 8420
-    assert result.daily_activity.loc[0, "resting_energy_kcal"] == 1830
-    assert result.daily_sleep.loc[0, "sleep_hours"] == 7.75
-    assert result.daily_recovery.loc[0, "resting_hr"] == 58
-    assert result.daily_recovery.loc[0, "blood_oxygen_pct"] == 97
+    assert result.records_read == 222
+    assert result.daily_activity["steps"].between(2500, 20000).all()
+    assert result.daily_activity["resting_energy_kcal"].between(1800, 2300).all()
+    assert result.daily_sleep["sleep_hours"].between(5.5, 9.5).all()
+    assert result.daily_recovery["resting_hr"].between(45, 80).all()
+    assert result.daily_recovery["blood_oxygen_pct"].between(94, 100).all()
 
 
 def test_autoexport_sleep_uses_stages_when_asleep_is_zero_and_total_missing(tmp_path: Path) -> None:
@@ -86,6 +86,8 @@ def test_autoexport_nutrition_columns_are_ignored_by_default() -> None:
         config=config,
     )
 
-    assert models.dashboard_fact.loc[0, "calories"] == 1380
-    assert models.dashboard_fact.loc[0, "protein_g"] == 100
+    expected_calories = mfp_data.daily_nutrition.iloc[0]["calories"]
+    expected_protein = mfp_data.daily_nutrition.iloc[0]["protein_g"]
+    assert models.dashboard_fact.loc[0, "calories"] == expected_calories
+    assert models.dashboard_fact.loc[0, "protein_g"] == expected_protein
     assert 9999 not in set(models.daily_nutrition["calories"])

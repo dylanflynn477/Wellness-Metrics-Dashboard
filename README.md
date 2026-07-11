@@ -34,6 +34,7 @@ src/
   ingest_apple_health.py
   transform_daily.py
   build_dataset.py
+  generate_synthetic_data.py
   validate_outputs.py
   utils.py
 docs/
@@ -76,6 +77,17 @@ If `data/raw/` is empty, the command automatically uses the synthetic sample dat
 1. Add MyFitnessPal CSV exports to `data/raw/mfp/`.
 2. Add the extracted HealthAutoExport daily CSV to `data/raw/apple_health/HealthAutoExport.csv`.
 3. Run `python src/build_dataset.py`.
+
+The tracked sample spans `2025-11-27` through `2026-07-06` and models a fictional build-maintain-cut scenario. Regenerate it deterministically at any time:
+
+```bash
+python src/generate_synthetic_data.py
+python src/build_dataset.py --sample
+```
+
+The generator preserves useful export schemas, row density, missingness, and realistic cross-metric relationships. It does not copy private daily values, meal names, workout descriptions, or an exact bodyweight trajectory from the reference exports.
+
+The Power BI project reads the processed fact through the `HealthDashboardCsvPath` parameter. In Power BI Desktop, use **Transform data > Manage parameters** to point it at your local `data/processed/health_dashboard_fact.csv` before refreshing.
 
 Generated outputs are written to `data/processed/`:
 

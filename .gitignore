@@ -25,6 +25,8 @@ data/processed/**
 # Power BI and local analysis artifacts
 dashboard/*.pbix
 dashboard/*.pbit
+# PBIP caches and local settings can embed imported data or machine-specific paths.
+**/.pbi/
 notebooks/.ipynb_checkpoints/
 
 # OS/editor files

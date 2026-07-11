@@ -68,6 +68,15 @@ Use the synthetic public-safe sample data when you want to test the pipeline wit
 python src/build_dataset.py --sample
 ```
 
+To recreate the full 222-day fictional sample first:
+
+```bash
+python src/generate_synthetic_data.py
+python src/build_dataset.py --sample
+```
+
+The generated sample covers `2025-11-27` through `2026-07-06` and intentionally includes changing nutrition phases, sparse weight measurements, daily wearable metrics, and correlated recovery signals. It is independently simulated rather than anonymized row-by-row from a private export.
+
 The default config also falls back to sample data when no real raw files exist and `USE_SAMPLE_DATA_IF_RAW_MISSING=true`.
 
 ## Run With Real Data Only
@@ -106,8 +115,9 @@ Do not commit:
 - `.env`
 - SQLite databases such as `health_metrics.db`
 - Power BI files or screenshots that expose private health data
+- Power BI `.pbi/cache.abf` files or `.pbi/localSettings.json`
 
-The `.gitignore` is configured to keep raw exports, processed outputs, local databases, and `.env` out of git.
+The `.gitignore` is configured to keep raw exports, processed outputs, local databases, `.env`, and PBIP local caches out of git. Commit PBIP report and semantic-model definitions only after checking that source paths and parameters do not reveal private locations.
 
 ## Troubleshooting Weird Exports
 

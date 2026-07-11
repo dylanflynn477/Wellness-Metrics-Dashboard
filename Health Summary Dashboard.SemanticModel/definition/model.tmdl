@@ -8,9 +8,11 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["health_dashboard_fact"]
+annotation PBI_QueryOrder = ["HealthDashboardCsvPath","health_dashboard_fact"]
 
 annotation PBI_ProTooling = ["DevMode"]
+
+expression HealthDashboardCsvPath = "C:\Users\dylan\Wellness-Metrics-Dashboard\data\processed\health_dashboard_fact.csv" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
 
 ref table health_dashboard_fact
 ref table DateTableTemplate_04d4fa64-3b3b-40b1-8728-581447feada6
