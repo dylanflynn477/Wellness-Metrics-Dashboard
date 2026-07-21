@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "756e1d6eeab884236445",
   "position": {
-    "x": 639.541437783616,
-    "y": 485.46453307857655,
-    "z": 12000,
-    "height": 236.00668736565561,
-    "width": 639.541437783616,
-    "tabOrder": 12000
+    "x": 0,
+    "y": 264,
+    "z": 14000,
+    "height": 264,
+    "width": 960.00000000000011,
+    "tabOrder": 11000
   },
   "visual": {
     "visualType": "lineChart",
@@ -51,26 +51,8 @@
                 }
               },
               "queryRef": "Sum(health_dashboard_fact.weight_7d_avg)",
-              "nativeQueryRef": "Sum of weight_7d_avg"
-            },
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "health_dashboard_fact"
-                        }
-                      },
-                      "Property": "weight_lb"
-                    }
-                  },
-                  "Function": 0
-                }
-              },
-              "queryRef": "Sum(health_dashboard_fact.weight_lb)",
-              "nativeQueryRef": "Sum of weight_lb"
+              "nativeQueryRef": "1 week weight rolling average",
+              "displayName": "1 week weight rolling average"
             }
           ]
         }
@@ -93,6 +75,107 @@
         ],
         "isDefaultSort": true
       }
+    },
+    "objects": {
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1D4ED8'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(health_dashboard_fact.weight_7d_avg)"
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'BODYWEIGHT JOURNEY'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "18D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0F172A'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "drillFilterOtherVisuals": true
   }

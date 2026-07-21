@@ -3,11 +3,11 @@
   "name": "777bc3102b1126a96189",
   "position": {
     "x": 0,
-    "y": 451.34396950152757,
-    "z": 11000,
-    "height": 269.52293913361359,
-    "width": 639.58221270595607,
-    "tabOrder": 11000
+    "y": 528,
+    "z": 12000,
+    "height": 192,
+    "width": 464,
+    "tabOrder": 10000
   },
   "visual": {
     "visualType": "lineStackedColumnComboChart",
@@ -32,29 +32,6 @@
             }
           ]
         },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "health_dashboard_fact"
-                        }
-                      },
-                      "Property": "sleep_hours"
-                    }
-                  },
-                  "Function": 0
-                }
-              },
-              "queryRef": "Sum(health_dashboard_fact.sleep_hours)",
-              "nativeQueryRef": "Sum of sleep_hours"
-            }
-          ]
-        },
         "Y2": {
           "projections": [
             {
@@ -74,7 +51,28 @@
                 }
               },
               "queryRef": "Sum(health_dashboard_fact.sleep_7d_avg)",
-              "nativeQueryRef": "Sum of sleep_7d_avg"
+              "nativeQueryRef": "1 week sleep rolling average",
+              "displayName": "1 week sleep rolling average"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "health_dashboard_fact"
+                        }
+                      },
+                      "Property": "sleep_hours"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(health_dashboard_fact.sleep_hours)",
+              "nativeQueryRef": "Sleep (hours)",
+              "displayName": "Sleep (hours)"
             }
           ]
         }
@@ -97,6 +95,143 @@
         ],
         "isDefaultSort": true
       }
+    },
+    "objects": {
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7C3AED'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(health_dashboard_fact.sleep_7d_avg)"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#DDD6FE'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(health_dashboard_fact.sleep_hours)"
+          }
+        }
+      ],
+      "lineStyles": [
+        {
+          "properties": {
+            "strokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(health_dashboard_fact.sleep_hours)"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'SLEEP DURATION'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Daily values · 7-day average'"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "drillFilterOtherVisuals": true
   }

@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "dfa41c4f6c01794cf26a",
+  "name": "83332cf700746b9a6556",
   "position": {
     "x": 32.573897106951172,
-    "y": 32.573897106951172,
-    "z": 2000,
-    "height": 53.0833878779945,
-    "width": 757.64471789501238,
-    "tabOrder": 0
+    "y": 85.657284984945662,
+    "z": 13000,
+    "height": 34.98677837413274,
+    "width": 378.82235894750619,
+    "tabOrder": 13000
   },
   "visual": {
     "visualType": "textbox",
@@ -19,11 +19,10 @@
               {
                 "textRuns": [
                   {
-                    "value": "HEALTH & PERFORMANCE",
+                    "value": "Nutrition · Recovery · Activity · Body Composition",
                     "textStyle": {
-                      "fontWeight": "bold",
-                      "fontSize": "24pt",
-                      "color": "#ffffff"
+                      "fontSize": "11pt",
+                      "color": "#94a3b8"
                     }
                   }
                 ]

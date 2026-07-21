@@ -1,0 +1,7 @@
+expression HealthDashboardCsvPath = "C:\Users\dylan\Wellness-Metrics-Dashboard\data\processed\health_dashboard_fact.csv" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 855317b3-cdca-4f32-bb22-9ffd0079ed24
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+

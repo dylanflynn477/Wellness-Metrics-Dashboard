@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "dfa41c4f6c01794cf26a",
+  "name": "78b569fe30bee47cd763",
   "position": {
-    "x": 32.573897106951172,
-    "y": 32.573897106951172,
-    "z": 2000,
-    "height": 53.0833878779945,
-    "width": 757.64471789501238,
-    "tabOrder": 0
+    "x": 960,
+    "y": 272,
+    "z": 15000,
+    "height": 48,
+    "width": 319.99999999999994,
+    "tabOrder": 15000
   },
   "visual": {
     "visualType": "textbox",
@@ -19,14 +19,15 @@
               {
                 "textRuns": [
                   {
-                    "value": "HEALTH & PERFORMANCE",
+                    "value": "PROGRESS SNAPSHOT",
                     "textStyle": {
                       "fontWeight": "bold",
-                      "fontSize": "24pt",
+                      "fontSize": "14pt",
                       "color": "#ffffff"
                     }
                   }
-                ]
+                ],
+                "horizontalTextAlignment": "center"
               }
             ]
           }
@@ -37,10 +38,10 @@
       "background": [
         {
           "properties": {
-            "transparency": {
+            "show": {
               "expr": {
                 "Literal": {
-                  "Value": "100D"
+                  "Value": "false"
                 }
               }
             }

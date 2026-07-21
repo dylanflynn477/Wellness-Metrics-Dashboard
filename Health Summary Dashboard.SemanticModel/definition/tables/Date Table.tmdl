@@ -141,6 +141,306 @@ table 'Date Table'
 		formatString: 0
 		lineageTag: 0b3b2278-9901-43ab-9fc5-6f73c352f4a2
 
+	measure 'Avg Calories Overall' = ```
+			
+			CALCULATE ( [Avg Calories], REMOVEFILTERS ( 'Date Table' ) )
+			
+			```
+		lineageTag: b1219a9f-9b62-42a7-bb9c-17f4f3dd7b33
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Sleep Overall' =
+			
+			CALCULATE ( [Avg Sleep], REMOVEFILTERS ( 'Date Table' ) )
+		lineageTag: 155a8640-5fab-4167-a90f-ac722589f88c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Resting HR Overall' =
+			
+			CALCULATE ( [Avg Resting HR], REMOVEFILTERS ( 'Date Table' ) )
+		lineageTag: f7bc4aed-278d-4132-9914-750611748988
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg HRV Overall' =
+			
+			CALCULATE ( [Avg HRV], REMOVEFILTERS ( 'Date Table' ) )
+		lineageTag: 8937aa1e-591b-4560-8409-c27934952150
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Sleep 7D' = ```
+			
+			VAR EndDate = MAX ( 'Date Table'[Date] )
+			RETURN
+			    CALCULATE (
+			        [Avg Sleep],
+			        FILTER (
+			            ALL ( 'Date Table'[Date] ),
+			            'Date Table'[Date] >= EndDate - 6
+			                && 'Date Table'[Date] <= EndDate
+			        )
+			    )
+			
+			```
+		lineageTag: bef8fb20-377d-49d3-839f-5288f47499a0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Resting HR 7D' =
+			
+			VAR EndDate = MAX ( 'Date Table'[Date] )
+			RETURN
+			    CALCULATE (
+			        [Avg Resting HR],
+			        FILTER (
+			            ALL ( 'Date Table'[Date] ),
+			            'Date Table'[Date] >= EndDate - 6
+			                && 'Date Table'[Date] <= EndDate
+			        )
+			    )
+		lineageTag: a0cc2b2a-73ae-49ab-86b4-c059bcbbcfb0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg HRV 7D' =
+			
+			VAR EndDate = MAX ( 'Date Table'[Date] )
+			RETURN
+			    CALCULATE (
+			        [Avg HRV],
+			        FILTER (
+			            ALL ( 'Date Table'[Date] ),
+			            'Date Table'[Date] >= EndDate - 6
+			                && 'Date Table'[Date] <= EndDate
+			        )
+			    )
+		lineageTag: 141e8c95-a6ef-4fb5-8800-9056d7b4a374
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Calories vs Overall %' = ```
+			
+			DIVIDE (
+			    [Avg Calories] - [Avg Calories Overall],
+			    [Avg Calories Overall]
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 684382f4-d10a-40ad-befe-4e469e7363a7
+
+	measure 'Sleep 7D vs Overall' =
+			
+			[Avg Sleep 7D] - [Avg Sleep Overall]
+		lineageTag: fc9754cd-637a-4c2d-872a-7da5d334b9e7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Resting HR 7D vs Overall' =
+			
+			[Avg Resting HR 7D] - [Avg Resting HR Overall]
+		lineageTag: 9dcf1dee-4ff6-4af4-a9dc-5029f8fc45c7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'HRV 7D vs Overall %' =
+			
+			DIVIDE (
+			    [Avg HRV 7D] - [Avg HRV Overall],
+			    [Avg HRV Overall]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e0cee4f0-3a02-4f03-b7c9-badf980956b2
+
+	measure 'Current Weight (Selected)' =
+			
+			VAR LastDateWithWeight =
+			    MAXX(
+			        FILTER(
+			            ALLSELECTED(health_dashboard_fact[date]),
+			            NOT ISBLANK(
+			                CALCULATE(
+			                    MAX(health_dashboard_fact[weight_7d_avg])
+			                )
+			            )
+			        ),
+			        health_dashboard_fact[date]
+			    )
+			RETURN
+			    CALCULATE(
+			        MAX(health_dashboard_fact[weight_7d_avg]),
+			        health_dashboard_fact[date] = LastDateWithWeight
+			    )
+		lineageTag: cdaa1db6-6b13-4c2b-b4ed-7993c0353010
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Peak Weight (Selected)' =
+			
+			MAXX(
+			    ALLSELECTED(health_dashboard_fact[date]),
+			    CALCULATE(
+			        MAX(health_dashboard_fact[weight_7d_avg])
+			    )
+			)
+		lineageTag: ec9b8faf-a8a4-4dde-b4ab-0eb75fdcbdb1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Down From Peak' =
+			
+			[Peak Weight (Selected)] - [Current Weight (Selected)]
+		lineageTag: 011b6c11-58df-4ddf-9a01-4a06b4fd8f46
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Weight Change vs Previous' =
+			
+			VAR LastDateWithWeight =
+			    MAXX(
+			        FILTER(
+			            ALLSELECTED(health_dashboard_fact[date]),
+			            NOT ISBLANK(
+			                CALCULATE(MAX(health_dashboard_fact[weight_7d_avg]))
+			            )
+			        ),
+			        health_dashboard_fact[date]
+			    )
+			VAR PrevDateWithWeight =
+			    MAXX(
+			        FILTER(
+			            ALLSELECTED(health_dashboard_fact[date]),
+			            health_dashboard_fact[date] < LastDateWithWeight &&
+			            NOT ISBLANK(
+			                CALCULATE(MAX(health_dashboard_fact[weight_7d_avg]))
+			            )
+			        ),
+			        health_dashboard_fact[date]
+			    )
+			VAR CurrentWeight =
+			    CALCULATE(
+			        MAX(health_dashboard_fact[weight_7d_avg]),
+			        health_dashboard_fact[date] = LastDateWithWeight
+			    )
+			VAR PrevWeight =
+			    CALCULATE(
+			        MAX(health_dashboard_fact[weight_7d_avg]),
+			        health_dashboard_fact[date] = PrevDateWithWeight
+			    )
+			RETURN
+			    CurrentWeight - PrevWeight
+		lineageTag: 3fffb3ad-1c46-4bdc-a8e9-932e15c87120
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Weight Change Color' =
+			
+			SWITCH(
+			    TRUE(),
+			    [Weight Change vs Previous] < 0, "#4ADE80",
+			    [Weight Change vs Previous] > 0, "#EF4444",
+			    "#FFFFFF"
+			)
+		lineageTag: cff254fd-7fda-4a23-9bb9-cb0fd5624600
+
+	measure 'Current Weight (Period)' =
+			
+			VAR VisibleDates =
+			    ALLSELECTED('Date Table'[Date])
+			
+			VAR LastVisibleWeightDate =
+			    MAXX(
+			        FILTER(
+			            VisibleDates,
+			            NOT ISBLANK(
+			                CALCULATE(
+			                    MAX(health_dashboard_fact[weight_7d_avg])
+			                )
+			            )
+			        ),
+			        'Date Table'[Date]
+			    )
+			
+			RETURN
+			    CALCULATE(
+			        MAX(health_dashboard_fact[weight_7d_avg]),
+			        KEEPFILTERS(
+			            'Date Table'[Date] = LastVisibleWeightDate
+			        )
+			    )
+		lineageTag: 7df747a2-84e6-4416-b2df-90a95e31e954
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Peak Weight (Period)' =
+			
+			MAXX(
+			    FILTER(
+			        ALLSELECTED('Date Table'[Date]),
+			        NOT ISBLANK(
+			            CALCULATE(
+			                MAX(health_dashboard_fact[weight_7d_avg])
+			            )
+			        )
+			    ),
+			    CALCULATE(
+			        MAX(health_dashboard_fact[weight_7d_avg])
+			    )
+			)
+		lineageTag: 168c4044-e7c5-4420-984d-c92266659510
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Starting Weight (Period)' =
+			
+			VAR VisibleDates =
+			    ALLSELECTED('Date Table'[Date])
+			
+			VAR FirstVisibleWeightDate =
+			    MINX(
+			        FILTER(
+			            VisibleDates,
+			            NOT ISBLANK(
+			                CALCULATE(
+			                    MAX(health_dashboard_fact[weight_7d_avg])
+			                )
+			            )
+			        ),
+			        'Date Table'[Date]
+			    )
+			
+			RETURN
+			    CALCULATE(
+			        MAX(health_dashboard_fact[weight_7d_avg]),
+			        KEEPFILTERS(
+			            'Date Table'[Date] = FirstVisibleWeightDate
+			        )
+			    )
+		lineageTag: 2d45500f-04cc-410c-a25f-a87d56d6ff2f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Net Weight Change (Period)' =
+			
+			[Current Weight (Period)] - [Starting Weight (Period)]
+		lineageTag: 029904bd-ff46-4887-851d-d37a71207879
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Net Weight Change Color' =
+			
+			SWITCH(
+			    TRUE(),
+			    ISBLANK([Net Weight Change (Period)]), "#94A3B8",
+			    [Net Weight Change (Period)] < 0, "#4ADE80",
+			    [Net Weight Change (Period)] > 0, "#F87171",
+			    "#CBD5E1"
+			)
+		lineageTag: 4a64d0e5-100c-48ae-85b9-d767ea915505
+
 	column Date
 		isKey
 		formatString: General Date

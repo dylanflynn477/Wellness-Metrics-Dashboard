@@ -360,7 +360,7 @@ table health_dashboard_fact
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column workout_minutes
-		dataType: int64
+		dataType: double
 		formatString: 0
 		lineageTag: 916c7ade-4d14-4446-a745-533db36bf432
 		summarizeBy: sum
