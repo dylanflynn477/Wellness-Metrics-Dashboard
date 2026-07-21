@@ -1,3 +1,5 @@
+<img width="1320" height="738" alt="image" src="https://github.com/user-attachments/assets/d459f666-5efe-460f-bc98-b7294da83db3" />
+
 # Wellness Metrics Dashboard
 
 Wellness Metrics Dashboard is a portfolio-quality analytics engineering project for turning exported MyFitnessPal and Apple Health data into clean, dashboard-ready daily health tables.
