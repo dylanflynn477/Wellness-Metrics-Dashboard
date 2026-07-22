@@ -82,6 +82,7 @@ def empty_apple_health_data() -> AppleHealthData:
                 "heart_rate_min",
                 "heart_rate_max",
                 "wrist_temperature_f",
+                "alcohol_consumption_count",
             ]
         ),
         records_read=0,

@@ -82,6 +82,7 @@ NON_MICRONUTRIENT_FACT_FIELDS = set(
         "heart_rate_min",
         "heart_rate_max",
         "wrist_temperature_f",
+        "alcohol_consumption_count",
         "mfp_exercise_calories",
         "calories_7d_avg",
         "protein_7d_avg",
@@ -279,6 +280,12 @@ def check_metric_ranges(fact: pd.DataFrame, issues: list[dict[str, Any]]) -> Non
         ("steps", "suspicious_steps", lambda value: value > 50000, "Step count is above 50,000."),
         ("resting_hr", "suspicious_resting_hr", lambda value: value < 35 or value > 120, "Resting heart rate is outside the expected 35-120 bpm range."),
         ("hrv_ms", "suspicious_hrv", lambda value: value < 5 or value > 250, "HRV is outside the expected 5-250 ms range."),
+        (
+            "alcohol_consumption_count",
+            "negative_alcohol_consumption",
+            lambda value: value < 0,
+            "Alcohol consumption count should not be negative.",
+        ),
     ]
 
     for column, check_name, predicate, message in checks:

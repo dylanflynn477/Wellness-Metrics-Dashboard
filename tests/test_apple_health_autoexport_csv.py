@@ -22,6 +22,7 @@ def test_match_autoexport_column_handles_likely_variants() -> None:
         "Resting Heart Rate (count/min)",
         "Heart Rate Variability SDNN (ms)",
         "Sleep Analysis [Total] (hr)",
+        "Alcohol Consumption (count)",
     ]
 
     assert match_autoexport_column(columns, "date") == "Date/Time"
@@ -30,6 +31,7 @@ def test_match_autoexport_column_handles_likely_variants() -> None:
     assert match_autoexport_column(columns, "resting_hr") == "Resting Heart Rate (count/min)"
     assert match_autoexport_column(columns, "hrv_ms") == "Heart Rate Variability SDNN (ms)"
     assert match_autoexport_column(columns, "sleep_total_hours") == "Sleep Analysis [Total] (hr)"
+    assert match_autoexport_column(columns, "alcohol_consumption_count") == "Alcohol Consumption (count)"
 
 
 def test_resolve_autoexport_csv_falls_back_to_date_stamped_file(tmp_path: Path) -> None:
@@ -50,6 +52,8 @@ def test_autoexport_csv_loads_activity_sleep_and_recovery_sample() -> None:
     assert result.daily_sleep["sleep_hours"].between(5.5, 9.5).all()
     assert result.daily_recovery["resting_hr"].between(45, 80).all()
     assert result.daily_recovery["blood_oxygen_pct"].between(94, 100).all()
+    assert result.daily_recovery["alcohol_consumption_count"].ge(0).all()
+    assert result.daily_recovery["alcohol_consumption_count"].gt(0).any()
 
 
 def test_autoexport_sleep_uses_stages_when_asleep_is_zero_and_total_missing(tmp_path: Path) -> None:

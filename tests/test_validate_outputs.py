@@ -78,6 +78,7 @@ def test_validation_catches_impossible_values(tmp_path: Path) -> None:
                 steps=60000,
                 resting_hr=130,
                 hrv_ms=2,
+                alcohol_consumption_count=-1,
             )
         ],
     )
@@ -94,6 +95,7 @@ def test_validation_catches_impossible_values(tmp_path: Path) -> None:
         "suspicious_steps",
         "suspicious_resting_hr",
         "suspicious_hrv",
+        "negative_alcohol_consumption",
     }.issubset(checks)
 
 

@@ -359,6 +359,15 @@ table health_dashboard_fact
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	column alcohol_consumption_count
+		dataType: double
+		formatString: 0.##
+		lineageTag: 43789a4c-83b3-4c50-99ed-85ddf8e8ca7e
+		summarizeBy: sum
+		sourceColumn: alcohol_consumption_count
+
+		annotation SummarizationSetBy = User
+
 	column workout_minutes
 		dataType: double
 		formatString: 0
@@ -533,7 +542,7 @@ table health_dashboard_fact
 				let
 				    Source = Csv.Document(File.Contents(HealthDashboardCsvPath),[Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
-				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"date", type date}, {"calories", type number}, {"protein_g", type number}, {"carbs_g", type number}, {"fat_g", type number}, {"saturated_fat_g", type number}, {"trans_fat_g", type number}, {"fiber_g", type number}, {"sugar_g", type number}, {"sodium_mg", type number}, {"potassium_mg", type number}, {"cholesterol_mg", type number}, {"weight_lb", type number}, {"steps", Int64.Type}, {"active_energy_kcal", type number}, {"resting_energy_kcal", Int64.Type}, {"apple_exercise_time_min", Int64.Type}, {"apple_stand_time_min", Int64.Type}, {"walking_running_distance_mi", type number}, {"flights_climbed", type number}, {"vo2_max", type number}, {"sleep_hours", type number}, {"sleep_core_hours", type number}, {"sleep_deep_hours", type number}, {"sleep_rem_hours", type number}, {"sleep_awake_hours", type number}, {"sleep_in_bed_hours", type number}, {"resting_hr", Int64.Type}, {"hrv_ms", type number}, {"respiratory_rate", type number}, {"blood_oxygen_pct", type number}, {"walking_heart_rate_avg", type number}, {"heart_rate_avg", type number}, {"heart_rate_min", type number}, {"heart_rate_max", Int64.Type}, {"wrist_temperature_f", type number}, {"workout_minutes", type number}, {"mfp_exercise_calories", type number}, {"calories_7d_avg", type number}, {"protein_7d_avg", type number}, {"weight_7d_avg", type number}, {"sleep_7d_avg", type number}, {"resting_hr_7d_avg", type number}, {"hrv_7d_avg", type number}, {"weight_measurement_flag", Int64.Type}, {"calorie_delta_from_target", type number}, {"protein_delta_from_target", type number}, {"calcium", type number}, {"iron", type number}, {"monounsaturated_fat", type number}, {"polyunsaturated_fat", type number}, {"vitamin_a", type number}, {"vitamin_c", type number}})
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"date", type date}, {"calories", type number}, {"protein_g", type number}, {"carbs_g", type number}, {"fat_g", type number}, {"saturated_fat_g", type number}, {"trans_fat_g", type number}, {"fiber_g", type number}, {"sugar_g", type number}, {"sodium_mg", type number}, {"potassium_mg", type number}, {"cholesterol_mg", type number}, {"weight_lb", type number}, {"steps", Int64.Type}, {"active_energy_kcal", type number}, {"resting_energy_kcal", Int64.Type}, {"apple_exercise_time_min", Int64.Type}, {"apple_stand_time_min", Int64.Type}, {"walking_running_distance_mi", type number}, {"flights_climbed", type number}, {"vo2_max", type number}, {"sleep_hours", type number}, {"sleep_core_hours", type number}, {"sleep_deep_hours", type number}, {"sleep_rem_hours", type number}, {"sleep_awake_hours", type number}, {"sleep_in_bed_hours", type number}, {"resting_hr", Int64.Type}, {"hrv_ms", type number}, {"respiratory_rate", type number}, {"blood_oxygen_pct", type number}, {"walking_heart_rate_avg", type number}, {"heart_rate_avg", type number}, {"heart_rate_min", type number}, {"heart_rate_max", Int64.Type}, {"wrist_temperature_f", type number}, {"alcohol_consumption_count", type number}, {"workout_minutes", type number}, {"mfp_exercise_calories", type number}, {"calories_7d_avg", type number}, {"protein_7d_avg", type number}, {"weight_7d_avg", type number}, {"sleep_7d_avg", type number}, {"resting_hr_7d_avg", type number}, {"hrv_7d_avg", type number}, {"weight_measurement_flag", Int64.Type}, {"calorie_delta_from_target", type number}, {"protein_delta_from_target", type number}, {"calcium", type number}, {"iron", type number}, {"monounsaturated_fat", type number}, {"polyunsaturated_fat", type number}, {"vitamin_a", type number}, {"vitamin_c", type number}})
 				in
 				    #"Changed Type"
 

@@ -83,6 +83,7 @@ Daily recovery and heart metrics from HealthAutoExport or Apple Health XML.
 | heart_rate_min | Minimum heart rate, when exported. |
 | heart_rate_max | Maximum heart rate, when exported. |
 | wrist_temperature_f | Wrist temperature in Fahrenheit, when exported. |
+| alcohol_consumption_count | Daily alcohol consumption count recorded in HealthKit and exported by HealthAutoExport. This is a logged count, not an inferred quantity or alcohol calorie estimate. |
 
 ## daily_body_metrics.csv
 
@@ -135,6 +136,7 @@ Main daily-grain fact table for Power BI.
 | heart_rate_min | Minimum heart rate. |
 | heart_rate_max | Maximum heart rate. |
 | wrist_temperature_f | Wrist temperature in Fahrenheit. |
+| alcohol_consumption_count | Daily alcohol consumption count from HealthAutoExport. Null means no source value was exported; zero means the source explicitly reported zero. |
 | workout_minutes | Workout or exercise minutes. |
 | mfp_exercise_calories | Exercise calories from MFP exercise exports. |
 | calories_7d_avg | Seven-day rolling average calories. |
