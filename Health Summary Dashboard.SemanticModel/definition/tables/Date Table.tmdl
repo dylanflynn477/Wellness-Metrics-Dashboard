@@ -441,6 +441,167 @@ table 'Date Table'
 			)
 		lineageTag: 4a64d0e5-100c-48ae-85b9-d767ea915505
 
+	measure 'Drinking Days' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(
+			        'health_dashboard_fact'[date]
+			    ),
+			    KEEPFILTERS(
+			        'health_dashboard_fact'[alcohol_consumption_count] > 0
+			    )
+			)
+		formatString: 0
+		lineageTag: 5520c022-3af8-40b7-844a-e38884d6d52a
+
+	measure 'Avg Drinks on Drinking Day' =
+			
+			CALCULATE(
+			    AVERAGE(
+			        'health_dashboard_fact'[alcohol_consumption_count]
+			    ),
+			    KEEPFILTERS(
+			        'health_dashboard_fact'[alcohol_consumption_count] > 0
+			    )
+			)
+		lineageTag: e6ec0fbc-8d22-4d78-be47-3d9159bd59d3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Next-Day Active Energy Delta 3+' =
+			
+			VAR SelectedDrinkDates =
+			    VALUES(
+			        'health_dashboard_fact'[date]
+			    )
+			
+			VAR HeavyDrinkDates =
+			    FILTER(
+			        SelectedDrinkDates,
+			        CALCULATE(
+			            MAX(
+			                'health_dashboard_fact'[alcohol_consumption_count]
+			            )
+			        ) >= 3
+			    )
+			
+			VAR SoberDates =
+			    FILTER(
+			        SelectedDrinkDates,
+			        CALCULATE(
+			            MAX(
+			                'health_dashboard_fact'[alcohol_consumption_count]
+			            )
+			        ) = 0
+			    )
+			
+			VAR HeavyDrinkAverage =
+			    AVERAGEX(
+			        HeavyDrinkDates,
+			        VAR DrinkDate =
+			            'health_dashboard_fact'[date]
+			
+			        RETURN
+			            CALCULATE(
+			                MAX(
+			                    'health_dashboard_fact'[active_energy_kcal]
+			                ),
+			                REMOVEFILTERS('Date Table'),
+			                REMOVEFILTERS('health_dashboard_fact'),
+			                'health_dashboard_fact'[date] = DrinkDate + 1
+			            )
+			    )
+			
+			VAR SoberAverage =
+			    AVERAGEX(
+			        SoberDates,
+			        VAR DrinkDate =
+			            'health_dashboard_fact'[date]
+			
+			        RETURN
+			            CALCULATE(
+			                MAX(
+			                    'health_dashboard_fact'[active_energy_kcal]
+			                ),
+			                REMOVEFILTERS('Date Table'),
+			                REMOVEFILTERS('health_dashboard_fact'),
+			                'health_dashboard_fact'[date] = DrinkDate + 1
+			            )
+			    )
+			
+			RETURN
+			    HeavyDrinkAverage - SoberAverage
+		lineageTag: 9d68b066-41cb-4240-a38f-3b5a14730081
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Next-Day Workout Delta 3+' =
+			
+			VAR SelectedDrinkDates =
+			    VALUES(
+			        'health_dashboard_fact'[date]
+			    )
+			
+			VAR HeavyDrinkDates =
+			    FILTER(
+			        SelectedDrinkDates,
+			        CALCULATE(
+			            MAX(
+			                'health_dashboard_fact'[alcohol_consumption_count]
+			            )
+			        ) >= 3
+			    )
+			
+			VAR SoberDates =
+			    FILTER(
+			        SelectedDrinkDates,
+			        CALCULATE(
+			            MAX(
+			                'health_dashboard_fact'[alcohol_consumption_count]
+			            )
+			        ) = 0
+			    )
+			
+			VAR HeavyDrinkAverage =
+			    AVERAGEX(
+			        HeavyDrinkDates,
+			        VAR DrinkDate =
+			            'health_dashboard_fact'[date]
+			
+			        RETURN
+			            CALCULATE(
+			                MAX(
+			                    'health_dashboard_fact'[workout_minutes]
+			                ),
+			                REMOVEFILTERS('Date Table'),
+			                REMOVEFILTERS('health_dashboard_fact'),
+			                'health_dashboard_fact'[date] = DrinkDate + 1
+			            )
+			    )
+			
+			VAR SoberAverage =
+			    AVERAGEX(
+			        SoberDates,
+			        VAR DrinkDate =
+			            'health_dashboard_fact'[date]
+			
+			        RETURN
+			            CALCULATE(
+			                MAX(
+			                    'health_dashboard_fact'[workout_minutes]
+			                ),
+			                REMOVEFILTERS('Date Table'),
+			                REMOVEFILTERS('health_dashboard_fact'),
+			                'health_dashboard_fact'[date] = DrinkDate + 1
+			            )
+			    )
+			
+			RETURN
+			    HeavyDrinkAverage - SoberAverage
+		lineageTag: 1c4a83b0-6fa9-4876-8630-9b68f12c95fe
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column Date
 		isKey
 		formatString: General Date

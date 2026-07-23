@@ -3906,16 +3906,6 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.582
 			          }
-			        },
-			        {
-			          "AVG PROTEIN (G)": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
 			        }
 			      ]
 			    },
@@ -4206,16 +4196,6 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.485
 			          }
-			        },
-			        {
-			          "AVG SLEEP (HRS)": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
 			        }
 			      ]
 			    },
@@ -4244,7 +4224,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "RESTING HR (BPM)": {
+			          "RESTING HR": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -4280,7 +4260,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "HRV (MS)": {
+			          "HRV": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -5920,6 +5900,341 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
+			    },
+			    "health_dashboard_fact.alcohol_consumption_count": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "health_dashboard_fact",
+			          "ConceptualProperty": "alcohol_consumption_count"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "alcohol consumption count": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "alcohol_consumption_count": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "consumption count": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "alcohol consumption amount": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "consumption amount": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        }
+			      ]
+			    },
+			    "date_table.drinking_days": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Date Table",
+			          "ConceptualProperty": "Drinking Days"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "drinking days": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "drinking existence": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "drinking being": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "drinking living": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "drinking eras": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "drinking generation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "drinking epoch": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "drinking period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "drinking age": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        }
+			      ]
+			    },
+			    "date_table.avg_drinks_on_drinking_day": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Date Table",
+			          "ConceptualProperty": "Avg Drinks on Drinking Day"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "avg drinks on drinking day": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "average drink on drinking day": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.605
+			          }
+			        },
+			        {
+			          "avg munchies on drinking day": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.52
+			          }
+			        },
+			        {
+			          "avg snack on drinking day": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.504
+			          }
+			        },
+			        {
+			          "avg nibble on drinking day": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.504
+			          }
+			        },
+			        {
+			          "avg beverage on drinking day": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.494
+			          }
+			        },
+			        {
+			          "avg soda on drinking day": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.494
+			          }
+			        },
+			        {
+			          "avg thirst-quencher on drinking day": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.479
+			          }
+			        },
+			        {
+			          "avg pick-me-ups on drinking day": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.479
+			          }
+			        },
+			        {
+			          "avg juice on drinking day": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.479
+			          }
+			        },
+			        {
+			          "avg swill on drinking day": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.479
+			          }
+			        },
+			        {
+			          "AVG DRINKS / DRINKING DAY": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "date_table.nextday_active_energy_delta_3": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Date Table",
+			          "ConceptualProperty": "Next-Day Active Energy Delta 3+"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "next-day active energy delta 3+": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "next day active energy delta 3+": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "NEXT-DAY ACTIVE ENERGY - 3+ DRINKS": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "date_table.nextday_workout_delta_3": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Date Table",
+			          "ConceptualProperty": "Next-Day Workout Delta 3+"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "next-day workout delta 3+": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "next day workout delta 3+": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "NEXT DAY WORKOUT - 3+ DRINKS": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {
@@ -6118,6 +6433,171 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "health_dashboard_facts_have_date_tables"
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact_has_date_table_nextday_workout_delta_3": {
+			      "Binding": {
+			        "ConceptualEntity": "health_dashboard_fact"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "health_dashboard_fact": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact"
+			          }
+			        },
+			        "date_table.nextday_workout_delta_3": {
+			          "Target": {
+			            "Entity": "date_table.nextday_workout_delta_3"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "health_dashboard_fact"
+			            },
+			            "Object": {
+			              "Role": "date_table.nextday_workout_delta_3"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "health_dashboard_facts_have_nextday_workout_delta_3"
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact_has_date_table_nextday_active_energy_delta_3": {
+			      "Binding": {
+			        "ConceptualEntity": "health_dashboard_fact"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "health_dashboard_fact": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact"
+			          }
+			        },
+			        "date_table.nextday_active_energy_delta_3": {
+			          "Target": {
+			            "Entity": "date_table.nextday_active_energy_delta_3"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "health_dashboard_fact"
+			            },
+			            "Object": {
+			              "Role": "date_table.nextday_active_energy_delta_3"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "health_dashboard_facts_have_nextday_active_energy_delta_3"
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact_has_date_table_avg_drinks_on_drinking_day": {
+			      "Binding": {
+			        "ConceptualEntity": "health_dashboard_fact"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "health_dashboard_fact": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact"
+			          }
+			        },
+			        "date_table.avg_drinks_on_drinking_day": {
+			          "Target": {
+			            "Entity": "date_table.avg_drinks_on_drinking_day"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "health_dashboard_fact"
+			            },
+			            "Object": {
+			              "Role": "date_table.avg_drinks_on_drinking_day"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "health_dashboard_facts_have_avg_drinks_on_drinking_day"
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact_has_date_table_drinking_days": {
+			      "Binding": {
+			        "ConceptualEntity": "health_dashboard_fact"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "health_dashboard_fact": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact"
+			          }
+			        },
+			        "date_table.drinking_days": {
+			          "Target": {
+			            "Entity": "date_table.drinking_days"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "health_dashboard_fact"
+			            },
+			            "Object": {
+			              "Role": "date_table.drinking_days"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "health_dashboard_facts_have_drinking_days"
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact_has_alcohol_consumption_count": {
+			      "Binding": {
+			        "ConceptualEntity": "health_dashboard_fact"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "health_dashboard_fact": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact"
+			          }
+			        },
+			        "health_dashboard_fact.alcohol_consumption_count": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact.alcohol_consumption_count"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "health_dashboard_fact"
+			            },
+			            "Object": {
+			              "Role": "health_dashboard_fact.alcohol_consumption_count"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "health_dashboard_facts_have_alcohol_consumption_counts"
 			        }
 			      ]
 			    },

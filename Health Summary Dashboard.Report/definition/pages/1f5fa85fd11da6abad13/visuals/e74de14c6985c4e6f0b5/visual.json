@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "e74de14c6985c4e6f0b5",
   "position": {
-    "x": 880,
+    "x": 896.00000000000011,
     "y": 128,
     "z": 9000,
     "height": 144,
-    "width": 208,
+    "width": 192,
     "tabOrder": 7000
   },
   "visual": {
@@ -27,9 +27,9 @@
                 }
               },
               "queryRef": "Date Table.Avg HRV",
-              "nativeQueryRef": "HRV (MS)",
-              "displayName": "HRV (MS)",
-              "format": "0"
+              "nativeQueryRef": "HRV",
+              "displayName": "HRV",
+              "format": "0 \"ms\""
             }
           ]
         }

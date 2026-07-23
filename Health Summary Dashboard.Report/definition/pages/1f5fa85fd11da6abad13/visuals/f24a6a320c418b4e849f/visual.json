@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "f24a6a320c418b4e849f",
   "position": {
-    "x": 223.86610878661091,
+    "x": 256,
     "y": 128,
     "z": 5000,
     "height": 144,
-    "width": 240,
+    "width": 208,
     "tabOrder": 3000
   },
   "visual": {
@@ -27,9 +27,9 @@
                 }
               },
               "queryRef": "Date Table.Avg Protein",
-              "nativeQueryRef": "AVG PROTEIN (G)",
-              "displayName": "AVG PROTEIN (G)",
-              "format": "0"
+              "nativeQueryRef": "AVG PROTEIN ",
+              "displayName": "AVG PROTEIN ",
+              "format": "0 \"g\""
             }
           ]
         }

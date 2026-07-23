@@ -1,0 +1,288 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "e9379e28e04a823c41b2",
+  "position": {
+    "x": 696,
+    "y": 264,
+    "z": 2000,
+    "height": 192,
+    "width": 552,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "pythonVisual",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "date"
+                }
+              },
+              "queryRef": "health_dashboard_fact.date",
+              "nativeQueryRef": "date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "alcohol_consumption_count"
+                }
+              },
+              "queryRef": "health_dashboard_fact.alcohol_consumption_count",
+              "nativeQueryRef": "alcohol_consumption_count"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "active_energy_kcal"
+                }
+              },
+              "queryRef": "health_dashboard_fact.active_energy_kcal",
+              "nativeQueryRef": "active_energy_kcal"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "sleep_hours"
+                }
+              },
+              "queryRef": "health_dashboard_fact.sleep_hours",
+              "nativeQueryRef": "sleep_hours"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "heart_rate_avg"
+                }
+              },
+              "queryRef": "health_dashboard_fact.heart_rate_avg",
+              "nativeQueryRef": "heart_rate_avg"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "steps"
+                }
+              },
+              "queryRef": "health_dashboard_fact.steps",
+              "nativeQueryRef": "steps"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "calories"
+                }
+              },
+              "queryRef": "health_dashboard_fact.calories",
+              "nativeQueryRef": "calories"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "blood_oxygen_pct"
+                }
+              },
+              "queryRef": "health_dashboard_fact.blood_oxygen_pct",
+              "nativeQueryRef": "blood_oxygen_pct"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "sleep_deep_hours"
+                }
+              },
+              "queryRef": "health_dashboard_fact.sleep_deep_hours",
+              "nativeQueryRef": "sleep_deep_hours"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "sleep_rem_hours"
+                }
+              },
+              "queryRef": "health_dashboard_fact.sleep_rem_hours",
+              "nativeQueryRef": "sleep_rem_hours"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "hrv_ms"
+                }
+              },
+              "queryRef": "health_dashboard_fact.hrv_ms",
+              "nativeQueryRef": "hrv_ms"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "wrist_temperature_f"
+                }
+              },
+              "queryRef": "health_dashboard_fact.wrist_temperature_f",
+              "nativeQueryRef": "wrist_temperature_f"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "workout_minutes"
+                }
+              },
+              "queryRef": "health_dashboard_fact.workout_minutes",
+              "nativeQueryRef": "workout_minutes"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "calorie_delta_from_target"
+                }
+              },
+              "queryRef": "health_dashboard_fact.calorie_delta_from_target",
+              "nativeQueryRef": "calorie_delta_from_target"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "health_dashboard_fact"
+                  }
+                },
+                "Property": "date"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "script": [
+        {
+          "properties": {
+            "source": {
+              "expr": {
+                "Literal": {
+                  "Value": "'import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom matplotlib.ticker import FuncFormatter\n\n# ------------------------------------------------------------\n# SETTINGS\n# Change metric_field to reuse this visual for another metric\n# ------------------------------------------------------------\n\nmetric_field = \"workout_minutes\"\n\nmetric_settings = {\n    \"workout_minutes\": {\n        \"label\": \"Workout Minutes\",\n        \"unit\": \"min\",\n        \"decimals\": 0\n    },\n    \"active_energy_kcal\": {\n        \"label\": \"Active Energy\",\n        \"unit\": \"kcal\",\n        \"decimals\": 0\n    },\n    \"steps\": {\n        \"label\": \"Steps\",\n        \"unit\": \"steps\",\n        \"decimals\": 0\n    },\n    \"sleep_hours\": {\n        \"label\": \"Sleep\",\n        \"unit\": \"hours\",\n        \"decimals\": 2\n    },\n    \"sleep_deep_hours\": {\n        \"label\": \"Deep Sleep\",\n        \"unit\": \"hours\",\n        \"decimals\": 2\n    },\n    \"sleep_rem_hours\": {\n        \"label\": \"REM Sleep\",\n        \"unit\": \"hours\",\n        \"decimals\": 2\n    },\n    \"hrv_ms\": {\n        \"label\": \"HRV\",\n        \"unit\": \"ms\",\n        \"decimals\": 1\n    },\n    \"heart_rate_avg\": {\n        \"label\": \"Average Heart Rate\",\n        \"unit\": \"bpm\",\n        \"decimals\": 1\n    }\n}\n\ndate_field = \"date\"\nalcohol_field = \"alcohol_consumption_count\"\n\n# ------------------------------------------------------------\n# LOAD AND VALIDATE DATA\n# ------------------------------------------------------------\n\ndf = dataset.copy()\ndf.columns = [str(column) for column in df.columns]\n\ncolumn_lookup = {\n    column.lower(): column\n    for column in df.columns\n}\n\nrequired_fields = [\n    date_field,\n    alcohol_field,\n    metric_field\n]\n\nfor field in required_fields:\n    if field not in column_lookup:\n        raise ValueError(\n            f\"{field} is missing from the visual.\"\n        )\n\nactual_date = column_lookup[date_field]\nactual_alcohol = column_lookup[alcohol_field]\nactual_metric = column_lookup[metric_field]\n\ndf[actual_date] = pd.to_datetime(\n    df[actual_date],\n    errors=\"coerce\"\n)\n\ndf[actual_alcohol] = pd.to_numeric(\n    df[actual_alcohol],\n    errors=\"coerce\"\n)\n\ndf[actual_metric] = pd.to_numeric(\n    df[actual_metric],\n    errors=\"coerce\"\n)\n\ndf = df.dropna(\n    subset=[\n        actual_date,\n        actual_alcohol\n    ]\n).copy()\n\n# ------------------------------------------------------------\n# MATCH TODAY''S DRINKS TO TOMORROW''S METRIC\n# ------------------------------------------------------------\n\ntoday_df = df[\n    [\n        actual_date,\n        actual_alcohol\n    ]\n].copy()\n\ntoday_df[\"next_date\"] = (\n    today_df[actual_date]\n    + pd.Timedelta(days=1)\n)\n\ntomorrow_df = df[\n    [\n        actual_date,\n        actual_metric\n    ]\n].copy()\n\ntomorrow_df = tomorrow_df.rename(\n    columns={\n        actual_date: \"next_date\",\n        actual_metric: \"next_day_metric\"\n    }\n)\n\nanalysis_df = today_df.merge(\n    tomorrow_df,\n    on=\"next_date\",\n    how=\"inner\"\n)\n\nanalysis_df = analysis_df.dropna(\n    subset=[\"next_day_metric\"]\n).copy()\n\n# ------------------------------------------------------------\n# CREATE DRINK BUCKETS\n# ------------------------------------------------------------\n\ndef drink_bucket(value):\n    if value <= 0:\n        return \"0\"\n    elif value <= 1:\n        return \"1\"\n    elif value <= 2:\n        return \"2\"\n    else:\n        return \"3+\"\n\nanalysis_df[\"drink_bucket\"] = (\n    analysis_df[actual_alcohol]\n    .round()\n    .apply(drink_bucket)\n)\n\nbucket_order = [\n    \"0\",\n    \"1\",\n    \"2\",\n    \"3+\"\n]\n\nbucket_data = [\n    analysis_df.loc[\n        analysis_df[\"drink_bucket\"] == bucket,\n        \"next_day_metric\"\n    ].dropna().values\n    for bucket in bucket_order\n]\n\nbucket_counts = [\n    len(values)\n    for values in bucket_data\n]\n\nif sum(bucket_counts) == 0:\n    raise ValueError(\n        \"No usable next-day observations were found.\"\n    )\n\n# ------------------------------------------------------------\n# DRAW HORIZONTAL BOX PLOT\n# ------------------------------------------------------------\n\nsettings = metric_settings.get(\n    metric_field,\n    {\n        \"label\": metric_field.replace(\"_\", \" \").title(),\n        \"unit\": \"\",\n        \"decimals\": 2\n    }\n)\n\nfig, ax = plt.subplots(\n    figsize=(15, 5.6)\n)\n\npositions = np.arange(\n    1,\n    len(bucket_order) + 1\n)\n\nboxplot = ax.boxplot(\n    bucket_data,\n    positions=positions,\n    vert=False,\n    patch_artist=True,\n    showmeans=True,\n    widths=0.58,\n    meanprops={\n        \"marker\": \"D\",\n        \"markerfacecolor\": \"black\",\n        \"markeredgecolor\": \"black\",\n        \"markersize\": 5\n    },\n    medianprops={\n        \"color\": \"black\",\n        \"linewidth\": 1.7\n    },\n    whiskerprops={\n        \"linewidth\": 1.1\n    },\n    capprops={\n        \"linewidth\": 1.1\n    },\n    flierprops={\n        \"marker\": \"o\",\n        \"markersize\": 3,\n        \"alpha\": 0\n    }\n)\n\ncolor_map = plt.get_cmap(\"OrRd\")\n\nbox_colors = [\n    color_map(0.12),\n    color_map(0.30),\n    color_map(0.50),\n    color_map(0.72)\n]\n\nfor box, color in zip(\n    boxplot[\"boxes\"],\n    box_colors\n):\n    box.set_facecolor(color)\n    box.set_alpha(0.72)\n\n# ------------------------------------------------------------\n# ADD INDIVIDUAL DAILY OBSERVATIONS\n# ------------------------------------------------------------\n\nrandom_generator = np.random.default_rng(42)\n\nfor position, values, color in zip(\n    positions,\n    bucket_data,\n    box_colors\n):\n    if len(values) == 0:\n        continue\n\n    vertical_jitter = random_generator.normal(\n        loc=position,\n        scale=0.055,\n        size=len(values)\n    )\n\n    ax.scatter(\n        values,\n        vertical_jitter,\n        s=18,\n        alpha=0.42,\n        color=color,\n        edgecolors=\"none\"\n    )\n\n# ------------------------------------------------------------\n# ADD MEAN LABELS\n# ------------------------------------------------------------\n\nall_values = np.concatenate(\n    [\n        values\n        for values in bucket_data\n        if len(values) > 0\n    ]\n)\n\nvalue_range = (\n    np.nanmax(all_values)\n    - np.nanmin(all_values)\n)\n\nlabel_offset = max(\n    value_range * 0.025,\n    0.25\n)\n\nfor position, values in zip(\n    positions,\n    bucket_data\n):\n    if len(values) == 0:\n        continue\n\n    mean_value = np.mean(values)\n\n    ax.text(\n        mean_value + label_offset,\n        position,\n        f\"Mean: {mean_value:.{settings[''decimals'']}f}\",\n        va=\"center\",\n        ha=\"left\",\n        fontsize=9,\n        fontweight=\"bold\"\n    )\n\n# ------------------------------------------------------------\n# FORMAT AXES\n# ------------------------------------------------------------\n\nax.set_yticks(\n    positions\n)\n\nax.set_yticklabels(\n    [\n        f\"{bucket} drinks  (n={count})\"\n        for bucket, count\n        in zip(bucket_order, bucket_counts)\n    ],\n    fontsize=10\n)\n\n# Show sober days at the top\nax.invert_yaxis()\n\nax.set_title(\n    f\"Tomorrow''s {settings[''label'']} by Today''s Drink Count\",\n    fontsize=16,\n    fontweight=\"bold\",\n    loc=\"left\",\n    pad=14\n)\n\nax.set_xlabel(\n    f\"{settings[''label'']} tomorrow\"\n    + (\n        f\" ({settings[''unit'']})\"\n        if settings[\"unit\"]\n        else \"\"\n    ),\n    fontsize=10\n)\n\nax.set_ylabel(\n    \"Alcohol consumed today\",\n    fontsize=10\n)\n\nif metric_field == \"steps\":\n    ax.xaxis.set_major_formatter(\n        FuncFormatter(\n            lambda value, position:\n            f\"{value:,.0f}\"\n        )\n    )\n\nax.grid(\n    axis=\"x\",\n    linestyle=\"--\",\n    linewidth=0.7,\n    alpha=0.35\n)\n\nax.set_axisbelow(True)\n\nfor spine in [\n    \"top\",\n    \"right\",\n    \"left\"\n]:\n    ax.spines[spine].set_visible(False)\n\nax.tick_params(\n    axis=\"y\",\n    length=0\n)\n\n# Add a little space for mean labels\ncurrent_left, current_right = ax.get_xlim()\n\nax.set_xlim(\n    current_left,\n    current_right + max(\n        value_range * 0.12,\n        1\n    )\n)\n\nfig.subplots_adjust(\n    left=0.19,\n    right=0.98,\n    top=0.86,\n    bottom=0.16\n)\n\nplt.show()'"
+                }
+              }
+            },
+            "provider": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Python'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

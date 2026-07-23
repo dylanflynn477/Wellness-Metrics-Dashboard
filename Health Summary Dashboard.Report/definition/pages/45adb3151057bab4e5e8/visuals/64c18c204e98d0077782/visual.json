@@ -1,0 +1,288 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "64c18c204e98d0077782",
+  "position": {
+    "x": 0,
+    "y": 264,
+    "z": 1000,
+    "height": 192,
+    "width": 696,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "pythonVisual",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "date"
+                }
+              },
+              "queryRef": "health_dashboard_fact.date",
+              "nativeQueryRef": "date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "alcohol_consumption_count"
+                }
+              },
+              "queryRef": "health_dashboard_fact.alcohol_consumption_count",
+              "nativeQueryRef": "alcohol_consumption_count"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "active_energy_kcal"
+                }
+              },
+              "queryRef": "health_dashboard_fact.active_energy_kcal",
+              "nativeQueryRef": "active_energy_kcal"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "sleep_hours"
+                }
+              },
+              "queryRef": "health_dashboard_fact.sleep_hours",
+              "nativeQueryRef": "sleep_hours"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "heart_rate_avg"
+                }
+              },
+              "queryRef": "health_dashboard_fact.heart_rate_avg",
+              "nativeQueryRef": "heart_rate_avg"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "steps"
+                }
+              },
+              "queryRef": "health_dashboard_fact.steps",
+              "nativeQueryRef": "steps"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "calories"
+                }
+              },
+              "queryRef": "health_dashboard_fact.calories",
+              "nativeQueryRef": "calories"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "blood_oxygen_pct"
+                }
+              },
+              "queryRef": "health_dashboard_fact.blood_oxygen_pct",
+              "nativeQueryRef": "blood_oxygen_pct"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "sleep_deep_hours"
+                }
+              },
+              "queryRef": "health_dashboard_fact.sleep_deep_hours",
+              "nativeQueryRef": "sleep_deep_hours"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "sleep_rem_hours"
+                }
+              },
+              "queryRef": "health_dashboard_fact.sleep_rem_hours",
+              "nativeQueryRef": "sleep_rem_hours"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "hrv_ms"
+                }
+              },
+              "queryRef": "health_dashboard_fact.hrv_ms",
+              "nativeQueryRef": "hrv_ms"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "wrist_temperature_f"
+                }
+              },
+              "queryRef": "health_dashboard_fact.wrist_temperature_f",
+              "nativeQueryRef": "wrist_temperature_f"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "workout_minutes"
+                }
+              },
+              "queryRef": "health_dashboard_fact.workout_minutes",
+              "nativeQueryRef": "workout_minutes"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "health_dashboard_fact"
+                    }
+                  },
+                  "Property": "calorie_delta_from_target"
+                }
+              },
+              "queryRef": "health_dashboard_fact.calorie_delta_from_target",
+              "nativeQueryRef": "calorie_delta_from_target"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "health_dashboard_fact"
+                  }
+                },
+                "Property": "date"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "script": [
+        {
+          "properties": {
+            "source": {
+              "expr": {
+                "Literal": {
+                  "Value": "'import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# ------------------------------------------------------------\n# 1. COPY POWER BI DATA\n# ------------------------------------------------------------\n\ndf = dataset.copy()\ndf.columns = [str(column) for column in df.columns]\n\n# ------------------------------------------------------------\n# 2. DEFINE FIELDS\n# ------------------------------------------------------------\n\ndate_field = \"date\"\nalcohol_field = \"alcohol_consumption_count\"\n\npreferred_metrics = [\n    \"sleep_hours\",\n    \"sleep_deep_hours\",\n    \"sleep_rem_hours\",\n    \"hrv_ms\",\n    \"heart_rate_avg\",\n    \"wrist_temperature_f\",\n    \"blood_oxygen_pct\",\n    \"active_energy_kcal\",\n    \"steps\",\n    \"workout_minutes\"\n]\n\nlabel_map = {\n    \"sleep_hours\": \"Sleep\",\n    \"sleep_deep_hours\": \"Deep Sleep\",\n    \"sleep_rem_hours\": \"REM Sleep\",\n    \"hrv_ms\": \"HRV\",\n    \"heart_rate_avg\": \"Average HR\",\n    \"wrist_temperature_f\": \"Wrist Temp\",\n    \"blood_oxygen_pct\": \"Blood Oxygen\",\n    \"active_energy_kcal\": \"Active Energy\",\n    \"steps\": \"Steps\",\n    \"workout_minutes\": \"Workout Min\"\n}\n\ncolumn_lookup = {\n    column.lower(): column\n    for column in df.columns\n}\n\nif date_field not in column_lookup:\n    raise ValueError(\"date is missing from the visual.\")\n\nif alcohol_field not in column_lookup:\n    raise ValueError(\"alcohol_consumption_count is missing from the visual.\")\n\nactual_date_field = column_lookup[date_field]\nactual_alcohol_field = column_lookup[alcohol_field]\n\navailable_metrics = [\n    column_lookup[metric]\n    for metric in preferred_metrics\n    if metric in column_lookup\n]\n\nif len(available_metrics) == 0:\n    raise ValueError(\"No usable outcome metrics were found.\")\n\n# ------------------------------------------------------------\n# 3. CLEAN TYPES\n# ------------------------------------------------------------\n\ndf[actual_date_field] = pd.to_datetime(df[actual_date_field], errors=\"coerce\")\ndf[actual_alcohol_field] = pd.to_numeric(df[actual_alcohol_field], errors=\"coerce\")\n\nfor metric in available_metrics:\n    df[metric] = pd.to_numeric(df[metric], errors=\"coerce\")\n\ndf = df.dropna(subset=[actual_date_field, actual_alcohol_field]).copy()\n\n# ------------------------------------------------------------\n# 4. BUILD NEXT-DAY DATASET\n#    Match today''s drinks to tomorrow''s metrics\n# ------------------------------------------------------------\n\nleft_df = df[[actual_date_field, actual_alcohol_field]].copy()\nleft_df[\"next_date\"] = left_df[actual_date_field] + pd.Timedelta(days=1)\n\nright_df = df[[actual_date_field] + available_metrics].copy()\nright_df = right_df.rename(columns={actual_date_field: \"next_date\"})\n\nnext_day_metric_names = {}\nfor metric in available_metrics:\n    new_name = f\"next_day__{metric}\"\n    next_day_metric_names[metric] = new_name\n\nright_df = right_df.rename(columns=next_day_metric_names)\n\nanalysis_df = left_df.merge(right_df, on=\"next_date\", how=\"left\")\n\nnext_day_metric_columns = list(next_day_metric_names.values())\n\n# Keep only rows with at least one next-day metric\nanalysis_df = analysis_df.dropna(\n    subset=next_day_metric_columns,\n    how=\"all\"\n).copy()\n\n# Keep only nonnegative alcohol counts\nanalysis_df = analysis_df[\n    analysis_df[actual_alcohol_field] >= 0\n].copy()\n\nanalysis_df[actual_alcohol_field] = (\n    analysis_df[actual_alcohol_field]\n    .round()\n    .astype(int)\n)\n\n# ------------------------------------------------------------\n# 5. CREATE DRINK BUCKETS\n# ------------------------------------------------------------\n\ndef bucket_drinks(x):\n    if pd.isna(x):\n        return np.nan\n    if x == 0:\n        return \"0\"\n    elif x == 1:\n        return \"1\"\n    elif x == 2:\n        return \"2\"\n    else:\n        return \"3+\"\n\nanalysis_df[\"drink_bucket\"] = analysis_df[actual_alcohol_field].apply(bucket_drinks)\n\nbucket_order = [\"0\", \"1\", \"2\", \"3+\"]\n\nanalysis_df[\"drink_bucket\"] = pd.Categorical(\n    analysis_df[\"drink_bucket\"],\n    categories=bucket_order,\n    ordered=True\n)\n\n# ------------------------------------------------------------\n# 6. CALCULATE GROUP MEANS\n# ------------------------------------------------------------\n\ngroup_means = (\n    analysis_df\n    .groupby(\"drink_bucket\")[next_day_metric_columns]\n    .mean()\n    .reindex(bucket_order)\n)\n\ngroup_counts = (\n    analysis_df\n    .groupby(\"drink_bucket\")\n    .size()\n    .reindex(bucket_order)\n    .fillna(0)\n    .astype(int)\n)\n\nif \"0\" not in group_means.index or group_means.loc[\"0\"].isna().all():\n    raise ValueError(\"You need at least some 0-drink days to create a sober baseline.\")\n\nbaseline = group_means.loc[\"0\"]\n\n# Percent change for colors\nbaseline_safe = baseline.replace(0, np.nan)\n\npercent_change = (\n    group_means\n    .sub(baseline, axis=1)\n    .div(baseline_safe.abs(), axis=1)\n    * 100\n)\n\n# Raw deltas for cell text\nraw_delta = group_means.sub(baseline, axis=1)\n\n# Force baseline column to display as zero-color\npercent_change.loc[\"0\"] = 0\nraw_delta.loc[\"0\"] = 0\n\n# Transpose so rows = metrics, columns = drink buckets\nheatmap_pct = percent_change.T\nheatmap_delta = raw_delta.T\nmeans_df = group_means.T\n\n# ------------------------------------------------------------\n# 7. CLEAN LABELS\n# ------------------------------------------------------------\n\nreverse_metric_lookup = {\n    v: k for k, v in next_day_metric_names.items()\n}\n\nbase_metric_order = [\n    reverse_metric_lookup[col] for col in heatmap_pct.index\n]\n\nrow_labels = [\n    label_map.get(metric.lower(), metric.replace(\"_\", \" \").title())\n    for metric in base_metric_order\n]\n\ncolumn_labels = [\n    f\"{bucket} drinks\\n(n={group_counts.get(bucket, 0)})\"\n    for bucket in heatmap_pct.columns\n]\n\n# ------------------------------------------------------------\n# 8. HEATMAP\n# ------------------------------------------------------------\n\nfig, ax = plt.subplots(\n    figsize=(15, 5.5)\n)\n\nvalues = heatmap_pct.values\n\nmax_abs = np.nanmax(np.abs(values))\nif np.isnan(max_abs) or max_abs < 5:\n    color_limit = 10\nelse:\n    color_limit = min(40, np.ceil(max_abs / 5) * 5)\n\nheatmap = ax.imshow(\n    values,\n    cmap=\"RdBu_r\",\n    vmin=-color_limit,\n    vmax=color_limit,\n    aspect=\"auto\"\n)\n\nax.set_xticks(np.arange(len(column_labels)))\nax.set_yticks(np.arange(len(row_labels)))\n\nax.set_xticklabels(column_labels, fontsize=10)\nax.set_yticklabels(row_labels, fontsize=10)\n\nax.set_title(\n    \"How Today''s Drinking Changes Tomorrow''s Metrics\",\n    fontsize=17,\n    fontweight=\"bold\",\n    pad=18\n)\n\n# ------------------------------------------------------------\n# 9. FORMAT CELL TEXT\n# ------------------------------------------------------------\n\ndef format_mean(metric, value):\n    metric_lower = metric.lower()\n\n    if pd.isna(value):\n        return \"\"\n\n    if metric_lower in [\"steps\", \"active_energy_kcal\"]:\n        return f\"{value:.0f}\"\n    elif metric_lower in [\"workout_minutes\"]:\n        return f\"{value:.0f}\"\n    elif metric_lower in [\"blood_oxygen_pct\", \"wrist_temperature_f\"]:\n        return f\"{value:.1f}\"\n    elif metric_lower in [\"heart_rate_avg\", \"hrv_ms\"]:\n        return f\"{value:.1f}\"\n    else:\n        return f\"{value:.2f}\"\n\ndef format_delta(metric, value):\n    metric_lower = metric.lower()\n\n    if pd.isna(value):\n        return \"—\"\n\n    if metric_lower in [\"sleep_hours\", \"sleep_deep_hours\", \"sleep_rem_hours\"]:\n        return f\"{value:+.2f} h\"\n    elif metric_lower in [\"hrv_ms\"]:\n        return f\"{value:+.1f} ms\"\n    elif metric_lower in [\"heart_rate_avg\"]:\n        return f\"{value:+.1f} bpm\"\n    elif metric_lower in [\"wrist_temperature_f\"]:\n        return f\"{value:+.2f}°F\"\n    elif metric_lower in [\"blood_oxygen_pct\"]:\n        return f\"{value:+.1f} pts\"\n    elif metric_lower in [\"active_energy_kcal\"]:\n        return f\"{value:+.0f} kcal\"\n    elif metric_lower in [\"steps\"]:\n        return f\"{value:+.0f}\"\n    elif metric_lower in [\"workout_minutes\"]:\n        return f\"{value:+.0f} min\"\n    else:\n        return f\"{value:+.2f}\"\n\nfor i in range(heatmap_pct.shape[0]):\n    for j in range(heatmap_pct.shape[1]):\n        pct = heatmap_pct.iloc[i, j]\n        delta = heatmap_delta.iloc[i, j]\n        mean_value = means_df.iloc[i, j]\n\n        base_metric = base_metric_order[i]\n\n        if pd.isna(mean_value):\n            display_text = \"—\"\n            text_color = \"black\"\n        else:\n            if j == 0:\n                display_text = f\"Baseline\\n{format_mean(base_metric, mean_value)}\"\n            else:\n                display_text = (\n                    f\"{format_delta(base_metric, delta)}\\n\"\n                    f\"{format_mean(base_metric, mean_value)}\"\n                )\n\n            text_color = \"white\" if abs(pct) >= color_limit * 0.45 else \"black\"\n\n        ax.text(\n            j,\n            i,\n            display_text,\n            ha=\"center\",\n            va=\"center\",\n            fontsize=8.5,\n            fontweight=\"bold\",\n            color=text_color\n        )\n\n# ------------------------------------------------------------\n# 10. GRIDLINES / STYLING\n# ------------------------------------------------------------\n\nax.set_xticks(np.arange(-0.5, len(column_labels), 1), minor=True)\nax.set_yticks(np.arange(-0.5, len(row_labels), 1), minor=True)\n\nax.grid(which=\"minor\", color=\"white\", linewidth=1.5)\nax.tick_params(which=\"minor\", bottom=False, left=False)\n\nfor spine in ax.spines.values():\n    spine.set_visible(False)\n\ncolorbar = fig.colorbar(\n    heatmap,\n    ax=ax,\n    fraction=0.035,\n    pad=0.03\n)\n\ncolorbar.set_label(\n    \"% change vs. next-day sober baseline\",\n    rotation=270,\n    labelpad=18\n)\n\nfig.text(\n    0.5,\n    0.01,\n    \"Color shows percent change vs. 0-drink days. Cell text shows raw next-day change and the bucket average underneath.\",\n    ha=\"center\",\n    fontsize=9\n)\n\nplt.tight_layout(rect=[0, 0.04, 1, 1])\nplt.show()'"
+                }
+              }
+            },
+            "provider": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Python'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

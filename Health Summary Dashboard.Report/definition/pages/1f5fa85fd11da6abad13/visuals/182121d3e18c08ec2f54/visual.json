@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "182121d3e18c08ec2f54",
   "position": {
     "x": 0,
     "y": 128,
     "z": 4000,
     "height": 144,
-    "width": 224.00000000000003,
+    "width": 256,
     "tabOrder": 2000
   },
   "visual": {
@@ -29,7 +29,7 @@
               "queryRef": "Date Table.Avg Calories",
               "nativeQueryRef": "AVG CALORIES",
               "displayName": "AVG CALORIES",
-              "format": "0,000"
+              "format": "0,000 \"cal\""
             }
           ]
         }
