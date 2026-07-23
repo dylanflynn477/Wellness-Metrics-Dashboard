@@ -1,4 +1,7 @@
-<img width="1320" height="738" alt="image" src="https://github.com/user-attachments/assets/d459f666-5efe-460f-bc98-b7294da83db3" />
+<img width="1317" height="741" alt="image" src="https://github.com/user-attachments/assets/21372a83-c933-4b7a-ab29-55790f103a21" />
+
+<img width="1305" height="727" alt="image" src="https://github.com/user-attachments/assets/efaf6e05-7983-4bee-b056-e8fd94f35083" />
+
 
 # Wellness Metrics Dashboard
 
