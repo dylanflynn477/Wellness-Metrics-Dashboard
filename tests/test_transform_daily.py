@@ -20,7 +20,14 @@ def test_dashboard_fact_adds_rolling_averages_and_target_deltas() -> None:
     micronutrients = pd.DataFrame({"date": dates, "vitamin_c_mg": [80, 95]})
     activity = pd.DataFrame({"date": dates, "steps": [8000, 9000], "active_energy_kcal": [500, 600]})
     sleep = pd.DataFrame({"date": dates, "sleep_hours": [7.5, 8.0]})
-    recovery = pd.DataFrame({"date": dates, "resting_hr": [58, 57], "hrv_ms": [65, 70]})
+    recovery = pd.DataFrame(
+        {
+            "date": dates,
+            "resting_hr": [58, 57],
+            "hrv_ms": [65, 70],
+            "alcohol_consumption_count": [0, 2],
+        }
+    )
     body = pd.DataFrame({"date": dates, "weight_lb": [182.0, 181.5]})
 
     fact = build_dashboard_fact(
@@ -42,6 +49,7 @@ def test_dashboard_fact_adds_rolling_averages_and_target_deltas() -> None:
     assert fact.loc[1, "calorie_delta_from_target"] == 100
     assert fact.loc[1, "protein_delta_from_target"] == 10
     assert fact.loc[1, "resting_hr"] == 57
+    assert fact.loc[1, "alcohol_consumption_count"] == 2
     assert "vitamin_c_mg" in fact.columns
 
 

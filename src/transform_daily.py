@@ -72,6 +72,7 @@ FACT_PREFERRED_ORDER = [
     "heart_rate_min",
     "heart_rate_max",
     "wrist_temperature_f",
+    "alcohol_consumption_count",
     "workout_minutes",
     "mfp_exercise_calories",
 ]
@@ -225,6 +226,9 @@ def build_dashboard_fact(
     for column in FACT_BASE_COLUMNS:
         if column not in fact:
             fact[column] = pd.NA
+
+    if "alcohol_consumption_count" not in fact:
+        fact["alcohol_consumption_count"] = pd.NA
 
     fact["calories_7d_avg"] = pd.to_numeric(fact["calories"], errors="coerce").rolling(7, min_periods=1).mean()
     fact["protein_7d_avg"] = pd.to_numeric(fact["protein_g"], errors="coerce").rolling(7, min_periods=1).mean()

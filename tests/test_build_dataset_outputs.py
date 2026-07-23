@@ -94,6 +94,8 @@ def test_sample_etl_still_writes_dashboard_csv_outputs(tmp_path: Path) -> None:
     assert "weight_measurement_flag" in fact.columns
     assert "daily_recovery" in outputs
     assert "respiratory_rate" in fact.columns
+    assert "alcohol_consumption_count" in fact.columns
+    assert fact["alcohol_consumption_count"].gt(0).any()
     assert fact.loc[0, "calories"] != 9999
 
 

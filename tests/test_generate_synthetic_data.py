@@ -30,6 +30,7 @@ def test_synthetic_generator_is_deterministic_and_matches_reference_coverage(tmp
     assert len(apple_rows) == 222
     assert apple_rows[0]["Date/Time"] == "2025-11-27"
     assert apple_rows[-1]["Date/Time"] == "2026-07-06"
+    assert sum(float(row["Alcohol Consumption (count)"]) for row in apple_rows) > 0
 
 
 def test_synthetic_sources_build_a_complete_private_value_free_fact(tmp_path: Path) -> None:
@@ -59,5 +60,7 @@ def test_synthetic_sources_build_a_complete_private_value_free_fact(tmp_path: Pa
     assert fact["weight_measurement_flag"].sum() == 19
     assert fact["resting_hr_7d_avg"].notna().all()
     assert fact["hrv_7d_avg"].notna().all()
+    assert fact["alcohol_consumption_count"].ge(0).all()
+    assert fact["alcohol_consumption_count"].gt(0).any()
     assert fact["calories"].max() < 9999
     assert fact["protein_g"].max() < 999

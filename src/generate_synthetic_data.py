@@ -87,6 +87,7 @@ AUTOEXPORT_FIELDS = [
     "Heart Rate [Min] (bpm)",
     "Heart Rate [Max] (bpm)",
     "Apple Sleeping Wrist Temperature (ºF)",
+    "Alcohol Consumption (count)",
     # Deliberately unrealistic decoys prove that AutoExport nutrition is ignored.
     "Dietary Energy (kcal)",
     "Protein (g)",
@@ -332,11 +333,25 @@ def build_autoexport_rows(daily: list[dict[str, float | date | str]], rng: rando
             "Heart Rate [Min] (bpm)": int(round(clamp(resting_hr - 11 + rng.gauss(0, 2), 40, 61))),
             "Heart Rate [Max] (bpm)": int(round(clamp(145 + exercise_minutes * 0.35 + rng.gauss(0, 10), 125, 185))),
             "Apple Sleeping Wrist Temperature (ºF)": round(clamp(97.55 + rng.gauss(0, 0.38), 96.4, 98.8), 2),
+            "Alcohol Consumption (count)": synthetic_alcohol_count(index, day["date"]),
             "Dietary Energy (kcal)": 9999,
             "Protein (g)": 999,
         }
         rows.append(row)
     return rows
+
+
+def synthetic_alcohol_count(index: int, current_date: object) -> int:
+    """Return a sparse fictional count without changing the seeded metric series."""
+
+    weekday = current_date.weekday() if isinstance(current_date, date) else index % 7
+    if weekday == 4 and index % 3 != 0:
+        return 1 + index % 2
+    if weekday == 5 and index % 4 != 0:
+        return 2 + index % 3
+    if weekday == 2 and index % 23 == 0:
+        return 1
+    return 0
 
 
 def write_csv(path: Path, fieldnames: list[str], rows: list[dict[str, object]]) -> None:

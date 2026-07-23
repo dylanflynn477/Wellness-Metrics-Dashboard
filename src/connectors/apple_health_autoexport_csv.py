@@ -48,6 +48,7 @@ RECOVERY_FIELDS = [
     "heart_rate_min",
     "heart_rate_max",
     "wrist_temperature_f",
+    "alcohol_consumption_count",
 ]
 
 FIELD_ALIASES = {
@@ -80,6 +81,11 @@ FIELD_ALIASES = {
     "heart_rate_min": ["heart_rate_min_count_min", "heart_rate_minimum_count_min", "heart_rate_min"],
     "heart_rate_max": ["heart_rate_max_count_min", "heart_rate_maximum_count_min", "heart_rate_max"],
     "wrist_temperature_f": ["wrist_temperature_f", "wrist_temperature_degf"],
+    "alcohol_consumption_count": [
+        "alcohol_consumption_count",
+        "alcoholic_beverages_count",
+        "number_of_alcoholic_beverages_count",
+    ],
 }
 
 FIELD_TOKEN_GROUPS = {
@@ -107,6 +113,7 @@ FIELD_TOKEN_GROUPS = {
     "heart_rate_min": [("heart", "rate", "min"), ("heart", "rate", "minimum")],
     "heart_rate_max": [("heart", "rate", "max"), ("heart", "rate", "maximum")],
     "wrist_temperature_f": [("wrist", "temperature")],
+    "alcohol_consumption_count": [("alcohol", "consumption"), ("alcoholic", "beverage")],
 }
 
 FIELD_EXCLUDES = {
