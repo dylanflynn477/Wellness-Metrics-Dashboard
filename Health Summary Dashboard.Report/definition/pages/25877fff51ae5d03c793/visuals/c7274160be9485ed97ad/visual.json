@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "499fddf3cd0626d70243",
+  "name": "c7274160be9485ed97ad",
   "position": {
-    "x": 624,
+    "x": 0,
     "y": 128,
-    "z": 10000,
+    "z": 7000,
     "height": 144,
-    "width": 352,
-    "tabOrder": 10000
+    "width": 224.00000000000003,
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -23,13 +23,13 @@
                       "Entity": "Date Table"
                     }
                   },
-                  "Property": "Next-Day Active Energy Delta 3+"
+                  "Property": "Avg Calories"
                 }
               },
-              "queryRef": "Date Table.Next-Day Active Energy Delta 3+",
-              "nativeQueryRef": "NEXT-DAY ACTIVE ENERGY - 3+ DRINKS",
-              "displayName": "NEXT-DAY ACTIVE ENERGY - 3+ DRINKS",
-              "format": "+0 \"kcal\";-0 \"kcal\";0 \"kcal\""
+              "queryRef": "Date Table.Avg Calories",
+              "nativeQueryRef": "AVG CALORIES",
+              "displayName": "AVG CALORIES",
+              "format": "0,000"
             }
           ]
         }
@@ -44,7 +44,7 @@
                     "Entity": "Date Table"
                   }
                 },
-                "Property": "Next-Day Active Energy Delta 3+"
+                "Property": "Avg Calories"
               }
             },
             "direction": "Descending"
@@ -71,6 +71,20 @@
         }
       ],
       "value": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Date Table.Avg Calories"
+          }
+        },
         {
           "properties": {
             "fontSize": {
@@ -101,6 +115,23 @@
           },
           "selector": {
             "id": "default"
+          }
+        }
+      ],
+      "referenceLabel": [
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "Date Table.Avg Calories",
+            "id": "field-d0c23111-8d6c-c5ac-65b1-8c1c9411cf83",
+            "order": 0
           }
         }
       ],

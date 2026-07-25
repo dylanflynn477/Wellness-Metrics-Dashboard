@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "f0477b97ce8c9d4b9229",
+  "name": "21a08490a0246b4a2da8",
   "position": {
-    "x": 960,
-    "y": 400,
-    "z": 18000,
-    "height": 112.00000000000001,
-    "width": 159.99999999999997,
-    "tabOrder": 18000
+    "x": 288,
+    "y": 128,
+    "z": 9000,
+    "height": 144,
+    "width": 336.00000000000006,
+    "tabOrder": 9000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -23,13 +23,13 @@
                       "Entity": "Date Table"
                     }
                   },
-                  "Property": "Peak Weight (Period)"
+                  "Property": "Avg Drinks on Drinking Day"
                 }
               },
-              "queryRef": "Date Table.Peak Weight (Period)",
-              "nativeQueryRef": "PEAK WEIGHT (LBS)",
-              "displayName": "PEAK WEIGHT (LBS)",
-              "format": "0.0"
+              "queryRef": "Date Table.Avg Drinks on Drinking Day",
+              "nativeQueryRef": "AVG DRINKS / DRINKING DAY",
+              "displayName": "AVG DRINKS / DRINKING DAY",
+              "format": "0.00 \"units\""
             }
           ]
         }
@@ -44,7 +44,7 @@
                     "Entity": "Date Table"
                   }
                 },
-                "Property": "Peak Weight (Period)"
+                "Property": "Avg Drinks on Drinking Day"
               }
             },
             "direction": "Descending"
@@ -54,32 +54,13 @@
       }
     },
     "objects": {
-      "value": [
+      "smallMultiplesHeader": [
         {
           "properties": {
-            "fontSize": {
+            "displayUnits": {
               "expr": {
                 "Literal": {
-                  "Value": "22D"
-                }
-              }
-            },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": 0
-                    }
-                  }
-                }
-              }
-            },
-            "horizontalAlignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'center'"
+                  "Value": "1D"
                 }
               }
             }
@@ -89,13 +70,13 @@
           }
         }
       ],
-      "label": [
+      "value": [
         {
           "properties": {
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "28D"
                 }
               }
             },
@@ -104,13 +85,13 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#94A3B8'"
+                      "Value": "'#0F172A'"
                     }
                   }
                 }
               }
             },
-            "textWrap": {
+            "bold": {
               "expr": {
                 "Literal": {
                   "Value": "true"
@@ -123,65 +104,37 @@
           }
         }
       ],
-      "fillCustom": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
       "layout": [
         {
           "properties": {
-            "backgroundShow": {
+            "alignment": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "'middle'"
                 }
               }
             }
-          },
-          "selector": {
-            "id": "default"
           }
         }
       ],
-      "smallMultiplesHeader": [
+      "label": [
         {
           "properties": {
-            "backgroundShow": {
+            "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "11D"
                 }
               }
             },
-            "horizontalAlignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'center'"
-                }
-              }
-            }
-          },
-          "selector": {
-            "id": "default"
-          }
-        }
-      ],
-      "smallMultiplesBorder": [
-        {
-          "properties": {
-            "gridlineShow": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#64748B'"
+                    }
+                  }
                 }
               }
             }
@@ -194,10 +147,51 @@
       "outline": [
         {
           "properties": {
+            "lineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E2E8F0'"
+                    }
+                  }
+                }
+              }
+            },
+            "weight": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
             "show": {
               "expr": {
                 "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "shapeCustomRectangle": [
+        {
+          "properties": {
+            "rectangleRoundedCurveCustomStyle": {
+              "expr": {
+                "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "tileShape": {
+              "expr": {
+                "Literal": {
+                  "Value": "'rectangle'"
                 }
               }
             }
@@ -209,7 +203,7 @@
       ]
     },
     "visualContainerObjects": {
-      "background": [
+      "dropShadow": [
         {
           "properties": {
             "show": {
@@ -222,13 +216,88 @@
           }
         }
       ],
-      "visualHeader": [
+      "border": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "3D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "spacing": [
+        {
+          "properties": {
+            "verticalSpacing": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }

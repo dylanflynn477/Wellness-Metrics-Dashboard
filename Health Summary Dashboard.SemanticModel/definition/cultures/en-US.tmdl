@@ -5716,6 +5716,16 @@ cultureInfo en-US
 			            "State": "Generated",
 			            "Weight": 0.75
 			          }
+			        },
+			        {
+			          "PEAK WEIGHT (LBS)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -5762,7 +5772,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "NET CHANGE": {
+			          "PEAK TO CURRENT": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

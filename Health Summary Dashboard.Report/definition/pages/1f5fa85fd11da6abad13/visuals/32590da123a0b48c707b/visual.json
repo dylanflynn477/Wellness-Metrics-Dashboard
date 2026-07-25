@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "32590da123a0b48c707b",
   "position": {
     "x": 1120,
@@ -27,8 +27,8 @@
                 }
               },
               "queryRef": "Date Table.Net Weight Change (Period)",
-              "nativeQueryRef": "NET CHANGE",
-              "displayName": "NET CHANGE",
+              "nativeQueryRef": "PEAK TO CURRENT",
+              "displayName": "PEAK TO CURRENT",
               "format": "0.0"
             }
           ]
@@ -111,6 +111,13 @@
                       "Value": "'#94A3B8'"
                     }
                   }
+                }
+              }
+            },
+            "textWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
