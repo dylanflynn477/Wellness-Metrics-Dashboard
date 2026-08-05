@@ -12,6 +12,7 @@ try:
     from .config import PipelineConfig, default_config
     from .connectors import AppleHealthAutoExportCsvConnector, AppleHealthExportConnector, MfpExportConnector
     from .ingest_apple_health import AppleHealthData, empty_apple_health_data
+    from .impute_daily import ImputationOptions, ImputationResult, impute_dashboard_fact
     from .transform_daily import DailyModels, build_daily_models, wide_to_long_nutrients
     from .utils import ensure_directories, setup_logging
     from .validate_outputs import ValidationSummary, validate_processed_outputs
@@ -19,6 +20,7 @@ except ImportError:  # pragma: no cover - supports `python src/build_dataset.py`
     from config import PipelineConfig, default_config
     from connectors import AppleHealthAutoExportCsvConnector, AppleHealthExportConnector, MfpExportConnector
     from ingest_apple_health import AppleHealthData, empty_apple_health_data
+    from impute_daily import ImputationOptions, ImputationResult, impute_dashboard_fact
     from transform_daily import DailyModels, build_daily_models, wide_to_long_nutrients
     from utils import ensure_directories, setup_logging
     from validate_outputs import ValidationSummary, validate_processed_outputs
@@ -54,6 +56,29 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--processed-dir", type=Path, default=None, help="Output folder for processed CSV files.")
     parser.add_argument("--sample", action="store_true", help="Force use of synthetic sample data.")
     parser.add_argument("--no-sample-fallback", action="store_true", help="Do not use sample data when raw folders are empty.")
+    parser.add_argument(
+        "--impute",
+        action="store_true",
+        help="Conservatively impute high-confidence anomalies and short missing gaps in the dashboard fact.",
+    )
+    parser.add_argument(
+        "--impute-window-days",
+        type=int,
+        default=21,
+        help="Odd centered rolling window used for local medians and MAD (default: 21).",
+    )
+    parser.add_argument(
+        "--impute-max-gap-days",
+        type=int,
+        default=3,
+        help="Maximum consecutive missing days eligible for imputation (default: 3).",
+    )
+    parser.add_argument(
+        "--impute-z-threshold",
+        type=float,
+        default=4.0,
+        help="Robust local z-score threshold for anomaly replacement (default: 4.0).",
+    )
     parser.add_argument("--log-level", default="INFO", help="Logging level.")
     return parser.parse_args()
 
@@ -106,7 +131,22 @@ def main() -> None:
         config=config,
     )
 
+    imputation_result = None
+    if args.impute:
+        imputation_result = impute_dashboard_fact(
+            models.dashboard_fact,
+            pipeline_config=config,
+            options=ImputationOptions(
+                window_days=args.impute_window_days,
+                max_gap_days=args.impute_max_gap_days,
+                robust_z_threshold=args.impute_z_threshold,
+            ),
+        )
+        models.dashboard_fact = imputation_result.dashboard_fact
+
     outputs = write_outputs(models, config)
+    if imputation_result is not None:
+        write_imputation_outputs(imputation_result, config, outputs)
     validation_summary = None
     if config.run_data_validation:
         validation_summary = validate_processed_outputs(config=config, outputs=outputs)
@@ -120,6 +160,7 @@ def main() -> None:
         apple_health_source=config.apple_health_source,
         using_sample=using_sample,
         validation_summary=validation_summary,
+        imputation_result=imputation_result,
     )
 
 
@@ -200,6 +241,28 @@ def prepare_sqlite_frame(frame: pd.DataFrame) -> pd.DataFrame:
     return output
 
 
+def write_imputation_outputs(
+    result: ImputationResult,
+    config: PipelineConfig,
+    outputs: dict[str, Path],
+) -> None:
+    """Write the cell-level imputation audit alongside the processed outputs."""
+
+    if config.output_mode in {"csv", "both"}:
+        report_path = config.processed_dir / "imputation_report.csv"
+        result.report.to_csv(report_path, index=False)
+        outputs["imputation_report"] = report_path
+
+    if config.output_mode in {"sqlite", "both"}:
+        with sqlite3.connect(config.sqlite_database_path) as connection:
+            prepare_sqlite_frame(result.report).to_sql(
+                "imputation_report",
+                connection,
+                if_exists="replace",
+                index=False,
+            )
+
+
 def print_summary(
     models: DailyModels,
     outputs: dict[str, Path],
@@ -210,6 +273,7 @@ def print_summary(
     apple_health_source: str,
     using_sample: bool,
     validation_summary: ValidationSummary | None = None,
+    imputation_result: ImputationResult | None = None,
 ) -> None:
     fact = models.dashboard_fact
     if fact.empty:
@@ -227,6 +291,14 @@ def print_summary(
     print(f"- Dashboard fact rows: {len(fact)}")
     print(f"- Date range: {date_range}")
     print(f"- Missing/all-null expected fields: {missing}")
+    if imputation_result is not None:
+        field_counts = ", ".join(
+            f"{field}={count}" for field, count in imputation_result.field_counts.items()
+        ) or "none"
+        print("- Imputation: enabled")
+        print(f"  - Days affected: {imputation_result.changed_days}")
+        print(f"  - Values replaced: {imputation_result.changed_values}")
+        print(f"  - Field counts: {field_counts}")
     print("- Outputs:")
     for label, path in outputs.items():
         print(f"  - {label}: {path}")

@@ -39,6 +39,22 @@ MyFitnessPal remains the source of truth for calories, macros, micronutrients, m
 
 The transform layer builds a complete date spine between the first and last observed date, merges source-specific daily tables, and adds rolling averages and target deltas. This keeps the Power BI model simple: the primary grain is one row per calendar day.
 
+## Optional Imputation
+
+`python src/build_dataset.py --impute` enables conservative imputation in `health_dashboard_fact` only. Raw exports and source-specific daily tables remain observed data.
+
+The imputer uses a centered rolling median and median absolute deviation (MAD) instead of a global mean and standard deviation. This local robust method follows gradual phase changes while resisting isolated extreme values. Default behavior:
+
+- Uses a 21-day centered window with at least seven observed values.
+- Replaces calorie anomalies only when they exceed the robust z-score, relative-deviation, and absolute-deviation thresholds together.
+- Adjusts protein, carbohydrates, and fat with their own local medians when a calorie day is replaced.
+- Corrects locally extreme or impossible sleep values.
+- Corrects steps, resting heart rate, and HRV only when they violate hard plausibility bounds.
+- Fills missing calorie and sleep runs of at most three consecutive days.
+- Leaves longer missing stretches untouched to avoid manufacturing extended periods of health data.
+
+The fact table contains `has_imputed_values`, `imputation_count`, `imputed_fields`, and metric-specific flags. `imputation_report.csv` records each observed value, replacement, reason, local median, robust z-score, and window size. These estimates are analytical conveniences, not medical measurements.
+
 ## Output Modes
 
 `OUTPUT_MODE=csv` preserves the original behavior and writes seven CSV files:

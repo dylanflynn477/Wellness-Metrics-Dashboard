@@ -89,6 +89,24 @@ python src/build_dataset.py --no-sample-fallback
 
 If the raw folders are empty, the ETL will produce empty or limited outputs instead of silently using sample data.
 
+## Optional Imputation For Dashboard Trends
+
+If incomplete logging creates isolated calorie or sleep spikes, run:
+
+```bash
+python src/build_dataset.py --no-sample-fallback --impute
+```
+
+Review `data/processed/imputation_report.csv` before publishing the dashboard. The report is the audit trail for every changed value. Short gaps and high-confidence local anomalies can be replaced, while long missing periods remain null. The original raw files, `daily_nutrition.csv`, and `daily_sleep.csv` are not modified by this feature.
+
+The centered window uses observations before and after each day, so this mode is designed for historical batch refreshes rather than real-time prediction. Tune cautiously:
+
+```bash
+python src/build_dataset.py --impute --impute-window-days 21 --impute-max-gap-days 3 --impute-z-threshold 4
+```
+
+An odd window of at least seven days is required. Lower z-score thresholds replace more values; longer gap limits create more estimated days. The defaults favor preserving real behavior changes over producing a perfectly smooth chart.
+
 ## Data Quality Report
 
 After a validated run, inspect:

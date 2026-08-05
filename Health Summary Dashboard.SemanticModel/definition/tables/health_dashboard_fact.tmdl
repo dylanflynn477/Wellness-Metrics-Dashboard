@@ -536,13 +536,111 @@ table health_dashboard_fact
 
 		annotation SummarizationSetBy = Automatic
 
+	column has_imputed_values
+		dataType: int64
+		formatString: 0
+		lineageTag: 2a2c868f-10fa-4f41-b984-c4d6c82c8ee5
+		summarizeBy: sum
+		sourceColumn: has_imputed_values
+
+		annotation SummarizationSetBy = User
+
+	column imputation_count
+		dataType: int64
+		formatString: 0
+		lineageTag: b53cefd4-81b0-4b65-a07c-7b2dbbc8db39
+		summarizeBy: sum
+		sourceColumn: imputation_count
+
+		annotation SummarizationSetBy = User
+
+	column imputed_fields
+		dataType: string
+		lineageTag: af2e51bf-85b0-44d9-a2ae-ae2229a826ee
+		summarizeBy: none
+		sourceColumn: imputed_fields
+
+		annotation SummarizationSetBy = User
+
+	column calories_imputed_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: 4c23aa0b-f148-46e1-8ca4-58de81d4c0c1
+		summarizeBy: sum
+		sourceColumn: calories_imputed_flag
+
+		annotation SummarizationSetBy = User
+
+	column protein_g_imputed_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: 46a26c80-a657-480f-87d8-1304d8d2d2f7
+		summarizeBy: sum
+		sourceColumn: protein_g_imputed_flag
+
+		annotation SummarizationSetBy = User
+
+	column carbs_g_imputed_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: 60b43db1-2836-4616-b45d-f3df23f5c911
+		summarizeBy: sum
+		sourceColumn: carbs_g_imputed_flag
+
+		annotation SummarizationSetBy = User
+
+	column fat_g_imputed_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: d6fa2620-0de8-4bdd-aae8-455ffde02b9d
+		summarizeBy: sum
+		sourceColumn: fat_g_imputed_flag
+
+		annotation SummarizationSetBy = User
+
+	column sleep_hours_imputed_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: 5d5bb34f-4908-4a3d-b37e-c0d6ce227f42
+		summarizeBy: sum
+		sourceColumn: sleep_hours_imputed_flag
+
+		annotation SummarizationSetBy = User
+
+	column steps_imputed_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: 2e08521a-a7db-48b7-977e-3e9907504c09
+		summarizeBy: sum
+		sourceColumn: steps_imputed_flag
+
+		annotation SummarizationSetBy = User
+
+	column resting_hr_imputed_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: b808aed2-e35a-4595-b1f9-9d36b9aec260
+		summarizeBy: sum
+		sourceColumn: resting_hr_imputed_flag
+
+		annotation SummarizationSetBy = User
+
+	column hrv_ms_imputed_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: a5ed2d92-c8b3-4e18-b8f0-4e05b567c40e
+		summarizeBy: sum
+		sourceColumn: hrv_ms_imputed_flag
+
+		annotation SummarizationSetBy = User
+
 	partition health_dashboard_fact = m
 		mode: import
 		source =
 				let
 				    Source = Csv.Document(File.Contents(HealthDashboardCsvPath),[Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
-				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"date", type date}, {"calories", type number}, {"protein_g", type number}, {"carbs_g", type number}, {"fat_g", type number}, {"saturated_fat_g", type number}, {"trans_fat_g", type number}, {"fiber_g", type number}, {"sugar_g", type number}, {"sodium_mg", type number}, {"potassium_mg", type number}, {"cholesterol_mg", type number}, {"weight_lb", type number}, {"steps", Int64.Type}, {"active_energy_kcal", type number}, {"resting_energy_kcal", Int64.Type}, {"apple_exercise_time_min", Int64.Type}, {"apple_stand_time_min", Int64.Type}, {"walking_running_distance_mi", type number}, {"flights_climbed", type number}, {"vo2_max", type number}, {"sleep_hours", type number}, {"sleep_core_hours", type number}, {"sleep_deep_hours", type number}, {"sleep_rem_hours", type number}, {"sleep_awake_hours", type number}, {"sleep_in_bed_hours", type number}, {"resting_hr", Int64.Type}, {"hrv_ms", type number}, {"respiratory_rate", type number}, {"blood_oxygen_pct", type number}, {"walking_heart_rate_avg", type number}, {"heart_rate_avg", type number}, {"heart_rate_min", type number}, {"heart_rate_max", Int64.Type}, {"wrist_temperature_f", type number}, {"workout_minutes", type number}, {"mfp_exercise_calories", type number}, {"calories_7d_avg", type number}, {"protein_7d_avg", type number}, {"weight_7d_avg", type number}, {"sleep_7d_avg", type number}, {"resting_hr_7d_avg", type number}, {"hrv_7d_avg", type number}, {"weight_measurement_flag", Int64.Type}, {"calorie_delta_from_target", type number}, {"protein_delta_from_target", type number}, {"calcium", type number}, {"iron", type number}, {"monounsaturated_fat", type number}, {"polyunsaturated_fat", type number}, {"vitamin_a", type number}, {"vitamin_c", type number}, {"alcohol_consumption_count", Int64.Type}})
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"date", type date}, {"calories", type number}, {"protein_g", type number}, {"carbs_g", type number}, {"fat_g", type number}, {"saturated_fat_g", type number}, {"trans_fat_g", type number}, {"fiber_g", type number}, {"sugar_g", type number}, {"sodium_mg", type number}, {"potassium_mg", type number}, {"cholesterol_mg", type number}, {"weight_lb", type number}, {"steps", Int64.Type}, {"active_energy_kcal", type number}, {"resting_energy_kcal", Int64.Type}, {"apple_exercise_time_min", Int64.Type}, {"apple_stand_time_min", Int64.Type}, {"walking_running_distance_mi", type number}, {"flights_climbed", type number}, {"vo2_max", type number}, {"sleep_hours", type number}, {"sleep_core_hours", type number}, {"sleep_deep_hours", type number}, {"sleep_rem_hours", type number}, {"sleep_awake_hours", type number}, {"sleep_in_bed_hours", type number}, {"resting_hr", Int64.Type}, {"hrv_ms", type number}, {"respiratory_rate", type number}, {"blood_oxygen_pct", type number}, {"walking_heart_rate_avg", type number}, {"heart_rate_avg", type number}, {"heart_rate_min", type number}, {"heart_rate_max", Int64.Type}, {"wrist_temperature_f", type number}, {"workout_minutes", type number}, {"mfp_exercise_calories", type number}, {"calories_7d_avg", type number}, {"protein_7d_avg", type number}, {"weight_7d_avg", type number}, {"sleep_7d_avg", type number}, {"resting_hr_7d_avg", type number}, {"hrv_7d_avg", type number}, {"weight_measurement_flag", Int64.Type}, {"calorie_delta_from_target", type number}, {"protein_delta_from_target", type number}, {"calcium", type number}, {"iron", type number}, {"monounsaturated_fat", type number}, {"polyunsaturated_fat", type number}, {"vitamin_a", type number}, {"vitamin_c", type number}, {"alcohol_consumption_count", Int64.Type}, {"has_imputed_values", Int64.Type}, {"imputation_count", Int64.Type}, {"imputed_fields", type text}, {"calories_imputed_flag", Int64.Type}, {"protein_g_imputed_flag", Int64.Type}, {"carbs_g_imputed_flag", Int64.Type}, {"fat_g_imputed_flag", Int64.Type}, {"sleep_hours_imputed_flag", Int64.Type}, {"steps_imputed_flag", Int64.Type}, {"resting_hr_imputed_flag", Int64.Type}, {"hrv_ms_imputed_flag", Int64.Type}})
 				in
 				    #"Changed Type"
 

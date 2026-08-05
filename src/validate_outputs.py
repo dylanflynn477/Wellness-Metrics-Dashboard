@@ -38,6 +38,7 @@ SQLITE_TABLES = {
 }
 
 ISSUE_COLUMNS = ["severity", "table", "check", "column", "date", "value", "message"]
+ALLOWED_ALL_NULL_COLUMNS = {"imputed_fields"}
 
 CORE_FACT_FIELDS = [
     "date",
@@ -93,6 +94,9 @@ NON_MICRONUTRIENT_FACT_FIELDS = set(
         "weight_measurement_flag",
         "calorie_delta_from_target",
         "protein_delta_from_target",
+        "has_imputed_values",
+        "imputation_count",
+        "imputed_fields",
     ]
 )
 
@@ -238,7 +242,7 @@ def check_all_null_columns(table_name: str, frame: pd.DataFrame, issues: list[di
         return
 
     for column in frame.columns:
-        if column == "date":
+        if column == "date" or column in ALLOWED_ALL_NULL_COLUMNS:
             continue
         series = frame[column].replace("", pd.NA)
         if series.isna().all():
@@ -336,7 +340,11 @@ def detect_micronutrients(tables: dict[str, pd.DataFrame]) -> list[str]:
         nutrients.update(column for column in micronutrients.columns if column != "date")
 
     fact = tables.get("dashboard_fact", pd.DataFrame())
-    nutrients.update(column for column in fact.columns if column not in NON_MICRONUTRIENT_FACT_FIELDS)
+    nutrients.update(
+        column
+        for column in fact.columns
+        if column not in NON_MICRONUTRIENT_FACT_FIELDS and not column.endswith("_imputed_flag")
+    )
     return sorted(nutrients)
 
 

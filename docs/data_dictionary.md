@@ -148,4 +148,24 @@ Main daily-grain fact table for Power BI.
 | weight_measurement_flag | `1` when bodyweight was recorded on that date and `0` otherwise; useful for filtering sparse weigh-ins in Power BI. |
 | calorie_delta_from_target | Calories minus configured calorie target. |
 | protein_delta_from_target | Protein minus configured protein target. |
+| has_imputed_values | `1` when at least one dashboard value on the day was imputed; otherwise `0`. |
+| imputation_count | Number of fact fields imputed on the day. |
+| imputed_fields | Semicolon-delimited names of fields imputed on the day. |
+| *_imputed_flag | Metric-specific `1`/`0` audit flag, such as `calories_imputed_flag` or `sleep_hours_imputed_flag`. |
 | additional micronutrient fields | Any extra nutrient fields preserved from MFP exports. |
+
+## imputation_report.csv
+
+Written only when the build uses `--impute`. Each row represents one replaced fact-table cell.
+
+| Field | Description |
+|---|---|
+| date | Calendar date of the replacement. |
+| field | Dashboard fact field that was replaced. |
+| observed_value | Original value; blank when the source value was missing. |
+| imputed_value | Replacement produced by the local rolling median. |
+| reason | `missing_short_gap`, hard-bound violation, `robust_local_outlier`, or linked calorie-day adjustment. |
+| method | Imputation method identifier. |
+| local_median | Centered rolling median used as the replacement basis. |
+| robust_z | MAD-based robust local z-score when applicable. |
+| window_days | Centered rolling window size. |

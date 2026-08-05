@@ -95,6 +95,8 @@ def test_sample_etl_still_writes_dashboard_csv_outputs(tmp_path: Path) -> None:
     assert "daily_recovery" in outputs
     assert "respiratory_rate" in fact.columns
     assert "alcohol_consumption_count" in fact.columns
+    assert "has_imputed_values" in fact.columns
+    assert fact["has_imputed_values"].eq(0).all()
     assert fact["alcohol_consumption_count"].gt(0).any()
     assert fact.loc[0, "calories"] != 9999
 
@@ -127,6 +129,46 @@ def test_build_command_still_produces_core_outputs(tmp_path: Path) -> None:
     assert (tmp_path / "data_quality_report.md").exists()
     assert (tmp_path / "data_quality_issues.csv").exists()
     assert "Data quality" in result.stdout
+
+
+def test_build_command_with_imputation_writes_audit_report(tmp_path: Path) -> None:
+    env = {
+        **os.environ,
+        "OUTPUT_MODE": "csv",
+        "RUN_DATA_VALIDATION": "true",
+    }
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            "src/build_dataset.py",
+            "--sample",
+            "--impute",
+            "--processed-dir",
+            str(tmp_path),
+        ],
+        cwd=PROJECT_ROOT,
+        env=env,
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+
+    report = pd.read_csv(tmp_path / "imputation_report.csv")
+    fact = pd.read_csv(tmp_path / "health_dashboard_fact.csv")
+    assert set(report.columns) == {
+        "date",
+        "field",
+        "observed_value",
+        "imputed_value",
+        "reason",
+        "method",
+        "local_median",
+        "robust_z",
+        "window_days",
+    }
+    assert "has_imputed_values" in fact
+    assert "Imputation: enabled" in result.stdout
 
 
 def test_apple_health_source_routing_uses_autoexport_sample() -> None:

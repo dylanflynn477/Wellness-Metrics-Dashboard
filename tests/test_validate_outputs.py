@@ -100,7 +100,7 @@ def test_validation_catches_impossible_values(tmp_path: Path) -> None:
 
 
 def test_validation_produces_report_files_and_micronutrient_summary(tmp_path: Path) -> None:
-    write_fact(tmp_path, [complete_fact_row("2026-01-01")])
+    write_fact(tmp_path, [complete_fact_row("2026-01-01", imputed_fields="")])
     write_micronutrients(tmp_path)
 
     summary = validate_processed_outputs(PipelineConfig(processed_dir=tmp_path))
@@ -109,3 +109,5 @@ def test_validation_produces_report_files_and_micronutrient_summary(tmp_path: Pa
     assert summary.issues_path.exists()
     assert summary.micronutrient_columns == ["iron_mg"]
     assert "Data Quality Report" in summary.report_path.read_text(encoding="utf-8")
+    issues = pd.read_csv(summary.issues_path)
+    assert not ((issues["check"] == "all_null_column") & (issues["column"] == "imputed_fields")).any()

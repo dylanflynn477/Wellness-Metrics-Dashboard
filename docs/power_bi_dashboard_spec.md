@@ -99,6 +99,8 @@ Suggested scatterplots:
 
 Use rolling averages or weekly aggregation where daily noise is too high.
 
+When the ETL is run with `--impute`, use `has_imputed_values` as a report filter or tooltip marker. Keep `imputation_count` and `imputed_fields` available in drill-through so estimated days remain visible and auditable rather than silently presented as observations.
+
 ## Basic DAX Measures
 
 ```DAX

@@ -77,6 +77,17 @@ FACT_PREFERRED_ORDER = [
     "mfp_exercise_calories",
 ]
 
+IMPUTATION_FLAG_FIELDS = [
+    "calories",
+    "protein_g",
+    "carbs_g",
+    "fat_g",
+    "sleep_hours",
+    "steps",
+    "resting_hr",
+    "hrv_ms",
+]
+
 
 @dataclass
 class DailyModels:
@@ -217,6 +228,10 @@ def build_dashboard_fact(
             "resting_hr_7d_avg",
             "hrv_7d_avg",
             "weight_measurement_flag",
+            "has_imputed_values",
+            "imputation_count",
+            "imputed_fields",
+            *[f"{field}_imputed_flag" for field in IMPUTATION_FLAG_FIELDS],
         ]
         return pd.DataFrame(columns=columns)
 
@@ -230,20 +245,48 @@ def build_dashboard_fact(
     if "alcohol_consumption_count" not in fact:
         fact["alcohol_consumption_count"] = pd.NA
 
-    fact["calories_7d_avg"] = pd.to_numeric(fact["calories"], errors="coerce").rolling(7, min_periods=1).mean()
-    fact["protein_7d_avg"] = pd.to_numeric(fact["protein_g"], errors="coerce").rolling(7, min_periods=1).mean()
-    fact["weight_7d_avg"] = pd.to_numeric(fact["weight_lb"], errors="coerce").rolling(7, min_periods=1).mean()
-    fact["sleep_7d_avg"] = pd.to_numeric(fact["sleep_hours"], errors="coerce").rolling(7, min_periods=1).mean()
-    fact["resting_hr_7d_avg"] = pd.to_numeric(fact["resting_hr"], errors="coerce").rolling(7, min_periods=1).mean()
-    fact["hrv_7d_avg"] = pd.to_numeric(fact["hrv_ms"], errors="coerce").rolling(7, min_periods=1).mean()
-    fact["weight_measurement_flag"] = pd.to_numeric(fact["weight_lb"], errors="coerce").notna().astype("int8")
+    add_default_imputation_columns(fact)
+    fact = refresh_fact_calculations(fact, config)
+    return order_fact_columns(fact)
+
+
+def refresh_fact_calculations(fact: pd.DataFrame, config: PipelineConfig) -> pd.DataFrame:
+    """Recompute rolling metrics and targets after observed values change."""
+
+    output = fact.copy()
+    calories = numeric_fact_series(output, "calories")
+    protein = numeric_fact_series(output, "protein_g")
+    weight = numeric_fact_series(output, "weight_lb")
+    sleep = numeric_fact_series(output, "sleep_hours")
+    resting_hr = numeric_fact_series(output, "resting_hr")
+    hrv = numeric_fact_series(output, "hrv_ms")
+    output["calories_7d_avg"] = calories.rolling(7, min_periods=1).mean()
+    output["protein_7d_avg"] = protein.rolling(7, min_periods=1).mean()
+    output["weight_7d_avg"] = weight.rolling(7, min_periods=1).mean()
+    output["sleep_7d_avg"] = sleep.rolling(7, min_periods=1).mean()
+    output["resting_hr_7d_avg"] = resting_hr.rolling(7, min_periods=1).mean()
+    output["hrv_7d_avg"] = hrv.rolling(7, min_periods=1).mean()
+    output["weight_measurement_flag"] = weight.notna().astype("int8")
 
     if config.calorie_target is not None:
-        fact["calorie_delta_from_target"] = pd.to_numeric(fact["calories"], errors="coerce") - config.calorie_target
+        output["calorie_delta_from_target"] = calories - config.calorie_target
     if config.protein_target_g is not None:
-        fact["protein_delta_from_target"] = pd.to_numeric(fact["protein_g"], errors="coerce") - config.protein_target_g
+        output["protein_delta_from_target"] = protein - config.protein_target_g
+    return output
 
-    return order_fact_columns(fact)
+
+def add_default_imputation_columns(fact: pd.DataFrame) -> None:
+    fact["has_imputed_values"] = 0
+    fact["imputation_count"] = 0
+    fact["imputed_fields"] = ""
+    for field in IMPUTATION_FLAG_FIELDS:
+        fact[f"{field}_imputed_flag"] = 0
+
+
+def numeric_fact_series(frame: pd.DataFrame, column: str) -> pd.Series:
+    if column not in frame:
+        return pd.Series(pd.NA, index=frame.index, dtype="Float64")
+    return pd.to_numeric(frame[column], errors="coerce")
 
 
 def normalize_daily_frame(frame: pd.DataFrame | None) -> pd.DataFrame:
@@ -319,7 +362,13 @@ def order_fact_columns(fact: pd.DataFrame) -> pd.DataFrame:
         "weight_measurement_flag",
     ]
     target_columns = [column for column in ["calorie_delta_from_target", "protein_delta_from_target"] if column in fact]
-    known = FACT_PREFERRED_ORDER + rolling_columns + target_columns
+    imputation_columns = [
+        column
+        for column in ["has_imputed_values", "imputation_count", "imputed_fields"]
+        if column in fact
+    ]
+    imputation_flags = sorted(column for column in fact if column.endswith("_imputed_flag"))
+    known = FACT_PREFERRED_ORDER + rolling_columns + target_columns + imputation_columns + imputation_flags
     extra_columns = sorted([column for column in fact.columns if column not in known])
     return fact[[column for column in known + extra_columns if column in fact]]
 

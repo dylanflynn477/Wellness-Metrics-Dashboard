@@ -40,6 +40,7 @@ src/
   ingest_mfp.py
   ingest_apple_health.py
   transform_daily.py
+  impute_daily.py
   build_dataset.py
   generate_synthetic_data.py
   validate_outputs.py
@@ -96,6 +97,16 @@ The generator preserves useful export schemas, row density, missingness, and rea
 
 The Power BI project reads the processed fact through the `HealthDashboardCsvPath` parameter. In Power BI Desktop, use **Transform data > Manage parameters** to point it at your local `data/processed/health_dashboard_fact.csv` before refreshing.
 
+For an opt-in, auditable cleanup of high-confidence anomalies and short missing gaps, run:
+
+```bash
+python src/build_dataset.py --no-sample-fallback --impute
+```
+
+Imputation uses a centered 21-day rolling median and median absolute deviation (MAD), which is less sensitive to extreme values than a mean and standard deviation. It preserves gradual changes such as bulk-to-cut transitions, leaves missing stretches longer than three days untouched, and writes every replacement to `imputation_report.csv`. Raw source exports and source-specific daily tables are never overwritten.
+
+Advanced controls are available through `--impute-window-days`, `--impute-max-gap-days`, and `--impute-z-threshold`. Use an odd window of at least seven days. The defaults are intentionally conservative.
+
 Generated outputs are written to `data/processed/`:
 
 - `daily_nutrition.csv`
@@ -107,6 +118,7 @@ Generated outputs are written to `data/processed/`:
 - `health_dashboard_fact.csv`
 - `data_quality_report.md`
 - `data_quality_issues.csv`
+- `imputation_report.csv` when `--impute` is enabled
 
 ## Configuration
 
