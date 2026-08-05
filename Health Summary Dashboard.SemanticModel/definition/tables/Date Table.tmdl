@@ -765,6 +765,26 @@ table 'Date Table'
 		formatString: 0
 		lineageTag: 64821524-fcf2-463f-9019-ce11685d2ca2
 
+	measure 'Imputed Days' =
+			CALCULATE (
+				DISTINCTCOUNT (
+					health_dashboard_fact[date]
+				),
+				KEEPFILTERS (
+					health_dashboard_fact[has_imputed_values] = 1
+				)
+			)
+		formatString: 0
+		lineageTag: 31198ba3-8e76-4e79-b216-e3824833f64a
+
+	measure 'Imputed Day %' =
+			DIVIDE (
+				[Imputed Days],
+				[Selected Days]
+			)
+		formatString: 0%
+		lineageTag: c1e87071-2ea5-41fa-b0dc-9a097c6caaef
+
 	measure 'Drinking Days' =
 			
 			CALCULATE (

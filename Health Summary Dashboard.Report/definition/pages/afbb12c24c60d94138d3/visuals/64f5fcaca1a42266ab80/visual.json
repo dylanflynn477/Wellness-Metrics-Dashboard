@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "64f5fcaca1a42266ab80",
   "position": {
-    "x": 0,
-    "y": 128,
+    "x": 620,
+    "y": 88,
     "z": 7000,
-    "height": 144,
-    "width": 224.00000000000003,
+    "height": 40,
+    "width": 160,
     "tabOrder": 7000
   },
   "visual": {
@@ -23,13 +23,13 @@
                       "Entity": "Date Table"
                     }
                   },
-                  "Property": "Avg Calories"
+                  "Property": "Imputed Day %"
                 }
               },
-              "queryRef": "Date Table.Avg Calories",
-              "nativeQueryRef": "AVG CALORIES",
-              "displayName": "AVG CALORIES",
-              "format": "0,000"
+              "queryRef": "Date Table.Imputed Day %",
+              "nativeQueryRef": "ESTIMATED DAYS",
+              "displayName": "ESTIMATED DAYS",
+              "format": "0%"
             }
           ]
         }
@@ -44,7 +44,7 @@
                     "Entity": "Date Table"
                   }
                 },
-                "Property": "Avg Calories"
+                "Property": "Imputed Day %"
               }
             },
             "direction": "Descending"
@@ -154,7 +154,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "8D"
                 }
               }
             },
