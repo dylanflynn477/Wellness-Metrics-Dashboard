@@ -576,7 +576,6 @@ table health_dashboard_fact
 					health_dashboard_fact[workout_minutes],
 					health_dashboard_fact[date], Tomorrow
 				)
-		description: Metric from date + 1 for descriptive lifestyle comparisons; not causal.
 		lineageTag: 7264c64d-bc73-441f-b79e-7d388db55b06
 		summarizeBy: average
 
@@ -590,7 +589,6 @@ table health_dashboard_fact
 					health_dashboard_fact[sleep_hours],
 					health_dashboard_fact[date], Tomorrow
 				)
-		description: Metric from date + 1 for descriptive lifestyle comparisons; not causal.
 		lineageTag: 7067b317-f46a-4f4f-a2b9-6f4366eb6b39
 		summarizeBy: average
 
@@ -604,7 +602,6 @@ table health_dashboard_fact
 					health_dashboard_fact[sleep_deep_hours],
 					health_dashboard_fact[date], Tomorrow
 				)
-		description: Metric from date + 1 for descriptive lifestyle comparisons; not causal.
 		lineageTag: 87229da7-1f6c-4103-8bd6-d12e4b77f08e
 		summarizeBy: average
 
@@ -618,7 +615,6 @@ table health_dashboard_fact
 					health_dashboard_fact[sleep_rem_hours],
 					health_dashboard_fact[date], Tomorrow
 				)
-		description: Metric from date + 1 for descriptive lifestyle comparisons; not causal.
 		lineageTag: 12474eaa-de6c-4360-a660-8c87f8dc22ea
 		summarizeBy: average
 
@@ -632,7 +628,6 @@ table health_dashboard_fact
 					health_dashboard_fact[hrv_ms],
 					health_dashboard_fact[date], Tomorrow
 				)
-		description: Metric from date + 1 for descriptive lifestyle comparisons; not causal.
 		lineageTag: 11a72184-535d-4d3d-b165-599c5b869257
 		summarizeBy: average
 
@@ -646,7 +641,6 @@ table health_dashboard_fact
 					health_dashboard_fact[resting_hr],
 					health_dashboard_fact[date], Tomorrow
 				)
-		description: Metric from date + 1 for descriptive lifestyle comparisons; not causal.
 		lineageTag: 4dd1cdce-c45c-4a71-9b86-f0f3c7fb7233
 		summarizeBy: average
 
@@ -660,7 +654,6 @@ table health_dashboard_fact
 					health_dashboard_fact[heart_rate_avg],
 					health_dashboard_fact[date], Tomorrow
 				)
-		description: Metric from date + 1 for descriptive lifestyle comparisons; not causal.
 		lineageTag: 748a0873-c254-4a17-a6f2-791b81fc509e
 		summarizeBy: average
 
@@ -674,7 +667,6 @@ table health_dashboard_fact
 					health_dashboard_fact[wrist_temperature_f],
 					health_dashboard_fact[date], Tomorrow
 				)
-		description: Metric from date + 1 for descriptive lifestyle comparisons; not causal.
 		lineageTag: e24dab7f-2d3e-4161-94ad-a2ab9e0086db
 		summarizeBy: average
 
@@ -688,7 +680,6 @@ table health_dashboard_fact
 					health_dashboard_fact[blood_oxygen_pct],
 					health_dashboard_fact[date], Tomorrow
 				)
-		description: Metric from date + 1 for descriptive lifestyle comparisons; not causal.
 		lineageTag: a00fbafe-d663-4249-9739-791264d1c206
 		summarizeBy: average
 
@@ -702,7 +693,6 @@ table health_dashboard_fact
 					health_dashboard_fact[active_energy_kcal],
 					health_dashboard_fact[date], Tomorrow
 				)
-		description: Metric from date + 1 for descriptive lifestyle comparisons; not causal.
 		lineageTag: 78b970f1-7ee6-4840-8fd7-ab0a58987042
 		summarizeBy: average
 
@@ -716,7 +706,6 @@ table health_dashboard_fact
 					health_dashboard_fact[steps],
 					health_dashboard_fact[date], Tomorrow
 				)
-		description: Metric from date + 1 for descriptive lifestyle comparisons; not causal.
 		formatString: 0
 		lineageTag: b1ba3f71-b077-4557-b7a8-29b0334d769a
 		summarizeBy: average
@@ -731,7 +720,6 @@ table health_dashboard_fact
 					health_dashboard_fact[has_imputed_values],
 					health_dashboard_fact[date], Tomorrow
 				)
-		description: Metric from date + 1 for descriptive lifestyle comparisons; not causal.
 		formatString: 0
 		lineageTag: 5f71b782-83f2-456f-b0d3-6f08e352a542
 		summarizeBy: sum
