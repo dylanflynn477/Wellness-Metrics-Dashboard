@@ -310,7 +310,7 @@ table 'Date Table'
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Avg Sleep 7D' =
+	measure 'Sleep 7D' =
 			
 			VAR EndDate = MAX ( 'Date Table'[Date] )
 			RETURN
@@ -321,12 +321,11 @@ table 'Date Table'
 			            'Date Table'[Date] >= EndDate - 6
 			                && 'Date Table'[Date] <= EndDate
 			        )
-			    )
+				    )
+		formatString: 0.00 "hours"
 		lineageTag: bef8fb20-377d-49d3-839f-5288f47499a0
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	measure 'Avg Resting HR 7D' =
+	measure 'Resting HR 7D' =
 			
 			VAR EndDate = MAX ( 'Date Table'[Date] )
 			RETURN
@@ -337,12 +336,11 @@ table 'Date Table'
 			            'Date Table'[Date] >= EndDate - 6
 			                && 'Date Table'[Date] <= EndDate
 			        )
-			    )
+				    )
+		formatString: 0.0 "bpm"
 		lineageTag: a0cc2b2a-73ae-49ab-86b4-c059bcbbcfb0
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	measure 'Avg HRV 7D' =
+	measure 'HRV 7D' =
 			
 			VAR EndDate = MAX ( 'Date Table'[Date] )
 			RETURN
@@ -353,10 +351,112 @@ table 'Date Table'
 			            'Date Table'[Date] >= EndDate - 6
 			                && 'Date Table'[Date] <= EndDate
 			        )
-			    )
+				    )
+		formatString: 0.0 "ms"
 		lineageTag: 141e8c95-a6ef-4fb5-8800-9056d7b4a374
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+	measure 'Sleep 28D' =
+			VAR EndDate =
+				MAX ( 'Date Table'[Date] )
+			RETURN
+				CALCULATE (
+					[Avg Sleep],
+					FILTER (
+						ALL ( 'Date Table'[Date] ),
+						'Date Table'[Date] >= EndDate - 27
+							&& 'Date Table'[Date] <= EndDate
+					)
+				)
+		formatString: 0.00 "hours"
+		lineageTag: d8404e13-7875-4e67-af87-86f818aeac2f
+
+	measure 'HRV 28D' =
+			VAR EndDate =
+				MAX ( 'Date Table'[Date] )
+			RETURN
+				CALCULATE (
+					[Avg HRV],
+					FILTER (
+						ALL ( 'Date Table'[Date] ),
+						'Date Table'[Date] >= EndDate - 27
+							&& 'Date Table'[Date] <= EndDate
+					)
+				)
+		formatString: 0.0 "ms"
+		lineageTag: 2c41a334-eed4-4ee9-8e91-8492c83b2544
+
+	measure 'Resting HR 28D' =
+			VAR EndDate =
+				MAX ( 'Date Table'[Date] )
+			RETURN
+				CALCULATE (
+					[Avg Resting HR],
+					FILTER (
+						ALL ( 'Date Table'[Date] ),
+						'Date Table'[Date] >= EndDate - 27
+							&& 'Date Table'[Date] <= EndDate
+					)
+				)
+		formatString: 0.0 "bpm"
+		lineageTag: aafac664-d22d-4d24-8a34-93de8dccb97e
+
+	measure 'Sleep vs 28D %' =
+			DIVIDE (
+				[Sleep 7D] - [Sleep 28D],
+				[Sleep 28D]
+			)
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: 3b886c1d-f86f-4d1e-88ad-ce961ea09dac
+
+	measure 'HRV vs 28D %' =
+			DIVIDE (
+				[HRV 7D] - [HRV 28D],
+				[HRV 28D]
+			)
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: 28b29e3c-6f2c-4372-8944-2dc86fb34002
+
+	measure 'Resting HR vs 28D %' =
+			- DIVIDE (
+				[Resting HR 7D] - [Resting HR 28D],
+				[Resting HR 28D]
+			)
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: 752dd37d-c696-453d-9926-11bc01e284de
+
+	measure 'Steps 7D' =
+			VAR EndDate =
+				MAX ( 'Date Table'[Date] )
+			RETURN
+				CALCULATE (
+					AVERAGE (
+						health_dashboard_fact[steps]
+					),
+					FILTER (
+						ALL ( 'Date Table'[Date] ),
+						'Date Table'[Date] >= EndDate - 6
+							&& 'Date Table'[Date] <= EndDate
+					)
+				)
+		formatString: 0
+		lineageTag: c4e8451f-d59c-4752-9440-c24b6154bca3
+
+	measure 'Workout Minutes 7D' =
+			VAR EndDate =
+				MAX ( 'Date Table'[Date] )
+			RETURN
+				CALCULATE (
+					AVERAGE (
+						health_dashboard_fact[workout_minutes]
+					),
+					FILTER (
+						ALL ( 'Date Table'[Date] ),
+						'Date Table'[Date] >= EndDate - 6
+							&& 'Date Table'[Date] <= EndDate
+					)
+				)
+		formatString: 0 "minutes"
+		lineageTag: 66e5dbdc-2519-435e-977c-4e3c89c46f6d
 
 	measure 'Calories vs Overall %' =
 			
@@ -369,14 +469,14 @@ table 'Date Table'
 
 	measure 'Sleep 7D vs Overall' =
 			
-			[Avg Sleep 7D] - [Avg Sleep Overall]
+			[Sleep 7D] - [Avg Sleep Overall]
 		lineageTag: fc9754cd-637a-4c2d-872a-7da5d334b9e7
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Resting HR 7D vs Overall' =
 			
-			[Avg Resting HR 7D] - [Avg Resting HR Overall]
+			[Resting HR 7D] - [Avg Resting HR Overall]
 		lineageTag: 9dcf1dee-4ff6-4af4-a9dc-5029f8fc45c7
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -384,7 +484,7 @@ table 'Date Table'
 	measure 'HRV 7D vs Overall %' =
 			
 			DIVIDE (
-			    [Avg HRV 7D] - [Avg HRV Overall],
+			    [HRV 7D] - [Avg HRV Overall],
 			    [Avg HRV Overall]
 			)
 		formatString: 0.00%;-0.00%;0.00%

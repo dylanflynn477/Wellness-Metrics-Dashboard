@@ -5316,7 +5316,7 @@ cultureInfo en-US
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Date Table",
-			          "ConceptualProperty": "Avg Sleep 7D"
+			          "ConceptualProperty": "Sleep 7D"
 			        }
 			      },
 			      "State": "Generated",
@@ -5342,7 +5342,7 @@ cultureInfo en-US
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Date Table",
-			          "ConceptualProperty": "Avg Resting HR 7D"
+			          "ConceptualProperty": "Resting HR 7D"
 			        }
 			      },
 			      "State": "Generated",
@@ -5368,7 +5368,7 @@ cultureInfo en-US
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Date Table",
-			          "ConceptualProperty": "Avg HRV 7D"
+			          "ConceptualProperty": "HRV 7D"
 			        }
 			      },
 			      "State": "Generated",
