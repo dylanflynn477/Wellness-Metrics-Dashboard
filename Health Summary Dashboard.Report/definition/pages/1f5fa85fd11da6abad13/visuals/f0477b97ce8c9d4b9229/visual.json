@@ -23,13 +23,13 @@
                       "Entity": "Date Table"
                     }
                   },
-                  "Property": "Peak Weight (Period)"
+                  "Property": "Peak Recorded Weight"
                 }
               },
-              "queryRef": "Date Table.Peak Weight (Period)",
-              "nativeQueryRef": "PEAK WEIGHT (LBS)",
-              "displayName": "PEAK WEIGHT (LBS)",
-              "format": "0.0"
+              "queryRef": "Date Table.Peak Recorded Weight",
+              "nativeQueryRef": "PEAK RECORDED WEIGHT",
+              "displayName": "PEAK RECORDED WEIGHT",
+              "format": "0.0 \"lb\""
             }
           ]
         }
@@ -44,7 +44,7 @@
                     "Entity": "Date Table"
                   }
                 },
-                "Property": "Peak Weight (Period)"
+                "Property": "Peak Recorded Weight"
               }
             },
             "direction": "Descending"

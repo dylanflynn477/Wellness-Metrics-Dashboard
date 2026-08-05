@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "1b56226d97c1ddf63462",
+  "name": "be83c6a7daeb4b13b13f",
   "position": {
-    "x": 1088,
-    "y": 128,
-    "z": 6000,
-    "height": 144,
-    "width": 192,
-    "tabOrder": 4000
+    "x": 620,
+    "y": 88,
+    "z": 4000,
+    "height": 40,
+    "width": 160,
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -23,13 +23,13 @@
                       "Entity": "Date Table"
                     }
                   },
-                  "Property": "Sleep 7D"
+                  "Property": "Imputed Day %"
                 }
               },
-              "queryRef": "Date Table.Sleep 7D",
-              "nativeQueryRef": "7-DAY SLEEP",
-              "displayName": "7-DAY SLEEP",
-              "format": "0.00 \"hours\""
+              "queryRef": "Date Table.Imputed Day %",
+              "nativeQueryRef": "ESTIMATED DAYS",
+              "displayName": "ESTIMATED DAYS",
+              "format": "0%"
             }
           ]
         }
@@ -44,7 +44,7 @@
                     "Entity": "Date Table"
                   }
                 },
-                "Property": "Sleep 7D"
+                "Property": "Imputed Day %"
               }
             },
             "direction": "Descending"
@@ -54,46 +54,6 @@
       }
     },
     "objects": {
-      "label": [
-        {
-          "properties": {
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "11D"
-                }
-              }
-            },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#64748B'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "id": "default"
-          }
-        }
-      ],
-      "layout": [
-        {
-          "properties": {
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'middle'"
-                }
-              }
-            }
-          }
-        }
-      ],
       "smallMultiplesHeader": [
         {
           "properties": {
@@ -113,17 +73,24 @@
       "value": [
         {
           "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Date Table.Imputed Day %"
+          }
+        },
+        {
+          "properties": {
             "fontSize": {
               "expr": {
                 "Literal": {
                   "Value": "28D"
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
                 }
               }
             },
@@ -137,24 +104,74 @@
                   }
                 }
               }
-            }
-          },
-          "selector": {
-            "id": "default"
-          }
-        },
-        {
-          "properties": {
-            "labelDisplayUnits": {
+            },
+            "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "1D"
+                  "Value": "true"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Date Table.Sleep 7D"
+            "id": "default"
+          }
+        }
+      ],
+      "referenceLabel": [
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "Date Table.Imputed Day %",
+            "id": "field-d0c23111-8d6c-c5ac-65b1-8c1c9411cf83",
+            "order": 0
+          }
+        }
+      ],
+      "layout": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'middle'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "label": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#64748B'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
           }
         }
       ],
@@ -217,49 +234,13 @@
       ]
     },
     "visualContainerObjects": {
-      "title": [
-        {
-          "properties": {
-            "titleWrap": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "spacing": [
-        {
-          "properties": {
-            "verticalSpacing": {
-              "expr": {
-                "Literal": {
-                  "Value": "2D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "id": "default"
-          }
-        }
-      ],
-      "background": [
+      "dropShadow": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "transparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
+                  "Value": "false"
                 }
               }
             }
@@ -305,13 +286,49 @@
           }
         }
       ],
-      "dropShadow": [
+      "title": [
+        {
+          "properties": {
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "spacing": [
+        {
+          "properties": {
+            "verticalSpacing": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "background": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }

@@ -23,13 +23,13 @@
                       "Entity": "Date Table"
                     }
                   },
-                  "Property": "Avg Calories"
+                  "Property": "Calories 7D Valid"
                 }
               },
-              "queryRef": "Date Table.Avg Calories",
-              "nativeQueryRef": "AVG CALORIES",
-              "displayName": "AVG CALORIES",
-              "format": "0,000 \"cal\""
+              "queryRef": "Date Table.Calories 7D Valid",
+              "nativeQueryRef": "7-DAY CALORIES",
+              "displayName": "7-DAY CALORIES",
+              "format": "0 \"kcal\""
             }
           ]
         }
@@ -44,7 +44,7 @@
                     "Entity": "Date Table"
                   }
                 },
-                "Property": "Avg Calories"
+                "Property": "Calories 7D Valid"
               }
             },
             "direction": "Descending"
@@ -82,7 +82,7 @@
             }
           },
           "selector": {
-            "metadata": "Date Table.Avg Calories"
+            "metadata": "Date Table.Calories 7D Valid"
           }
         },
         {
@@ -129,7 +129,7 @@
                 }
               }
             ],
-            "metadata": "Date Table.Avg Calories",
+            "metadata": "Date Table.Calories 7D Valid",
             "id": "field-d0c23111-8d6c-c5ac-65b1-8c1c9411cf83",
             "order": 0
           }

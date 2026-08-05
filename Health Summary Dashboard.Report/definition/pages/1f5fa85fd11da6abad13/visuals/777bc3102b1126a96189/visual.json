@@ -44,26 +44,6 @@
                           "Entity": "health_dashboard_fact"
                         }
                       },
-                      "Property": "sleep_7d_avg"
-                    }
-                  },
-                  "Function": 0
-                }
-              },
-              "queryRef": "Sum(health_dashboard_fact.sleep_7d_avg)",
-              "nativeQueryRef": "1 week sleep rolling average",
-              "displayName": "1 week sleep rolling average"
-            },
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "health_dashboard_fact"
-                        }
-                      },
                       "Property": "sleep_hours"
                     }
                   },
@@ -73,6 +53,21 @@
               "queryRef": "Sum(health_dashboard_fact.sleep_hours)",
               "nativeQueryRef": "Sleep (hours)",
               "displayName": "Sleep (hours)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Date Table"
+                    }
+                  },
+                  "Property": "Sleep 7D"
+                }
+              },
+              "queryRef": "Date Table.Sleep 7D",
+              "nativeQueryRef": "7-day sleep average",
+              "displayName": "7-day sleep average"
             }
           ]
         }
@@ -151,24 +146,6 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#7C3AED'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Sum(health_dashboard_fact.sleep_7d_avg)"
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
                       "Value": "'#DDD6FE'"
                     }
                   }
@@ -178,6 +155,24 @@
           },
           "selector": {
             "metadata": "Sum(health_dashboard_fact.sleep_hours)"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7C3AED'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Date Table.Sleep 7D"
           }
         }
       ],
@@ -194,6 +189,20 @@
           },
           "selector": {
             "metadata": "Sum(health_dashboard_fact.sleep_hours)"
+          }
+        },
+        {
+          "properties": {
+            "strokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "3D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Date Table.Sleep 7D"
           }
         }
       ]

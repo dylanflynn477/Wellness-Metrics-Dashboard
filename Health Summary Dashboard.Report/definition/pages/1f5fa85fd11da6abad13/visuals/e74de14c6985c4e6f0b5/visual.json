@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "e74de14c6985c4e6f0b5",
   "position": {
-    "x": 896.00000000000011,
+    "x": 896.0000000000001,
     "y": 128,
     "z": 9000,
     "height": 144,
@@ -23,13 +23,13 @@
                       "Entity": "Date Table"
                     }
                   },
-                  "Property": "Avg HRV"
+                  "Property": "HRV 7D"
                 }
               },
-              "queryRef": "Date Table.Avg HRV",
-              "nativeQueryRef": "HRV",
-              "displayName": "HRV",
-              "format": "0 \"ms\""
+              "queryRef": "Date Table.HRV 7D",
+              "nativeQueryRef": "7-DAY HRV",
+              "displayName": "7-DAY HRV",
+              "format": "0.0 \"ms\""
             }
           ]
         }
@@ -44,7 +44,7 @@
                     "Entity": "Date Table"
                   }
                 },
-                "Property": "Avg HRV"
+                "Property": "HRV 7D"
               }
             },
             "direction": "Descending"
@@ -154,7 +154,7 @@
             }
           },
           "selector": {
-            "metadata": "Date Table.Avg Calories"
+            "metadata": "Date Table.HRV 7D"
           }
         }
       ],

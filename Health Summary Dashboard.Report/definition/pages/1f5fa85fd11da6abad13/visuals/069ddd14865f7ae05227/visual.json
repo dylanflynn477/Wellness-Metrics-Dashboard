@@ -56,23 +56,33 @@
             },
             {
               "field": {
-                "Aggregation": {
+                "Measure": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "health_dashboard_fact"
-                        }
-                      },
-                      "Property": "protein_7d_avg"
+                    "SourceRef": {
+                      "Entity": "Date Table"
                     }
                   },
-                  "Function": 0
+                  "Property": "Protein 7D Valid"
                 }
               },
-              "queryRef": "Sum(health_dashboard_fact.protein_7d_avg)",
-              "nativeQueryRef": "1 week protein rolling average",
-              "displayName": "1 week protein rolling average"
+              "queryRef": "Date Table.Protein 7D Valid",
+              "nativeQueryRef": "7-day valid protein average",
+              "displayName": "7-day valid protein average"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Date Table"
+                    }
+                  },
+                  "Property": "Protein Target"
+                }
+              },
+              "queryRef": "Date Table.Protein Target",
+              "nativeQueryRef": "Daily protein target",
+              "displayName": "Daily protein target"
             }
           ]
         }
@@ -184,7 +194,25 @@
             }
           },
           "selector": {
-            "metadata": "Sum(health_dashboard_fact.protein_7d_avg)"
+            "metadata": "Date Table.Protein 7D Valid"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#64748B'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Date Table.Protein Target"
           }
         }
       ],
@@ -201,6 +229,34 @@
           },
           "selector": {
             "metadata": "Sum(health_dashboard_fact.protein_g)"
+          }
+        },
+        {
+          "properties": {
+            "strokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "3D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Date Table.Protein 7D Valid"
+          }
+        },
+        {
+          "properties": {
+            "strokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Date Table.Protein Target"
           }
         }
       ]

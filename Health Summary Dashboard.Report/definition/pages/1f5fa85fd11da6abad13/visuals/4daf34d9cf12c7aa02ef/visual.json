@@ -23,13 +23,13 @@
                       "Entity": "Date Table"
                     }
                   },
-                  "Property": "Protein Adherence %"
+                  "Property": "Protein Adherence 28D %"
                 }
               },
-              "queryRef": "Date Table.Protein Adherence %",
-              "nativeQueryRef": "PROTEIN GOAL HIT",
-              "displayName": "PROTEIN GOAL HIT",
-              "format": "0%;-0%;0%"
+              "queryRef": "Date Table.Protein Adherence 28D %",
+              "nativeQueryRef": "28-DAY PROTEIN GOAL HIT",
+              "displayName": "28-DAY PROTEIN GOAL HIT",
+              "format": "0%"
             }
           ]
         }
@@ -44,7 +44,7 @@
                     "Entity": "Date Table"
                   }
                 },
-                "Property": "Protein Adherence %"
+                "Property": "Protein Adherence 28D %"
               }
             },
             "direction": "Descending"
@@ -125,7 +125,7 @@
             }
           },
           "selector": {
-            "metadata": "Date Table.Avg Calories"
+            "metadata": "Date Table.Protein Adherence 28D %"
           }
         }
       ],

@@ -23,13 +23,13 @@
                       "Entity": "Date Table"
                     }
                   },
-                  "Property": "Current Weight (Period)"
+                  "Property": "Latest Recorded Weight"
                 }
               },
-              "queryRef": "Date Table.Current Weight (Period)",
-              "nativeQueryRef": "CURRENT WEIGHT (LBS)",
-              "displayName": "CURRENT WEIGHT (LBS)",
-              "format": "0.0"
+              "queryRef": "Date Table.Latest Recorded Weight",
+              "nativeQueryRef": "LATEST RECORDED WEIGHT",
+              "displayName": "LATEST RECORDED WEIGHT",
+              "format": "0.0 \"lb\""
             }
           ]
         }
@@ -44,7 +44,7 @@
                     "Entity": "Date Table"
                   }
                 },
-                "Property": "Current Weight (Period)"
+                "Property": "Latest Recorded Weight"
               }
             },
             "direction": "Descending"

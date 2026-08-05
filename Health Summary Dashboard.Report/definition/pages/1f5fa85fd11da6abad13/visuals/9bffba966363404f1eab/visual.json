@@ -56,23 +56,33 @@
             },
             {
               "field": {
-                "Aggregation": {
+                "Measure": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "health_dashboard_fact"
-                        }
-                      },
-                      "Property": "calories_7d_avg"
+                    "SourceRef": {
+                      "Entity": "Date Table"
                     }
                   },
-                  "Function": 0
+                  "Property": "Calories 7D Valid"
                 }
               },
-              "queryRef": "Sum(health_dashboard_fact.calories_7d_avg)",
-              "nativeQueryRef": "1 week calories rolling average",
-              "displayName": "1 week calories rolling average"
+              "queryRef": "Date Table.Calories 7D Valid",
+              "nativeQueryRef": "7-day valid calorie average",
+              "displayName": "7-day valid calorie average"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Date Table"
+                    }
+                  },
+                  "Property": "Calorie Target"
+                }
+              },
+              "queryRef": "Date Table.Calorie Target",
+              "nativeQueryRef": "Daily calorie target",
+              "displayName": "Daily calorie target"
             }
           ]
         }
@@ -157,6 +167,34 @@
           "selector": {
             "metadata": "Sum(health_dashboard_fact.calories)"
           }
+        },
+        {
+          "properties": {
+            "strokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "3D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Date Table.Calories 7D Valid"
+          }
+        },
+        {
+          "properties": {
+            "strokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Date Table.Calorie Target"
+          }
         }
       ],
       "dataPoint": [
@@ -193,7 +231,25 @@
             }
           },
           "selector": {
-            "metadata": "Sum(health_dashboard_fact.calories_7d_avg)"
+            "metadata": "Date Table.Calories 7D Valid"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#64748B'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Date Table.Calorie Target"
           }
         }
       ]

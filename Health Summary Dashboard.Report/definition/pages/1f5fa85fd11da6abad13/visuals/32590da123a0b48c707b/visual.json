@@ -23,13 +23,13 @@
                       "Entity": "Date Table"
                     }
                   },
-                  "Property": "Net Weight Change (Period)"
+                  "Property": "Down From Peak"
                 }
               },
-              "queryRef": "Date Table.Net Weight Change (Period)",
-              "nativeQueryRef": "PEAK TO CURRENT",
-              "displayName": "PEAK TO CURRENT",
-              "format": "0.0"
+              "queryRef": "Date Table.Down From Peak",
+              "nativeQueryRef": "DOWN FROM PEAK",
+              "displayName": "DOWN FROM PEAK",
+              "format": "0.0 \"lb\""
             }
           ]
         }
@@ -44,7 +44,7 @@
                     "Entity": "Date Table"
                   }
                 },
-                "Property": "Net Weight Change (Period)"
+                "Property": "Down From Peak"
               }
             },
             "direction": "Descending"

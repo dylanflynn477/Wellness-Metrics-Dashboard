@@ -23,13 +23,13 @@
                       "Entity": "Date Table"
                     }
                   },
-                  "Property": "Avg Resting HR"
+                  "Property": "Resting HR 7D"
                 }
               },
-              "queryRef": "Date Table.Avg Resting HR",
-              "nativeQueryRef": "RESTING HR ",
-              "displayName": "RESTING HR ",
-              "format": "0 \"bpm\""
+              "queryRef": "Date Table.Resting HR 7D",
+              "nativeQueryRef": "7-DAY RESTING HR",
+              "displayName": "7-DAY RESTING HR",
+              "format": "0.0 \"bpm\""
             }
           ]
         }
@@ -44,7 +44,7 @@
                     "Entity": "Date Table"
                   }
                 },
-                "Property": "Avg Resting HR"
+                "Property": "Resting HR 7D"
               }
             },
             "direction": "Descending"
@@ -154,7 +154,7 @@
             }
           },
           "selector": {
-            "metadata": "Date Table.Avg Calories"
+            "metadata": "Date Table.Resting HR 7D"
           }
         }
       ],

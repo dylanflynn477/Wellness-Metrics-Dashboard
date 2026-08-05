@@ -23,12 +23,12 @@
                       "Entity": "Date Table"
                     }
                   },
-                  "Property": "Avg Protein"
+                  "Property": "Protein 7D Valid"
                 }
               },
-              "queryRef": "Date Table.Avg Protein",
-              "nativeQueryRef": "AVG PROTEIN ",
-              "displayName": "AVG PROTEIN ",
+              "queryRef": "Date Table.Protein 7D Valid",
+              "nativeQueryRef": "7-DAY PROTEIN",
+              "displayName": "7-DAY PROTEIN",
               "format": "0 \"g\""
             }
           ]
@@ -44,7 +44,7 @@
                     "Entity": "Date Table"
                   }
                 },
-                "Property": "Avg Protein"
+                "Property": "Protein 7D Valid"
               }
             },
             "direction": "Descending"
@@ -154,7 +154,7 @@
             }
           },
           "selector": {
-            "metadata": "Date Table.Avg Calories"
+            "metadata": "Date Table.Protein 7D Valid"
           }
         }
       ],
