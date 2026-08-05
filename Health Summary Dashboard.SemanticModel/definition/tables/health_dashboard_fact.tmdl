@@ -8,11 +8,6 @@ table health_dashboard_fact
 		summarizeBy: none
 		sourceColumn: date
 
-		variation Variation
-			isDefault
-			relationship: 0fd025e5-75c8-49fe-ab98-b08f4b0a0303
-			defaultHierarchy: LocalDateTable_1b417cef-8a99-4969-a9cb-6a306fd17c35.'Date Hierarchy'
-
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
@@ -130,10 +125,10 @@ table health_dashboard_fact
 	column weight_lb
 		dataType: double
 		lineageTag: faf54a39-ddd7-4067-883a-6f1f6150a832
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: weight_lb
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -206,40 +201,40 @@ table health_dashboard_fact
 	column vo2_max
 		dataType: double
 		lineageTag: 6f934496-7296-4790-aed5-b458e03d7f57
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: vo2_max
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column sleep_hours
 		dataType: double
 		lineageTag: 529a1898-7878-422a-aa62-81422de47901
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: sleep_hours
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column sleep_core_hours
 		dataType: double
 		lineageTag: 91103e34-df42-4c93-a12d-7d0fad8b19de
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: sleep_core_hours
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column sleep_deep_hours
 		dataType: double
 		lineageTag: 287ccdc0-fb12-4efc-af7b-43f5462602e3
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: sleep_deep_hours
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -256,10 +251,10 @@ table health_dashboard_fact
 	column sleep_awake_hours
 		dataType: double
 		lineageTag: b165feec-1b09-44e6-884f-a81b4f78febf
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: sleep_awake_hours
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -275,38 +270,38 @@ table health_dashboard_fact
 		dataType: int64
 		formatString: 0
 		lineageTag: 27ec8201-d8cb-411e-a20e-bf17f7253b1c
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: resting_hr
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column hrv_ms
 		dataType: double
 		lineageTag: b0477705-7109-4783-a325-950a3b47f9fb
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: hrv_ms
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column respiratory_rate
 		dataType: double
 		lineageTag: ecaa39eb-e111-493d-afeb-6e9732a002d6
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: respiratory_rate
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column blood_oxygen_pct
 		dataType: double
 		lineageTag: fff81200-ed7a-4697-afdc-47646fbf9f8f
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: blood_oxygen_pct
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -323,10 +318,10 @@ table health_dashboard_fact
 	column heart_rate_avg
 		dataType: double
 		lineageTag: b5913b69-4bff-42f4-a14e-16e9657ff801
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: heart_rate_avg
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -352,10 +347,10 @@ table health_dashboard_fact
 	column wrist_temperature_f
 		dataType: double
 		lineageTag: 91ee0d2d-0347-4279-9a30-ccdf7fdcab08
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: wrist_temperature_f
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -537,102 +532,126 @@ table health_dashboard_fact
 		annotation SummarizationSetBy = Automatic
 
 	column has_imputed_values
-		dataType: int64
-		formatString: 0
-		lineageTag: 2a2c868f-10fa-4f41-b984-c4d6c82c8ee5
-		summarizeBy: sum
+		dataType: string
+		lineageTag: 101f2854-6eab-41c4-b614-98216a465a27
+		summarizeBy: none
 		sourceColumn: has_imputed_values
 
-		annotation SummarizationSetBy = User
+		annotation SummarizationSetBy = Automatic
 
 	column imputation_count
-		dataType: int64
-		formatString: 0
-		lineageTag: b53cefd4-81b0-4b65-a07c-7b2dbbc8db39
-		summarizeBy: sum
+		dataType: string
+		lineageTag: f2420ae9-4656-43ac-8e84-d62a3860c63e
+		summarizeBy: none
 		sourceColumn: imputation_count
 
-		annotation SummarizationSetBy = User
+		annotation SummarizationSetBy = Automatic
 
 	column imputed_fields
 		dataType: string
-		lineageTag: af2e51bf-85b0-44d9-a2ae-ae2229a826ee
+		lineageTag: 3b95658c-d659-4d85-b9c4-eeae02160fc9
 		summarizeBy: none
 		sourceColumn: imputed_fields
 
-		annotation SummarizationSetBy = User
+		annotation SummarizationSetBy = Automatic
 
 	column calories_imputed_flag
-		dataType: int64
-		formatString: 0
-		lineageTag: 4c23aa0b-f148-46e1-8ca4-58de81d4c0c1
-		summarizeBy: sum
+		dataType: string
+		lineageTag: 1ad62f78-890d-435c-954a-95fd8cf9fcb9
+		summarizeBy: none
 		sourceColumn: calories_imputed_flag
 
-		annotation SummarizationSetBy = User
-
-	column protein_g_imputed_flag
-		dataType: int64
-		formatString: 0
-		lineageTag: 46a26c80-a657-480f-87d8-1304d8d2d2f7
-		summarizeBy: sum
-		sourceColumn: protein_g_imputed_flag
-
-		annotation SummarizationSetBy = User
+		annotation SummarizationSetBy = Automatic
 
 	column carbs_g_imputed_flag
-		dataType: int64
-		formatString: 0
-		lineageTag: 60b43db1-2836-4616-b45d-f3df23f5c911
-		summarizeBy: sum
+		dataType: string
+		lineageTag: c6c1f07f-6d9e-47db-afe7-e650ec11cca3
+		summarizeBy: none
 		sourceColumn: carbs_g_imputed_flag
 
-		annotation SummarizationSetBy = User
+		annotation SummarizationSetBy = Automatic
 
 	column fat_g_imputed_flag
-		dataType: int64
-		formatString: 0
-		lineageTag: d6fa2620-0de8-4bdd-aae8-455ffde02b9d
-		summarizeBy: sum
+		dataType: string
+		lineageTag: 897d8381-d87f-4389-af3a-515701dde601
+		summarizeBy: none
 		sourceColumn: fat_g_imputed_flag
 
-		annotation SummarizationSetBy = User
-
-	column sleep_hours_imputed_flag
-		dataType: int64
-		formatString: 0
-		lineageTag: 5d5bb34f-4908-4a3d-b37e-c0d6ce227f42
-		summarizeBy: sum
-		sourceColumn: sleep_hours_imputed_flag
-
-		annotation SummarizationSetBy = User
-
-	column steps_imputed_flag
-		dataType: int64
-		formatString: 0
-		lineageTag: 2e08521a-a7db-48b7-977e-3e9907504c09
-		summarizeBy: sum
-		sourceColumn: steps_imputed_flag
-
-		annotation SummarizationSetBy = User
-
-	column resting_hr_imputed_flag
-		dataType: int64
-		formatString: 0
-		lineageTag: b808aed2-e35a-4595-b1f9-9d36b9aec260
-		summarizeBy: sum
-		sourceColumn: resting_hr_imputed_flag
-
-		annotation SummarizationSetBy = User
+		annotation SummarizationSetBy = Automatic
 
 	column hrv_ms_imputed_flag
-		dataType: int64
-		formatString: 0
-		lineageTag: a5ed2d92-c8b3-4e18-b8f0-4e05b567c40e
-		summarizeBy: sum
+		dataType: string
+		lineageTag: 1106c7a9-40f3-461a-a445-5030a8efa60f
+		summarizeBy: none
 		sourceColumn: hrv_ms_imputed_flag
 
-		annotation SummarizationSetBy = User
+		annotation SummarizationSetBy = Automatic
+
+	column protein_g_imputed_flag
+		dataType: string
+		lineageTag: 7e89f868-948b-4c84-8718-4db29b55a1b5
+		summarizeBy: none
+		sourceColumn: protein_g_imputed_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column resting_hr_imputed_flag
+		dataType: string
+		lineageTag: 83be9cfa-0ebb-4f71-b05a-b36665680503
+		summarizeBy: none
+		sourceColumn: resting_hr_imputed_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column sleep_hours_imputed_flag
+		dataType: string
+		lineageTag: dc02b842-1ee8-4820-8d29-b6ca41b31772
+		summarizeBy: none
+		sourceColumn: sleep_hours_imputed_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column steps_imputed_flag
+		dataType: string
+		lineageTag: a678e06b-e69b-4207-bf06-efc880fec3c7
+		summarizeBy: none
+		sourceColumn: steps_imputed_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Drink Bucket' =
+			
+			VAR Drinks =
+			    health_dashboard_fact[alcohol_consumption_count]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( Drinks ), "Unknown",
+			        Drinks = 0, "0 drinks",
+			        Drinks = 1, "1 drink",
+			        Drinks = 2, "2 drinks",
+			        "3+ drinks"
+			    )
+		lineageTag: c5d39197-0ddf-4624-87e7-c72bdf8ace8f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Drink Bucket Sort' =
+			
+			SWITCH (
+			    health_dashboard_fact[Drink Bucket],
+			    "Unknown", 0,
+			    "0 drinks", 1,
+			    "1 drink", 2,
+			    "2 drinks", 3,
+			    "3+ drinks", 4
+			)
+		formatString: 0
+		lineageTag: 9a9e7b67-b722-4af8-b514-a8ebfec8e5ef
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
 
 	partition health_dashboard_fact = m
 		mode: import
@@ -640,7 +659,7 @@ table health_dashboard_fact
 				let
 				    Source = Csv.Document(File.Contents(HealthDashboardCsvPath),[Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
-				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"date", type date}, {"calories", type number}, {"protein_g", type number}, {"carbs_g", type number}, {"fat_g", type number}, {"saturated_fat_g", type number}, {"trans_fat_g", type number}, {"fiber_g", type number}, {"sugar_g", type number}, {"sodium_mg", type number}, {"potassium_mg", type number}, {"cholesterol_mg", type number}, {"weight_lb", type number}, {"steps", Int64.Type}, {"active_energy_kcal", type number}, {"resting_energy_kcal", Int64.Type}, {"apple_exercise_time_min", Int64.Type}, {"apple_stand_time_min", Int64.Type}, {"walking_running_distance_mi", type number}, {"flights_climbed", type number}, {"vo2_max", type number}, {"sleep_hours", type number}, {"sleep_core_hours", type number}, {"sleep_deep_hours", type number}, {"sleep_rem_hours", type number}, {"sleep_awake_hours", type number}, {"sleep_in_bed_hours", type number}, {"resting_hr", Int64.Type}, {"hrv_ms", type number}, {"respiratory_rate", type number}, {"blood_oxygen_pct", type number}, {"walking_heart_rate_avg", type number}, {"heart_rate_avg", type number}, {"heart_rate_min", type number}, {"heart_rate_max", Int64.Type}, {"wrist_temperature_f", type number}, {"workout_minutes", type number}, {"mfp_exercise_calories", type number}, {"calories_7d_avg", type number}, {"protein_7d_avg", type number}, {"weight_7d_avg", type number}, {"sleep_7d_avg", type number}, {"resting_hr_7d_avg", type number}, {"hrv_7d_avg", type number}, {"weight_measurement_flag", Int64.Type}, {"calorie_delta_from_target", type number}, {"protein_delta_from_target", type number}, {"calcium", type number}, {"iron", type number}, {"monounsaturated_fat", type number}, {"polyunsaturated_fat", type number}, {"vitamin_a", type number}, {"vitamin_c", type number}, {"alcohol_consumption_count", Int64.Type}, {"has_imputed_values", Int64.Type}, {"imputation_count", Int64.Type}, {"imputed_fields", type text}, {"calories_imputed_flag", Int64.Type}, {"protein_g_imputed_flag", Int64.Type}, {"carbs_g_imputed_flag", Int64.Type}, {"fat_g_imputed_flag", Int64.Type}, {"sleep_hours_imputed_flag", Int64.Type}, {"steps_imputed_flag", Int64.Type}, {"resting_hr_imputed_flag", Int64.Type}, {"hrv_ms_imputed_flag", Int64.Type}})
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"date", type date}, {"calories", type number}, {"protein_g", type number}, {"carbs_g", type number}, {"fat_g", type number}, {"saturated_fat_g", type number}, {"trans_fat_g", type number}, {"fiber_g", type number}, {"sugar_g", type number}, {"sodium_mg", type number}, {"potassium_mg", type number}, {"cholesterol_mg", type number}, {"weight_lb", type number}, {"steps", Int64.Type}, {"active_energy_kcal", type number}, {"resting_energy_kcal", Int64.Type}, {"apple_exercise_time_min", Int64.Type}, {"apple_stand_time_min", Int64.Type}, {"walking_running_distance_mi", type number}, {"flights_climbed", type number}, {"vo2_max", type number}, {"sleep_hours", type number}, {"sleep_core_hours", type number}, {"sleep_deep_hours", type number}, {"sleep_rem_hours", type number}, {"sleep_awake_hours", type number}, {"sleep_in_bed_hours", type number}, {"resting_hr", Int64.Type}, {"hrv_ms", type number}, {"respiratory_rate", type number}, {"blood_oxygen_pct", type number}, {"walking_heart_rate_avg", type number}, {"heart_rate_avg", type number}, {"heart_rate_min", type number}, {"heart_rate_max", Int64.Type}, {"wrist_temperature_f", type number}, {"workout_minutes", type number}, {"mfp_exercise_calories", type number}, {"calories_7d_avg", type number}, {"protein_7d_avg", type number}, {"weight_7d_avg", type number}, {"sleep_7d_avg", type number}, {"resting_hr_7d_avg", type number}, {"hrv_7d_avg", type number}, {"weight_measurement_flag", Int64.Type}, {"calorie_delta_from_target", type number}, {"protein_delta_from_target", type number}, {"calcium", type number}, {"iron", type number}, {"monounsaturated_fat", type number}, {"polyunsaturated_fat", type number}, {"vitamin_a", type number}, {"vitamin_c", type number}, {"alcohol_consumption_count", Int64.Type}})
 				in
 				    #"Changed Type"
 

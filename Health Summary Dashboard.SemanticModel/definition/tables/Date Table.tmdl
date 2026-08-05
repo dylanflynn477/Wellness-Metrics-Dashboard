@@ -67,13 +67,31 @@ table 'Date Table'
 
 	measure 'Calorie Target' =
 			
-			2400
+			AVERAGEX (
+			    FILTER (
+			        health_dashboard_fact,
+			        NOT ISBLANK (
+			            health_dashboard_fact[calorie_delta_from_target]
+			        )
+			    ),
+			    health_dashboard_fact[calories]
+			        - health_dashboard_fact[calorie_delta_from_target]
+			)
 		formatString: 0
 		lineageTag: bcf20b78-136e-4282-a0c0-dfaca204d521
 
 	measure 'Protein Target' =
 			
-			175
+			AVERAGEX (
+			    FILTER (
+			        health_dashboard_fact,
+			        NOT ISBLANK (
+			            health_dashboard_fact[protein_delta_from_target]
+			        )
+			    ),
+			    health_dashboard_fact[protein_g]
+			        - health_dashboard_fact[protein_delta_from_target]
+			)
 		formatString: 0
 		lineageTag: 7911a928-bf1a-4ed7-a0c6-b06b8019e9ac
 
@@ -88,55 +106,84 @@ table 'Date Table'
 
 	measure 'Protein Hit Days' =
 			
-			CALCULATE(
-			    COUNTROWS(health_dashboard_fact),
-			    FILTER(
-			        health_dashboard_fact,
-			        NOT ISBLANK(health_dashboard_fact[calories])
-			            && health_dashboard_fact[calories] >= 1200
-			            && NOT ISBLANK(health_dashboard_fact[protein_g])
-			            && health_dashboard_fact[protein_g] >= [Protein Target]
-			    )
+			SUMX (
+			    VALUES ( 'Date Table'[Date] ),
+			    VAR Calories =
+			        CALCULATE (
+			            MAX ( health_dashboard_fact[calories] )
+			        )
+			    VAR Protein =
+			        CALCULATE (
+			            MAX ( health_dashboard_fact[protein_g] )
+			        )
+			    VAR Target =
+			        CALCULATE ( [Protein Target] )
+			    RETURN
+			        IF (
+			            Calories >= 1200
+			                && NOT ISBLANK ( Protein )
+			                && Protein >= Target,
+			            1,
+			            0
+			        )
 			)
 		formatString: 0
 		lineageTag: a7004b77-1eb9-4502-843e-0dd6f239b80e
 
 	measure 'Protein Adherence %' =
 			
-			DIVIDE([Protein Hit Days], [Valid Nutrition Days])
+			DIVIDE (
+			    [Protein Hit Days],
+			    [Valid Nutrition Days]
+			)
+		formatString: 0%;-0%;0%
 		lineageTag: 68568047-147f-4e49-b3aa-1dcc3ea10769
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	measure 'Latest Weight' =
+	measure 'Latest Recorded Weight' =
 			
-			VAR LatestDate =
-			    MAXX(
-			        FILTER(
-			            health_dashboard_fact,
-			            NOT ISBLANK(health_dashboard_fact[weight_lb])
+			VAR LastWeightDate =
+			    MAXX (
+			        FILTER (
+			            ALLSELECTED ( 'Date Table'[Date] ),
+			            CALCULATE (
+			                MAX (
+			                    health_dashboard_fact[weight_measurement_flag]
+			                )
+			            ) = 1
+			                && NOT ISBLANK (
+			                    CALCULATE (
+			                        MAX (
+			                            health_dashboard_fact[weight_lb]
+			                        )
+			                    )
+			                )
 			        ),
-			        health_dashboard_fact[date]
+			        'Date Table'[Date]
 			    )
 			RETURN
-			CALCULATE(
-			    AVERAGE(health_dashboard_fact[weight_lb]),
-			    health_dashboard_fact[date] = LatestDate
-			)
+			    CALCULATE (
+			        MAX ( health_dashboard_fact[weight_lb] ),
+			        'Date Table'[Date] = LastWeightDate
+			    )
 		lineageTag: 24572ce0-e173-4c41-9ce8-b7dc2d91a6ea
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Valid Nutrition Days' =
 			
-			CALCULATE(
-			    COUNTROWS(health_dashboard_fact),
-			    FILTER(
-			        health_dashboard_fact,
-			        NOT ISBLANK(health_dashboard_fact[calories])
-			            && health_dashboard_fact[calories] >= 1200
-			            && NOT ISBLANK(health_dashboard_fact[protein_g])
-			    )
+			SUMX (
+			    VALUES ( 'Date Table'[Date] ),
+			    VAR Calories =
+			        CALCULATE (
+			            MAX ( health_dashboard_fact[calories] )
+			        )
+			    RETURN
+			        IF (
+			            NOT ISBLANK ( Calories )
+			                && Calories >= 1200,
+			            1,
+			            0
+			        )
 			)
 		formatString: 0
 		lineageTag: 0b3b2278-9901-43ab-9fc5-6f73c352f4a2
@@ -292,7 +339,8 @@ table 'Date Table'
 
 	measure 'Down From Peak' =
 			
-			[Peak Weight (Selected)] - [Current Weight (Selected)]
+			[Peak Recorded Weight]
+			    - [Latest Recorded Weight]
 		lineageTag: 011b6c11-58df-4ddf-9a01-4a06b4fd8f46
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -602,6 +650,187 @@ table 'Date Table'
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	measure 'Avg Calories Valid Days' =
+			
+			AVERAGEX (
+			    FILTER (
+			        VALUES ( 'Date Table'[Date] ),
+			        CALCULATE (
+			            MAX ( health_dashboard_fact[calories] )
+			        ) >= 1200
+			    ),
+			    CALCULATE (
+			        MAX ( health_dashboard_fact[calories] )
+			    )
+			)
+		lineageTag: f86f76c6-5656-46e9-808c-f1f9650b3019
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Protein Valid Days' =
+			
+			AVERAGEX (
+			    FILTER (
+			        VALUES ( 'Date Table'[Date] ),
+			        CALCULATE (
+			            MAX ( health_dashboard_fact[calories] )
+			        ) >= 1200
+			    ),
+			    CALCULATE (
+			        MAX ( health_dashboard_fact[protein_g] )
+			    )
+			)
+		lineageTag: 67053777-3ff7-4de1-bf90-9647ee998f91
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Peak Recorded Weight' =
+			
+			MAXX (
+			    FILTER (
+			        ALLSELECTED ( 'Date Table'[Date] ),
+			        CALCULATE (
+			            MAX (
+			                health_dashboard_fact[weight_measurement_flag]
+			            )
+			        ) = 1
+			    ),
+			    CALCULATE (
+			        MAX ( health_dashboard_fact[weight_lb] )
+			    )
+			)
+		lineageTag: de695866-2a8b-4261-8676-dce93569deb4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sleep 7D' =
+			
+			VAR EndDate =
+			    MAX ( 'Date Table'[Date] )
+			RETURN
+			    CALCULATE (
+			        [Avg Sleep],
+			        FILTER (
+			            ALL ( 'Date Table'[Date] ),
+			            'Date Table'[Date] >= EndDate - 6
+			                && 'Date Table'[Date] <= EndDate
+			        )
+			    )
+		lineageTag: c60be75f-4924-4f30-b990-4141e71dfdfb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sleep 28D' =
+			
+			VAR EndDate =
+			    MAX ( 'Date Table'[Date] )
+			RETURN
+			    CALCULATE (
+			        [Avg Sleep],
+			        FILTER (
+			            ALL ( 'Date Table'[Date] ),
+			            'Date Table'[Date] >= EndDate - 27
+			                && 'Date Table'[Date] <= EndDate
+			        )
+			    )
+		lineageTag: c6c9d582-f1d6-43ac-a0b2-fea64cf18e4c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'HRV 7D' =
+			
+			VAR EndDate = MAX ( 'Date Table'[Date] )
+			RETURN
+			    CALCULATE (
+			        [Avg HRV],
+			        FILTER (
+			            ALL ( 'Date Table'[Date] ),
+			            'Date Table'[Date] >= EndDate - 6
+			                && 'Date Table'[Date] <= EndDate
+			        )
+			    )
+		lineageTag: 7757a1b4-f531-475c-af94-c9bb8aebc7e6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'HRV 28D' =
+			
+			VAR EndDate = MAX ( 'Date Table'[Date] )
+			RETURN
+			    CALCULATE (
+			        [Avg HRV],
+			        FILTER (
+			            ALL ( 'Date Table'[Date] ),
+			            'Date Table'[Date] >= EndDate - 27
+			                && 'Date Table'[Date] <= EndDate
+			        )
+			    )
+		lineageTag: 279dac8c-f0f4-43fd-af60-60958f57f8a6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Resting HR 7D' =
+			
+			VAR EndDate = MAX ( 'Date Table'[Date] )
+			RETURN
+			    CALCULATE (
+			        [Avg Resting HR],
+			        FILTER (
+			            ALL ( 'Date Table'[Date] ),
+			            'Date Table'[Date] >= EndDate - 6
+			                && 'Date Table'[Date] <= EndDate
+			        )
+			    )
+		lineageTag: 67fc3300-5895-4117-b4cd-c1c89c3bd4f8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Resting HR 28D' =
+			
+			VAR EndDate = MAX ( 'Date Table'[Date] )
+			RETURN
+			    CALCULATE (
+			        [Avg Resting HR],
+			        FILTER (
+			            ALL ( 'Date Table'[Date] ),
+			            'Date Table'[Date] >= EndDate - 27
+			                && 'Date Table'[Date] <= EndDate
+			        )
+			    )
+		lineageTag: 123a1685-4910-4803-a745-0a66db399502
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sleep vs 28D %' =
+			
+			DIVIDE (
+			    [Sleep 7D] - [Sleep 28D],
+			    [Sleep 28D]
+			)
+		lineageTag: 508d2d23-1b03-4f74-9559-0f37897fa869
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'HRV vs 28D %' =
+			
+			DIVIDE (
+			    [HRV 7D] - [HRV 28D],
+			    [HRV 28D]
+			)
+		lineageTag: 68dfe875-acb1-494b-aa21-58fbea37dff4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Resting HR vs 28D %' =
+			
+			- DIVIDE (
+			    [Resting HR 7D] - [Resting HR 28D],
+			    [Resting HR 28D]
+			)
+		lineageTag: 51a03b50-3024-4804-882b-dbeeb65e8bb0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column Date
 		isKey
 		formatString: General Date
@@ -615,14 +844,14 @@ table 'Date Table'
 	column Year = YEAR('Date Table'[Date])
 		formatString: 0
 		lineageTag: dc309d95-2563-4112-b3c9-efd6d003ad55
-		summarizeBy: sum
+		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic
 
 	column 'Month Number' = MONTH('Date Table'[Date])
 		formatString: 0
 		lineageTag: 40010f1e-0ec7-4ab4-bc0c-8e8d5f8e92e2
-		summarizeBy: sum
+		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic
 
@@ -643,6 +872,54 @@ table 'Date Table'
 
 	column 'Day Name' = FORMAT('Date Table'[Date], "ddd")
 		lineageTag: 93c56ca2-e54a-4ffb-b88a-2b64f509f5bd
+		summarizeBy: none
+		sortByColumn: 'Day of Week Number'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day of Week Number' =
+			
+			WEEKDAY ( 'Date Table'[Date], 2 )
+		formatString: 0
+		lineageTag: 209a4b5e-ed81-4193-b652-48d9e67c9f00
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week Index' =
+			
+			VAR FirstWeek =
+			    MINX (
+			        ALL ( 'Date Table' ),
+			        'Date Table'[Week Start]
+			    )
+			RETURN
+			    DATEDIFF (
+			        FirstWeek,
+			        'Date Table'[Week Start],
+			        WEEK
+			    )
+		formatString: 0
+		lineageTag: ca134335-60eb-4ffd-8e1b-4f96a9dac9ce
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Year' =
+			
+			FORMAT ( 'Date Table'[Date], "MMM yyyy" )
+		lineageTag: 6e078d76-0f4b-45e0-b74c-5ec63ce84547
+		summarizeBy: none
+		sortByColumn: 'Month Sort'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Sort' =
+			
+			YEAR ( 'Date Table'[Date] ) * 100
+			    + MONTH ( 'Date Table'[Date] )
+		formatString: 0
+		lineageTag: 9aecb343-88f8-447b-9c0d-974f5fac8cc1
 		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic

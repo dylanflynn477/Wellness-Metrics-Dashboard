@@ -13,9 +13,8 @@ annotation PBI_QueryOrder = ["HealthDashboardCsvPath","health_dashboard_fact"]
 annotation PBI_ProTooling = ["DevMode"]
 
 ref table health_dashboard_fact
-ref table DateTableTemplate_04d4fa64-3b3b-40b1-8728-581447feada6
-ref table LocalDateTable_1b417cef-8a99-4969-a9cb-6a306fd17c35
 ref table 'Date Table'
+ref table 'Recovery Metric'
 
 ref cultureInfo en-US
 

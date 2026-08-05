@@ -1,11 +1,4 @@
-relationship 0fd025e5-75c8-49fe-ab98-b08f4b0a0303
-	joinOnDateBehavior: datePartOnly
+relationship e2fe6e2c-5854-2941-d758-421aebbf2b89
 	fromColumn: health_dashboard_fact.date
-	toColumn: LocalDateTable_1b417cef-8a99-4969-a9cb-6a306fd17c35.Date
-
-relationship a1b00875-726c-18e1-7bd9-e0c413a981e3
-	crossFilteringBehavior: bothDirections
-	fromCardinality: one
-	fromColumn: 'Date Table'.Date
-	toColumn: health_dashboard_fact.date
+	toColumn: 'Date Table'.Date
 

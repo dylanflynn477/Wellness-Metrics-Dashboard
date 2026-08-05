@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "6a780717331b1c0e2cd2",
+  "displayName": "Duplicate of Alcohol Consumption Workout Minutes",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280
+}

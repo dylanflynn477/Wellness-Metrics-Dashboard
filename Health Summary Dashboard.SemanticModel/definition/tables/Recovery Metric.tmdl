@@ -1,0 +1,49 @@
+table 'Recovery Metric'
+	lineageTag: 43a5408f-67fb-417d-9c95-4593c999f634
+
+	column 'Recovery Metric'
+		lineageTag: cf1c218d-834a-49d3-a68b-23373423bc35
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Recovery Metric Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Recovery Metric Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Recovery Metric Fields'
+		isHidden
+		lineageTag: 671cd10a-2a9a-4e6e-8a58-00bb6585181b
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Recovery Metric Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Recovery Metric Order'
+		isHidden
+		formatString: 0
+		lineageTag: 4197ca96-cdfd-419f-97ef-62853c28b1e6
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Recovery Metric' = calculated
+		mode: import
+		source =
+				{
+				    ("HRV vs 28D %", NAMEOF('Date Table'[HRV vs 28D %]), 0),
+				    ("Sleep vs 28D %", NAMEOF('Date Table'[Sleep vs 28D %]), 1),
+				    ("Resting HR vs 28D %", NAMEOF('Date Table'[Resting HR vs 28D %]), 2)
+				}
+
+	annotation PBI_Id = af9bd7995b3a4ce7afd9394db745c1a3
+

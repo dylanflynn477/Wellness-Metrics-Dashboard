@@ -176,265 +176,510 @@ cultureInfo en-US
 			      ],
 			      "SemanticType": "Time"
 			    },
-			    "health_dashboard_fact.date.date_hierarchy": {
+			    "health_dashboard_fact.carbs_g_imputed_flag": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "health_dashboard_fact",
-			          "VariationSource": "date",
-			          "VariationSet": "Variation",
-			          "Hierarchy": "Date Hierarchy"
+			          "ConceptualProperty": "carbs_g_imputed_flag"
 			        }
 			      },
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "date hierarchy": {
+			          "carbs g imputed flag": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "carb g imputed flag": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "carbs_g_imputed_flag": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "carb g imputed ensign": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "carb g imputed pennant": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "carb g imputed pennon": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "carb g imputed emblem": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "carb g imputed streamer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "carb g imputed standard": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "carb g imputed bunting": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "carb g imputed banner": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact.calories_imputed_flag": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "health_dashboard_fact",
+			          "ConceptualProperty": "calories_imputed_flag"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "calories imputed flag": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "calorie imputed flag": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "calories_imputed_flag": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "calorie imputed ensign": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "calorie imputed pennant": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "calorie imputed pennon": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "calorie imputed emblem": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "calorie imputed streamer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "calorie imputed standard": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "calorie imputed bunting": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "calorie imputed banner": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact.imputed_field": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "health_dashboard_fact",
+			          "ConceptualProperty": "imputed_fields"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "imputed field": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "imputed_fields": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "field": {
 			            "State": "Generated",
 			            "Weight": 0.97
 			          }
+			        },
+			        {
+			          "imputed arena": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "arena": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "imputed turf": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "imputed ground": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "imputed pitch": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "imputed park": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "turf": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "ground": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "pitch": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "park": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
 			        }
-			      ],
-			      "SemanticType": "Time"
+			      ]
 			    },
-			    "health_dashboard_fact.date.year": {
+			    "health_dashboard_fact.imputation_count": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "health_dashboard_fact",
-			          "VariationSource": "date",
-			          "VariationSet": "Variation",
-			          "Hierarchy": "Date Hierarchy",
-			          "HierarchyLevel": "Year"
+			          "ConceptualProperty": "imputation_count"
 			        }
 			      },
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "year": {
+			          "imputation count": {
 			            "State": "Generated"
 			          }
 			        },
 			        {
-			          "date year": {
-			            "State": "Generated"
+			          "imputation_count": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
 			          }
 			        },
 			        {
-			          "date yr": {
+			          "imputation amount": {
 			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
 			              "Agent": "Thesaurus"
 			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "yr": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "moment year": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.6
-			          }
-			        },
-			        {
-			          "period year": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.582
+			            "Weight": 0.727
 			          }
 			        }
-			      ],
-			      "SemanticType": "Time"
+			      ]
 			    },
-			    "health_dashboard_fact.date.quarter": {
+			    "health_dashboard_fact.has_imputed_value": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "health_dashboard_fact",
-			          "VariationSource": "date",
-			          "VariationSet": "Variation",
-			          "Hierarchy": "Date Hierarchy",
-			          "HierarchyLevel": "Quarter"
+			          "ConceptualProperty": "has_imputed_values"
 			        }
 			      },
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "quarter": {
+			          "has imputed value": {
 			            "State": "Generated"
 			          }
 			        },
 			        {
-			          "date quarter": {
-			            "State": "Generated"
+			          "has_imputed_values": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
 			          }
 			        },
 			        {
-			          "date qtr": {
+			          "has imputed assessment": {
 			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
 			              "Agent": "Thesaurus"
 			            },
-			            "Weight": 0.833
+			            "Weight": 0.508
 			          }
 			        },
 			        {
-			          "qtr": {
+			          "has imputed worth": {
 			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
 			              "Agent": "Thesaurus"
 			            },
-			            "Weight": 0.818
+			            "Weight": 0.492
 			          }
 			        },
 			        {
-			          "moment quarter": {
+			          "has imputed price": {
 			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
 			              "Agent": "Thesaurus"
 			            },
-			            "Weight": 0.6
+			            "Weight": 0.492
 			          }
 			        },
 			        {
-			          "period quarter": {
+			          "has imputed cost": {
 			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
 			              "Agent": "Thesaurus"
 			            },
-			            "Weight": 0.582
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "has imputed charge": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "has imputed rate": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "has imputed importance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.482
+			          }
+			        },
+			        {
+			          "has imputed significance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.482
+			          }
+			        },
+			        {
+			          "has imputed usefulness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.482
+			          }
+			        },
+			        {
+			          "has imputed consequence": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.482
 			          }
 			        }
-			      ],
-			      "SemanticType": "Time"
-			    },
-			    "health_dashboard_fact.date.month": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "health_dashboard_fact",
-			          "VariationSource": "date",
-			          "VariationSet": "Variation",
-			          "Hierarchy": "Date Hierarchy",
-			          "HierarchyLevel": "Month"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "month": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "date month": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "date mth": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.75
-			          }
-			        },
-			        {
-			          "mth": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.736
-			          }
-			        },
-			        {
-			          "moment month": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.6
-			          }
-			        },
-			        {
-			          "period month": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.582
-			          }
-			        }
-			      ],
-			      "SemanticType": "Time"
-			    },
-			    "health_dashboard_fact.date.day": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "health_dashboard_fact",
-			          "VariationSource": "date",
-			          "VariationSet": "Variation",
-			          "Hierarchy": "Date Hierarchy",
-			          "HierarchyLevel": "Day"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "day": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "date day": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "moment day": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.6
-			          }
-			        },
-			        {
-			          "period day": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.582
-			          }
-			        }
-			      ],
-			      "SemanticType": "Time"
+			      ]
 			    },
 			    "health_dashboard_fact.calorie": {
 			      "Definition": {
@@ -4725,124 +4970,118 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "date_table.latest_weight": {
+			    "date_table.latest_recorded_weight": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Date Table",
-			          "ConceptualProperty": "Latest Weight"
+			          "ConceptualProperty": "Latest Recorded Weight"
 			        }
 			      },
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "latest weight": {
+			          "latest recorded weight": {
 			            "State": "Generated"
 			          }
 			        },
 			        {
-			          "weight": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "latest heaviness": {
+			          "latest recorded heaviness": {
 			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
 			              "Agent": "Thesaurus"
 			            },
-			            "Weight": 0.5
+			            "Weight": 0.508
 			          }
 			        },
 			        {
-			          "latest weightiness": {
+			          "latest recorded weightiness": {
 			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
 			              "Agent": "Thesaurus"
 			            },
-			            "Weight": 0.5
+			            "Weight": 0.508
 			          }
 			        },
 			        {
-			          "heaviness": {
+			          "latest recorded mass": {
 			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
 			              "Agent": "Thesaurus"
 			            },
-			            "Weight": 0.491
+			            "Weight": 0.492
 			          }
 			        },
 			        {
-			          "weightiness": {
+			          "latest recorded bulk": {
 			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
 			              "Agent": "Thesaurus"
 			            },
-			            "Weight": 0.491
+			            "Weight": 0.492
 			          }
 			        },
 			        {
-			          "latest mass": {
+			          "latest recorded heft": {
 			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
 			              "Agent": "Thesaurus"
 			            },
-			            "Weight": 0.485
+			            "Weight": 0.492
 			          }
 			        },
 			        {
-			          "latest bulk": {
+			          "latest recorded encumbrance": {
 			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
 			              "Agent": "Thesaurus"
 			            },
-			            "Weight": 0.485
+			            "Weight": 0.482
 			          }
 			        },
 			        {
-			          "latest heft": {
+			          "latest recorded burden": {
 			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
 			              "Agent": "Thesaurus"
 			            },
-			            "Weight": 0.485
+			            "Weight": 0.468
 			          }
 			        },
 			        {
-			          "mass": {
+			          "latest recorded load": {
 			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
 			              "Agent": "Thesaurus"
 			            },
-			            "Weight": 0.476
+			            "Weight": 0.468
 			          }
 			        },
 			        {
-			          "bulk": {
+			          "latest recorded credence": {
 			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
 			              "Agent": "Thesaurus"
 			            },
-			            "Weight": 0.476
+			            "Weight": 0.458
 			          }
 			        },
 			        {
-			          "heft": {
+			          "latest recorded substance": {
 			            "Type": "Noun",
 			            "State": "Suggested",
 			            "Source": {
 			              "Agent": "Thesaurus"
 			            },
-			            "Weight": 0.476
+			            "Weight": 0.458
 			          }
 			        }
 			      ]
@@ -6245,23 +6484,1854 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
+			    },
+			    "health_dashboard_fact.fat_g_imputed_flag": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "health_dashboard_fact",
+			          "ConceptualProperty": "fat_g_imputed_flag"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "fat g imputed flag": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "fat_g_imputed_flag": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "fat g imputed ensign": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "fat g imputed pennant": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "fat g imputed pennon": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "fat g imputed emblem": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "fat g imputed streamer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "fat g imputed standard": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "fat g imputed bunting": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "fat g imputed banner": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact.hrv_ms_imputed_flag": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "health_dashboard_fact",
+			          "ConceptualProperty": "hrv_ms_imputed_flag"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "hrv ms imputed flag": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "hrv_ms_imputed_flag": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "hrv ms imputed ensign": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "hrv ms imputed pennant": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "hrv ms imputed pennon": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "hrv ms imputed emblem": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "hrv ms imputed streamer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "hrv ms imputed standard": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "hrv ms imputed bunting": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "hrv ms imputed banner": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact.protein_g_imputed_flag": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "health_dashboard_fact",
+			          "ConceptualProperty": "protein_g_imputed_flag"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "protein g imputed flag": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "protein_g_imputed_flag": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "protein g imputed ensign": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "protein g imputed pennant": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "protein g imputed pennon": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "protein g imputed emblem": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "protein g imputed streamer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "protein g imputed standard": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "protein g imputed bunting": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "protein g imputed banner": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact.resting_hr_imputed_flag": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "health_dashboard_fact",
+			          "ConceptualProperty": "resting_hr_imputed_flag"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "resting hr imputed flag": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "resting_hr_imputed_flag": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "resting hr imputed ensign": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "resting hr imputed pennant": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "resting hr imputed pennon": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "resting hr imputed emblem": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "resting hr imputed streamer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "resting hr imputed standard": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "resting hr imputed bunting": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "resting hr imputed banner": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact.sleep_hours_imputed_flag": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "health_dashboard_fact",
+			          "ConceptualProperty": "sleep_hours_imputed_flag"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "sleep hours imputed flag": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "sleep hour imputed flag": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "sleep_hours_imputed_flag": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "sleep hour imputed ensign": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "sleep hour imputed pennant": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "sleep hour imputed pennon": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "sleep hour imputed emblem": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "sleep hour imputed streamer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "sleep hour imputed standard": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "sleep hour imputed bunting": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "sleep hour imputed banner": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact.steps_imputed_flag": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "health_dashboard_fact",
+			          "ConceptualProperty": "steps_imputed_flag"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "steps imputed flag": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "step imputed flag": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "steps_imputed_flag": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "step imputed ensign": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "step imputed pennant": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "step imputed pennon": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "step imputed emblem": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "step imputed streamer": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "step imputed standard": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "step imputed bunting": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "step imputed banner": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        }
+			      ]
+			    },
+			    "date_table.day_of_week_number": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Date Table",
+			          "ConceptualProperty": "Day of Week Number"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "day of week number": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "day of week no": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        }
+			      ]
+			    },
+			    "date_table.week_index": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Date Table",
+			          "ConceptualProperty": "Week Index"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "week index": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "index": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "week directory": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "week catalogue": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "week catalog": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "week guide": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "week file": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "week key": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "week table": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "directory": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "catalogue": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "catalog": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "date_table.month_year": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Date Table",
+			          "ConceptualProperty": "Month Year"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "month year": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "month yr": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "mth year": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        }
+			      ]
+			    },
+			    "date_table.month_sort": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Date Table",
+			          "ConceptualProperty": "Month Sort"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "month sort": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "mth sort": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "month category": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "month genus": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "month species": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "month variety": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "month nature": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "month kind": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "month class": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "month type": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "month ilk": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        }
+			      ]
+			    },
+			    "date_table.avg_calories_valid_days": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Date Table",
+			          "ConceptualProperty": "Avg Calories Valid Days"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "avg calories valid days": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "average calorie valid day": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        },
+			        {
+			          "avg calorie valid existence": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "avg calorie valid being": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "avg calorie valid living": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "avg calorie valid eras": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.489
+			          }
+			        },
+			        {
+			          "avg calorie valid generation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.489
+			          }
+			        },
+			        {
+			          "avg calorie valid epoch": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.489
+			          }
+			        },
+			        {
+			          "avg calorie valid period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.474
+			          }
+			        },
+			        {
+			          "avg calorie valid age": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.474
+			          }
+			        },
+			        {
+			          "avg calorie valid daylight": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.45
+			          }
+			        }
+			      ]
+			    },
+			    "date_table.avg_protein_valid_days": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Date Table",
+			          "ConceptualProperty": "Avg Protein Valid Days"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "avg protein valid days": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "average protein valid day": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        },
+			        {
+			          "avg protein valid existence": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "avg protein valid being": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "avg protein valid living": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "avg protein valid eras": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.489
+			          }
+			        },
+			        {
+			          "avg protein valid generation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.489
+			          }
+			        },
+			        {
+			          "avg protein valid epoch": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.489
+			          }
+			        },
+			        {
+			          "avg protein valid period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.474
+			          }
+			        },
+			        {
+			          "avg protein valid age": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.474
+			          }
+			        },
+			        {
+			          "avg protein valid daylight": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.45
+			          }
+			        }
+			      ]
+			    },
+			    "date_table.peak_recorded_weight": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Date Table",
+			          "ConceptualProperty": "Peak Recorded Weight"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "peak recorded weight": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "peak recorded heaviness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "peak recorded weightiness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "peak recorded mass": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "peak recorded bulk": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "peak recorded heft": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "peak recorded encumbrance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.482
+			          }
+			        },
+			        {
+			          "peak recorded burden": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.468
+			          }
+			        },
+			        {
+			          "peak recorded load": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.468
+			          }
+			        },
+			        {
+			          "peak recorded credence": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.458
+			          }
+			        },
+			        {
+			          "peak recorded substance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.458
+			          }
+			        }
+			      ]
+			    },
+			    "date_table.sleep_7D": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Date Table",
+			          "ConceptualProperty": "Sleep 7D"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "sleep 7D": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "7D": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "date_table.sleep_28D": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Date Table",
+			          "ConceptualProperty": "Sleep 28D"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "sleep 28D": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "28D": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "date_table.hrv_7d": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Date Table",
+			          "ConceptualProperty": "HRV 7D"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "hrv 7d": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "date_table.hrv_28d": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Date Table",
+			          "ConceptualProperty": "HRV 28D"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "hrv 28d": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "date_table.resting_HR_7D": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Date Table",
+			          "ConceptualProperty": "Resting HR 7D"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "resting HR 7D": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "7D": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "HR 7D": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "date_table.resting_HR_28D": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Date Table",
+			          "ConceptualProperty": "Resting HR 28D"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "resting HR 28D": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "28D": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "HR 28D": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "date_table.sleep_vs_28D_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Date Table",
+			          "ConceptualProperty": "Sleep vs 28D %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "sleep vs 28D %": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "sleep vs 28d percentage": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.771
+			          }
+			        },
+			        {
+			          "sleep vs 28d pct": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        }
+			      ]
+			    },
+			    "date_table.HRV_vs_28D_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Date Table",
+			          "ConceptualProperty": "HRV vs 28D %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "HRV vs 28D %": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "hrv vs 28d percentage": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.771
+			          }
+			        },
+			        {
+			          "hrv vs 28d pct": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.748
+			          }
+			        }
+			      ]
+			    },
+			    "date_table.resting_HR_vs_28D_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Date Table",
+			          "ConceptualProperty": "Resting HR vs 28D %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "resting HR vs 28D %": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "resting hr vs 28d percentage": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "resting hr vs 28d pct": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.757
+			          }
+			        }
+			      ]
+			    },
+			    "recovery_metric": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Recovery Metric"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "recovery metric": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "metric": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "recovery_metric.recovery_metric": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Recovery Metric",
+			          "ConceptualProperty": "Recovery Metric"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "recovery metric": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "recovery metric name": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "metric": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ],
+			      "NameType": "Name"
+			    },
+			    "recovery_metric.recovery_metric_field": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Recovery Metric",
+			          "ConceptualProperty": "Recovery Metric Fields"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "recovery metric field": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "field": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "metric field": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "recovery metric arena": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "metric arena": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "recovery metric turf": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "recovery metric ground": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "recovery metric pitch": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "recovery metric park": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "arena": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "metric turf": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "metric ground": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "metric pitch": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        }
+			      ]
+			    },
+			    "recovery_metric.recovery_metric_order": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Recovery Metric",
+			          "ConceptualProperty": "Recovery Metric Order"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "recovery metric order": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "order": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "metric order": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "recovery metric instruction": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "recovery metric direction": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "recovery metric edict": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "metric instruction": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "metric direction": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "metric edict": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "recovery metric command": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "recovery metric directive": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "recovery metric demand": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "recovery metric mandate": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {
-			    "health_dashboard_fact_date_date_hierarchy_has_health_dashboard_fact_date_month": {
+			    "recovery_metric_has_recovery_metric": {
 			      "Binding": {
-			        "ConceptualEntity": "health_dashboard_fact"
+			        "ConceptualEntity": "Recovery Metric"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "health_dashboard_fact.date.date_hierarchy": {
+			        "recovery_metric": {
 			          "Target": {
-			            "Entity": "health_dashboard_fact.date.date_hierarchy"
+			            "Entity": "recovery_metric"
 			          }
 			        },
-			        "health_dashboard_fact.date.month": {
+			        "recovery_metric.recovery_metric": {
 			          "Target": {
-			            "Entity": "health_dashboard_fact.date.month"
+			            "Entity": "recovery_metric.recovery_metric"
 			          }
 			        }
 			      },
@@ -6269,32 +8339,45 @@ cultureInfo en-US
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "health_dashboard_fact.date.date_hierarchy"
+			              "Role": "recovery_metric"
 			            },
 			            "Object": {
-			              "Role": "health_dashboard_fact.date.month"
+			              "Role": "recovery_metric.recovery_metric"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "date_hierarchies_have_months"
+			          "ID": "recovery_metrics_have_recovery_metrics"
+			        },
+			        {
+			          "Name": {
+			            "Subject": {
+			              "Role": "recovery_metric"
+			            },
+			            "Name": {
+			              "Role": "recovery_metric.recovery_metric"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "recovery_metrics_are_names_IDs_of_recovery_metrics"
 			        }
 			      ]
 			    },
-			    "health_dashboard_fact_date_date_hierarchy_has_health_dashboard_fact_date_quarter": {
+			    "health_dashboard_fact_has_date_table_resting_HR_vs_28D_": {
 			      "Binding": {
 			        "ConceptualEntity": "health_dashboard_fact"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "health_dashboard_fact.date.date_hierarchy": {
+			        "health_dashboard_fact": {
 			          "Target": {
-			            "Entity": "health_dashboard_fact.date.date_hierarchy"
+			            "Entity": "health_dashboard_fact"
 			          }
 			        },
-			        "health_dashboard_fact.date.quarter": {
+			        "date_table.resting_HR_vs_28D_": {
 			          "Target": {
-			            "Entity": "health_dashboard_fact.date.quarter"
+			            "Entity": "date_table.resting_HR_vs_28D_"
 			          }
 			        }
 			      },
@@ -6302,32 +8385,32 @@ cultureInfo en-US
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "health_dashboard_fact.date.date_hierarchy"
+			              "Role": "health_dashboard_fact"
 			            },
 			            "Object": {
-			              "Role": "health_dashboard_fact.date.quarter"
+			              "Role": "date_table.resting_HR_vs_28D_"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "date_hierarchies_have_quarters"
+			          "ID": "health_dashboard_facts_have_resting_HR_vs_28D_"
 			        }
 			      ]
 			    },
-			    "health_dashboard_fact_date_date_hierarchy_has_health_dashboard_fact_date_year": {
+			    "health_dashboard_fact_has_date_table_HRV_vs_28D_": {
 			      "Binding": {
 			        "ConceptualEntity": "health_dashboard_fact"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "health_dashboard_fact.date.date_hierarchy": {
+			        "health_dashboard_fact": {
 			          "Target": {
-			            "Entity": "health_dashboard_fact.date.date_hierarchy"
+			            "Entity": "health_dashboard_fact"
 			          }
 			        },
-			        "health_dashboard_fact.date.year": {
+			        "date_table.HRV_vs_28D_": {
 			          "Target": {
-			            "Entity": "health_dashboard_fact.date.year"
+			            "Entity": "date_table.HRV_vs_28D_"
 			          }
 			        }
 			      },
@@ -6335,32 +8418,32 @@ cultureInfo en-US
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "health_dashboard_fact.date.date_hierarchy"
+			              "Role": "health_dashboard_fact"
 			            },
 			            "Object": {
-			              "Role": "health_dashboard_fact.date.year"
+			              "Role": "date_table.HRV_vs_28D_"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "date_hierarchies_have_years"
+			          "ID": "health_dashboard_facts_have_HRV_vs_28D_"
 			        }
 			      ]
 			    },
-			    "health_dashboard_fact_date_has_date_hierarchy": {
+			    "health_dashboard_fact_has_date_table_sleep_vs_28D_": {
 			      "Binding": {
 			        "ConceptualEntity": "health_dashboard_fact"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "health_dashboard_fact.date": {
+			        "health_dashboard_fact": {
 			          "Target": {
-			            "Entity": "health_dashboard_fact.date"
+			            "Entity": "health_dashboard_fact"
 			          }
 			        },
-			        "health_dashboard_fact.date.date_hierarchy": {
+			        "date_table.sleep_vs_28D_": {
 			          "Target": {
-			            "Entity": "health_dashboard_fact.date.date_hierarchy"
+			            "Entity": "date_table.sleep_vs_28D_"
 			          }
 			        }
 			      },
@@ -6368,19 +8451,250 @@ cultureInfo en-US
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "health_dashboard_fact.date"
+			              "Role": "health_dashboard_fact"
 			            },
 			            "Object": {
-			              "Role": "health_dashboard_fact.date.date_hierarchy"
+			              "Role": "date_table.sleep_vs_28D_"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "dates_have_date_hierarchies"
+			          "ID": "health_dashboard_facts_have_sleep_vs_28D_"
 			        }
 			      ]
 			    },
-			    "date_table_has_health_dashboard_fact": {
+			    "health_dashboard_fact_has_date_table_resting_HR_28D": {
+			      "Binding": {
+			        "ConceptualEntity": "health_dashboard_fact"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "health_dashboard_fact": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact"
+			          }
+			        },
+			        "date_table.resting_HR_28D": {
+			          "Target": {
+			            "Entity": "date_table.resting_HR_28D"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "health_dashboard_fact"
+			            },
+			            "Object": {
+			              "Role": "date_table.resting_HR_28D"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "health_dashboard_facts_have_resting_HR_28D"
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact_has_date_table_resting_HR_7D": {
+			      "Binding": {
+			        "ConceptualEntity": "health_dashboard_fact"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "health_dashboard_fact": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact"
+			          }
+			        },
+			        "date_table.resting_HR_7D": {
+			          "Target": {
+			            "Entity": "date_table.resting_HR_7D"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "health_dashboard_fact"
+			            },
+			            "Object": {
+			              "Role": "date_table.resting_HR_7D"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "health_dashboard_facts_have_resting_HR_7D"
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact_has_date_table_hrv_28d": {
+			      "Binding": {
+			        "ConceptualEntity": "health_dashboard_fact"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "health_dashboard_fact": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact"
+			          }
+			        },
+			        "date_table.hrv_28d": {
+			          "Target": {
+			            "Entity": "date_table.hrv_28d"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "health_dashboard_fact"
+			            },
+			            "Object": {
+			              "Role": "date_table.hrv_28d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "health_dashboard_facts_have_hrv_28d"
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact_has_date_table_hrv_7d": {
+			      "Binding": {
+			        "ConceptualEntity": "health_dashboard_fact"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "health_dashboard_fact": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact"
+			          }
+			        },
+			        "date_table.hrv_7d": {
+			          "Target": {
+			            "Entity": "date_table.hrv_7d"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "health_dashboard_fact"
+			            },
+			            "Object": {
+			              "Role": "date_table.hrv_7d"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "health_dashboard_facts_have_hrv_7d"
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact_has_date_table_sleep_28D": {
+			      "Binding": {
+			        "ConceptualEntity": "health_dashboard_fact"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "health_dashboard_fact": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact"
+			          }
+			        },
+			        "date_table.sleep_28D": {
+			          "Target": {
+			            "Entity": "date_table.sleep_28D"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "health_dashboard_fact"
+			            },
+			            "Object": {
+			              "Role": "date_table.sleep_28D"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "health_dashboard_facts_have_sleep_28D"
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact_has_date_table_sleep_7D": {
+			      "Binding": {
+			        "ConceptualEntity": "health_dashboard_fact"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "health_dashboard_fact": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact"
+			          }
+			        },
+			        "date_table.sleep_7D": {
+			          "Target": {
+			            "Entity": "date_table.sleep_7D"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "health_dashboard_fact"
+			            },
+			            "Object": {
+			              "Role": "date_table.sleep_7D"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "health_dashboard_facts_have_sleep_7D"
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact_has_date_table_peak_recorded_weight": {
+			      "Binding": {
+			        "ConceptualEntity": "health_dashboard_fact"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "health_dashboard_fact": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact"
+			          }
+			        },
+			        "date_table.peak_recorded_weight": {
+			          "Target": {
+			            "Entity": "date_table.peak_recorded_weight"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "health_dashboard_fact"
+			            },
+			            "Object": {
+			              "Role": "date_table.peak_recorded_weight"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "health_dashboard_facts_have_peak_recorded_weight"
+			        }
+			      ]
+			    },
+			    "date_table_has_peak_recorded_weight": {
 			      "Binding": {
 			        "ConceptualEntity": "Date Table"
 			      },
@@ -6391,9 +8705,9 @@ cultureInfo en-US
 			            "Entity": "date_table"
 			          }
 			        },
-			        "health_dashboard_fact": {
+			        "date_table.peak_recorded_weight": {
 			          "Target": {
-			            "Entity": "health_dashboard_fact"
+			            "Entity": "date_table.peak_recorded_weight"
 			          }
 			        }
 			      },
@@ -6404,16 +8718,16 @@ cultureInfo en-US
 			              "Role": "date_table"
 			            },
 			            "Object": {
-			              "Role": "health_dashboard_fact"
+			              "Role": "date_table.peak_recorded_weight"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "date_tables_have_health_dashboard_facts"
+			          "ID": "date_tables_have_peak_recorded_weight"
 			        }
 			      ]
 			    },
-			    "health_dashboard_fact_has_date_table": {
+			    "health_dashboard_fact_has_date_table_avg_protein_valid_days": {
 			      "Binding": {
 			        "ConceptualEntity": "health_dashboard_fact"
 			      },
@@ -6424,9 +8738,9 @@ cultureInfo en-US
 			            "Entity": "health_dashboard_fact"
 			          }
 			        },
-			        "date_table": {
+			        "date_table.avg_protein_valid_days": {
 			          "Target": {
-			            "Entity": "date_table"
+			            "Entity": "date_table.avg_protein_valid_days"
 			          }
 			        }
 			      },
@@ -6437,12 +8751,441 @@ cultureInfo en-US
 			              "Role": "health_dashboard_fact"
 			            },
 			            "Object": {
-			              "Role": "date_table"
+			              "Role": "date_table.avg_protein_valid_days"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "health_dashboard_facts_have_date_tables"
+			          "ID": "health_dashboard_facts_have_avg_protein_valid_days"
+			        }
+			      ]
+			    },
+			    "date_table_has_avg_protein_valid_days": {
+			      "Binding": {
+			        "ConceptualEntity": "Date Table"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "date_table": {
+			          "Target": {
+			            "Entity": "date_table"
+			          }
+			        },
+			        "date_table.avg_protein_valid_days": {
+			          "Target": {
+			            "Entity": "date_table.avg_protein_valid_days"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "date_table"
+			            },
+			            "Object": {
+			              "Role": "date_table.avg_protein_valid_days"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "date_tables_have_avg_protein_valid_days"
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact_has_date_table_avg_calories_valid_days": {
+			      "Binding": {
+			        "ConceptualEntity": "health_dashboard_fact"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "health_dashboard_fact": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact"
+			          }
+			        },
+			        "date_table.avg_calories_valid_days": {
+			          "Target": {
+			            "Entity": "date_table.avg_calories_valid_days"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "health_dashboard_fact"
+			            },
+			            "Object": {
+			              "Role": "date_table.avg_calories_valid_days"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "health_dashboard_facts_have_avg_calories_valid_days"
+			        }
+			      ]
+			    },
+			    "date_table_has_avg_calories_valid_days": {
+			      "Binding": {
+			        "ConceptualEntity": "Date Table"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "date_table": {
+			          "Target": {
+			            "Entity": "date_table"
+			          }
+			        },
+			        "date_table.avg_calories_valid_days": {
+			          "Target": {
+			            "Entity": "date_table.avg_calories_valid_days"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "date_table"
+			            },
+			            "Object": {
+			              "Role": "date_table.avg_calories_valid_days"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "date_tables_have_avg_calories_valid_days"
+			        }
+			      ]
+			    },
+			    "date_table_has_month_sort": {
+			      "Binding": {
+			        "ConceptualEntity": "Date Table"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "date_table": {
+			          "Target": {
+			            "Entity": "date_table"
+			          }
+			        },
+			        "date_table.month_sort": {
+			          "Target": {
+			            "Entity": "date_table.month_sort"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "date_table"
+			            },
+			            "Object": {
+			              "Role": "date_table.month_sort"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "date_tables_have_month_sorts"
+			        }
+			      ]
+			    },
+			    "date_table_has_month_year": {
+			      "Binding": {
+			        "ConceptualEntity": "Date Table"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "date_table": {
+			          "Target": {
+			            "Entity": "date_table"
+			          }
+			        },
+			        "date_table.month_year": {
+			          "Target": {
+			            "Entity": "date_table.month_year"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "date_table"
+			            },
+			            "Object": {
+			              "Role": "date_table.month_year"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "date_tables_have_month_years"
+			        }
+			      ]
+			    },
+			    "date_table_has_week_index": {
+			      "Binding": {
+			        "ConceptualEntity": "Date Table"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "date_table": {
+			          "Target": {
+			            "Entity": "date_table"
+			          }
+			        },
+			        "date_table.week_index": {
+			          "Target": {
+			            "Entity": "date_table.week_index"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "date_table"
+			            },
+			            "Object": {
+			              "Role": "date_table.week_index"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "date_tables_have_week_indices"
+			        }
+			      ]
+			    },
+			    "date_table_has_day_of_week_number": {
+			      "Binding": {
+			        "ConceptualEntity": "Date Table"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "date_table": {
+			          "Target": {
+			            "Entity": "date_table"
+			          }
+			        },
+			        "date_table.day_of_week_number": {
+			          "Target": {
+			            "Entity": "date_table.day_of_week_number"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "date_table"
+			            },
+			            "Object": {
+			              "Role": "date_table.day_of_week_number"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "date_tables_have_day_of_week_number"
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact_has_steps_imputed_flag": {
+			      "Binding": {
+			        "ConceptualEntity": "health_dashboard_fact"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "health_dashboard_fact": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact"
+			          }
+			        },
+			        "health_dashboard_fact.steps_imputed_flag": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact.steps_imputed_flag"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "health_dashboard_fact"
+			            },
+			            "Object": {
+			              "Role": "health_dashboard_fact.steps_imputed_flag"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "health_dashboard_facts_have_steps_imputed_flags"
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact_has_sleep_hours_imputed_flag": {
+			      "Binding": {
+			        "ConceptualEntity": "health_dashboard_fact"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "health_dashboard_fact": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact"
+			          }
+			        },
+			        "health_dashboard_fact.sleep_hours_imputed_flag": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact.sleep_hours_imputed_flag"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "health_dashboard_fact"
+			            },
+			            "Object": {
+			              "Role": "health_dashboard_fact.sleep_hours_imputed_flag"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "health_dashboard_facts_have_sleep_hours_imputed_flags"
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact_has_resting_hr_imputed_flag": {
+			      "Binding": {
+			        "ConceptualEntity": "health_dashboard_fact"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "health_dashboard_fact": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact"
+			          }
+			        },
+			        "health_dashboard_fact.resting_hr_imputed_flag": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact.resting_hr_imputed_flag"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "health_dashboard_fact"
+			            },
+			            "Object": {
+			              "Role": "health_dashboard_fact.resting_hr_imputed_flag"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "health_dashboard_facts_have_resting_hr_imputed_flags"
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact_has_protein_g_imputed_flag": {
+			      "Binding": {
+			        "ConceptualEntity": "health_dashboard_fact"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "health_dashboard_fact": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact"
+			          }
+			        },
+			        "health_dashboard_fact.protein_g_imputed_flag": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact.protein_g_imputed_flag"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "health_dashboard_fact"
+			            },
+			            "Object": {
+			              "Role": "health_dashboard_fact.protein_g_imputed_flag"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "health_dashboard_facts_have_protein_g_imputed_flags"
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact_has_hrv_ms_imputed_flag": {
+			      "Binding": {
+			        "ConceptualEntity": "health_dashboard_fact"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "health_dashboard_fact": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact"
+			          }
+			        },
+			        "health_dashboard_fact.hrv_ms_imputed_flag": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact.hrv_ms_imputed_flag"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "health_dashboard_fact"
+			            },
+			            "Object": {
+			              "Role": "health_dashboard_fact.hrv_ms_imputed_flag"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "health_dashboard_facts_have_hrv_ms_imputed_flags"
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact_has_fat_g_imputed_flag": {
+			      "Binding": {
+			        "ConceptualEntity": "health_dashboard_fact"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "health_dashboard_fact": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact"
+			          }
+			        },
+			        "health_dashboard_fact.fat_g_imputed_flag": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact.fat_g_imputed_flag"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "health_dashboard_fact"
+			            },
+			            "Object": {
+			              "Role": "health_dashboard_fact.fat_g_imputed_flag"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "health_dashboard_facts_have_fat_g_imputed_flags"
 			        }
 			      ]
 			    },
@@ -6908,6 +9651,39 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
+			    "date_table_has_down_from_peak": {
+			      "Binding": {
+			        "ConceptualEntity": "Date Table"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "date_table": {
+			          "Target": {
+			            "Entity": "date_table"
+			          }
+			        },
+			        "date_table.down_from_peak": {
+			          "Target": {
+			            "Entity": "date_table.down_from_peak"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "date_table"
+			            },
+			            "Object": {
+			              "Role": "date_table.down_from_peak"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "date_tables_have_down_from_peak"
+			        }
+			      ]
+			    },
 			    "health_dashboard_fact_has_date_table_peak_weight_selected": {
 			      "Binding": {
 			        "ConceptualEntity": "health_dashboard_fact"
@@ -7370,7 +10146,40 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "health_dashboard_fact_has_date_table_latest_weight": {
+			    "date_table_has_valid_nutrition_days": {
+			      "Binding": {
+			        "ConceptualEntity": "Date Table"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "date_table": {
+			          "Target": {
+			            "Entity": "date_table"
+			          }
+			        },
+			        "date_table.valid_nutrition_days": {
+			          "Target": {
+			            "Entity": "date_table.valid_nutrition_days"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "date_table"
+			            },
+			            "Object": {
+			              "Role": "date_table.valid_nutrition_days"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "date_tables_have_valid_nutrition_days"
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact_has_date_table_latest_recorded_weight": {
 			      "Binding": {
 			        "ConceptualEntity": "health_dashboard_fact"
 			      },
@@ -7381,9 +10190,9 @@ cultureInfo en-US
 			            "Entity": "health_dashboard_fact"
 			          }
 			        },
-			        "date_table.latest_weight": {
+			        "date_table.latest_recorded_weight": {
 			          "Target": {
-			            "Entity": "date_table.latest_weight"
+			            "Entity": "date_table.latest_recorded_weight"
 			          }
 			        }
 			      },
@@ -7394,39 +10203,12 @@ cultureInfo en-US
 			              "Role": "health_dashboard_fact"
 			            },
 			            "Object": {
-			              "Role": "date_table.latest_weight"
+			              "Role": "date_table.latest_recorded_weight"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "health_dashboard_facts_have_latest_weight"
-			        },
-			        {
-			          "Adjective": {
-			            "Subject": {
-			              "Role": "health_dashboard_fact"
-			            },
-			            "Adjectives": [
-			              {
-			                "heavy": {
-			                  "State": "Generated"
-			                }
-			              }
-			            ],
-			            "Antonyms": [
-			              {
-			                "light": {
-			                  "State": "Generated"
-			                }
-			              }
-			            ],
-			            "Measurement": {
-			              "Role": "date_table.latest_weight"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "latest_weight_indicates_how_heavy_health_dashboard_facts_are"
+			          "ID": "health_dashboard_facts_have_latest_recorded_weight"
 			        }
 			      ]
 			    },
@@ -7463,6 +10245,39 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
+			    "date_table_has_protein_adherence_": {
+			      "Binding": {
+			        "ConceptualEntity": "Date Table"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "date_table": {
+			          "Target": {
+			            "Entity": "date_table"
+			          }
+			        },
+			        "date_table.protein_adherence_": {
+			          "Target": {
+			            "Entity": "date_table.protein_adherence_"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "date_table"
+			            },
+			            "Object": {
+			              "Role": "date_table.protein_adherence_"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "date_tables_have_protein_adherence_"
+			        }
+			      ]
+			    },
 			    "health_dashboard_fact_has_date_table_protein_hit_days": {
 			      "Binding": {
 			        "ConceptualEntity": "health_dashboard_fact"
@@ -7493,6 +10308,39 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "health_dashboard_facts_have_protein_hit_days"
+			        }
+			      ]
+			    },
+			    "date_table_has_protein_hit_days": {
+			      "Binding": {
+			        "ConceptualEntity": "Date Table"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "date_table": {
+			          "Target": {
+			            "Entity": "date_table"
+			          }
+			        },
+			        "date_table.protein_hit_days": {
+			          "Target": {
+			            "Entity": "date_table.protein_hit_days"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "date_table"
+			            },
+			            "Object": {
+			              "Role": "date_table.protein_hit_days"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "date_tables_have_protein_hit_days"
 			        }
 			      ]
 			    },
@@ -7529,15 +10377,15 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "date_table_has_protein_target": {
+			    "health_dashboard_fact_has_date_table_protein_target": {
 			      "Binding": {
-			        "ConceptualEntity": "Date Table"
+			        "ConceptualEntity": "health_dashboard_fact"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "date_table": {
+			        "health_dashboard_fact": {
 			          "Target": {
-			            "Entity": "date_table"
+			            "Entity": "health_dashboard_fact"
 			          }
 			        },
 			        "date_table.protein_target": {
@@ -7550,7 +10398,7 @@ cultureInfo en-US
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "date_table"
+			              "Role": "health_dashboard_fact"
 			            },
 			            "Object": {
 			              "Role": "date_table.protein_target"
@@ -7558,19 +10406,19 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "date_tables_have_protein_target"
+			          "ID": "health_dashboard_facts_have_protein_target"
 			        }
 			      ]
 			    },
-			    "date_table_has_calorie_target": {
+			    "health_dashboard_fact_has_date_table_calorie_target": {
 			      "Binding": {
-			        "ConceptualEntity": "Date Table"
+			        "ConceptualEntity": "health_dashboard_fact"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "date_table": {
+			        "health_dashboard_fact": {
 			          "Target": {
-			            "Entity": "date_table"
+			            "Entity": "health_dashboard_fact"
 			          }
 			        },
 			        "date_table.calorie_target": {
@@ -7583,7 +10431,7 @@ cultureInfo en-US
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "date_table"
+			              "Role": "health_dashboard_fact"
 			            },
 			            "Object": {
 			              "Role": "date_table.calorie_target"
@@ -7591,7 +10439,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "date_tables_have_calorie_target"
+			          "ID": "health_dashboard_facts_have_calorie_target"
 			        }
 			      ]
 			    },
@@ -9806,6 +12654,171 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
+			    "health_dashboard_fact_has_has_imputed_value": {
+			      "Binding": {
+			        "ConceptualEntity": "health_dashboard_fact"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "health_dashboard_fact": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact"
+			          }
+			        },
+			        "health_dashboard_fact.has_imputed_value": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact.has_imputed_value"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "health_dashboard_fact"
+			            },
+			            "Object": {
+			              "Role": "health_dashboard_fact.has_imputed_value"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "health_dashboard_facts_have_has_imputed_value"
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact_has_imputation_count": {
+			      "Binding": {
+			        "ConceptualEntity": "health_dashboard_fact"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "health_dashboard_fact": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact"
+			          }
+			        },
+			        "health_dashboard_fact.imputation_count": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact.imputation_count"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "health_dashboard_fact"
+			            },
+			            "Object": {
+			              "Role": "health_dashboard_fact.imputation_count"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "health_dashboard_facts_have_imputation_counts"
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact_has_imputed_field": {
+			      "Binding": {
+			        "ConceptualEntity": "health_dashboard_fact"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "health_dashboard_fact": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact"
+			          }
+			        },
+			        "health_dashboard_fact.imputed_field": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact.imputed_field"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "health_dashboard_fact"
+			            },
+			            "Object": {
+			              "Role": "health_dashboard_fact.imputed_field"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "health_dashboard_facts_have_imputed_fields"
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact_has_calories_imputed_flag": {
+			      "Binding": {
+			        "ConceptualEntity": "health_dashboard_fact"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "health_dashboard_fact": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact"
+			          }
+			        },
+			        "health_dashboard_fact.calories_imputed_flag": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact.calories_imputed_flag"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "health_dashboard_fact"
+			            },
+			            "Object": {
+			              "Role": "health_dashboard_fact.calories_imputed_flag"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "health_dashboard_facts_have_calories_imputed_flags"
+			        }
+			      ]
+			    },
+			    "health_dashboard_fact_has_carbs_g_imputed_flag": {
+			      "Binding": {
+			        "ConceptualEntity": "health_dashboard_fact"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "health_dashboard_fact": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact"
+			          }
+			        },
+			        "health_dashboard_fact.carbs_g_imputed_flag": {
+			          "Target": {
+			            "Entity": "health_dashboard_fact.carbs_g_imputed_flag"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "health_dashboard_fact"
+			            },
+			            "Object": {
+			              "Role": "health_dashboard_fact.carbs_g_imputed_flag"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "health_dashboard_facts_have_carbs_g_imputed_flags"
+			        }
+			      ]
+			    },
 			    "health_dashboard_fact_has_date": {
 			      "Binding": {
 			        "ConceptualEntity": "health_dashboard_fact"
@@ -9839,20 +12852,20 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "health_dashboard_fact_date_date_hierarchy_has_health_dashboard_fact_date_day": {
+			    "health_dashboard_fact_has_date_table": {
 			      "Binding": {
 			        "ConceptualEntity": "health_dashboard_fact"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "health_dashboard_fact.date.date_hierarchy": {
+			        "health_dashboard_fact": {
 			          "Target": {
-			            "Entity": "health_dashboard_fact.date.date_hierarchy"
+			            "Entity": "health_dashboard_fact"
 			          }
 			        },
-			        "health_dashboard_fact.date.day": {
+			        "date_table": {
 			          "Target": {
-			            "Entity": "health_dashboard_fact.date.day"
+			            "Entity": "date_table"
 			          }
 			        }
 			      },
@@ -9860,15 +12873,28 @@ cultureInfo en-US
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "health_dashboard_fact.date.date_hierarchy"
+			              "Role": "health_dashboard_fact"
 			            },
 			            "Object": {
-			              "Role": "health_dashboard_fact.date.day"
+			              "Role": "date_table"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "date_hierarchies_have_days"
+			          "ID": "health_dashboard_facts_have_date_tables"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "date_table"
+			            },
+			            "Object": {
+			              "Role": "health_dashboard_fact"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "date_tables_have_health_dashboard_facts"
 			        }
 			      ]
 			    }
