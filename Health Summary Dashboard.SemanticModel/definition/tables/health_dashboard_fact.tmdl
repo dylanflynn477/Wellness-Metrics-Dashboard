@@ -826,40 +826,6 @@ table health_dashboard_fact
 
 		annotation SummarizationSetBy = Automatic
 
-	column 'Drink Bucket' =
-			
-			VAR Drinks =
-			    health_dashboard_fact[alcohol_consumption_count]
-			RETURN
-			    SWITCH (
-			        TRUE (),
-			        ISBLANK ( Drinks ), "Unknown",
-			        Drinks = 0, "0 drinks",
-			        Drinks = 1, "1 drink",
-			        Drinks = 2, "2 drinks",
-			        "3+ drinks"
-			    )
-		lineageTag: c5d39197-0ddf-4624-87e7-c72bdf8ace8f
-		summarizeBy: none
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Drink Bucket Sort' =
-			
-			SWITCH (
-			    health_dashboard_fact[Drink Bucket],
-			    "Unknown", 0,
-			    "0 drinks", 1,
-			    "1 drink", 2,
-			    "2 drinks", 3,
-			    "3+ drinks", 4
-			)
-		formatString: 0
-		lineageTag: 9a9e7b67-b722-4af8-b514-a8ebfec8e5ef
-		summarizeBy: sum
-
-		annotation SummarizationSetBy = Automatic
-
 	partition health_dashboard_fact = m
 		mode: import
 		source =

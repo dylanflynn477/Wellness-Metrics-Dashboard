@@ -310,120 +310,6 @@ table 'Date Table'
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Sleep 7D' =
-			
-			VAR EndDate = MAX ( 'Date Table'[Date] )
-			RETURN
-			    CALCULATE (
-			        [Avg Sleep],
-			        FILTER (
-			            ALL ( 'Date Table'[Date] ),
-			            'Date Table'[Date] >= EndDate - 6
-			                && 'Date Table'[Date] <= EndDate
-			        )
-				    )
-		formatString: 0.00 "hours"
-		lineageTag: bef8fb20-377d-49d3-839f-5288f47499a0
-
-	measure 'Resting HR 7D' =
-			
-			VAR EndDate = MAX ( 'Date Table'[Date] )
-			RETURN
-			    CALCULATE (
-			        [Avg Resting HR],
-			        FILTER (
-			            ALL ( 'Date Table'[Date] ),
-			            'Date Table'[Date] >= EndDate - 6
-			                && 'Date Table'[Date] <= EndDate
-			        )
-				    )
-		formatString: 0.0 "bpm"
-		lineageTag: a0cc2b2a-73ae-49ab-86b4-c059bcbbcfb0
-
-	measure 'HRV 7D' =
-			
-			VAR EndDate = MAX ( 'Date Table'[Date] )
-			RETURN
-			    CALCULATE (
-			        [Avg HRV],
-			        FILTER (
-			            ALL ( 'Date Table'[Date] ),
-			            'Date Table'[Date] >= EndDate - 6
-			                && 'Date Table'[Date] <= EndDate
-			        )
-				    )
-		formatString: 0.0 "ms"
-		lineageTag: 141e8c95-a6ef-4fb5-8800-9056d7b4a374
-
-	measure 'Sleep 28D' =
-			VAR EndDate =
-				MAX ( 'Date Table'[Date] )
-			RETURN
-				CALCULATE (
-					[Avg Sleep],
-					FILTER (
-						ALL ( 'Date Table'[Date] ),
-						'Date Table'[Date] >= EndDate - 27
-							&& 'Date Table'[Date] <= EndDate
-					)
-				)
-		formatString: 0.00 "hours"
-		lineageTag: d8404e13-7875-4e67-af87-86f818aeac2f
-
-	measure 'HRV 28D' =
-			VAR EndDate =
-				MAX ( 'Date Table'[Date] )
-			RETURN
-				CALCULATE (
-					[Avg HRV],
-					FILTER (
-						ALL ( 'Date Table'[Date] ),
-						'Date Table'[Date] >= EndDate - 27
-							&& 'Date Table'[Date] <= EndDate
-					)
-				)
-		formatString: 0.0 "ms"
-		lineageTag: 2c41a334-eed4-4ee9-8e91-8492c83b2544
-
-	measure 'Resting HR 28D' =
-			VAR EndDate =
-				MAX ( 'Date Table'[Date] )
-			RETURN
-				CALCULATE (
-					[Avg Resting HR],
-					FILTER (
-						ALL ( 'Date Table'[Date] ),
-						'Date Table'[Date] >= EndDate - 27
-							&& 'Date Table'[Date] <= EndDate
-					)
-				)
-		formatString: 0.0 "bpm"
-		lineageTag: aafac664-d22d-4d24-8a34-93de8dccb97e
-
-	measure 'Sleep vs 28D %' =
-			DIVIDE (
-				[Sleep 7D] - [Sleep 28D],
-				[Sleep 28D]
-			)
-		formatString: +0.0%;-0.0%;0.0%
-		lineageTag: 3b886c1d-f86f-4d1e-88ad-ce961ea09dac
-
-	measure 'HRV vs 28D %' =
-			DIVIDE (
-				[HRV 7D] - [HRV 28D],
-				[HRV 28D]
-			)
-		formatString: +0.0%;-0.0%;0.0%
-		lineageTag: 28b29e3c-6f2c-4372-8944-2dc86fb34002
-
-	measure 'Resting HR vs 28D %' =
-			- DIVIDE (
-				[Resting HR 7D] - [Resting HR 28D],
-				[Resting HR 28D]
-			)
-		formatString: +0.0%;-0.0%;0.0%
-		lineageTag: 752dd37d-c696-453d-9926-11bc01e284de
-
 	measure 'Steps 7D' =
 			VAR EndDate =
 				MAX ( 'Date Table'[Date] )
@@ -504,54 +390,6 @@ table 'Date Table'
 			)
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: e0cee4f0-3a02-4f03-b7c9-badf980956b2
-
-	measure 'Latest Recorded Weight' =
-			VAR LastWeightDate =
-				MAXX (
-					FILTER (
-						ALLSELECTED ( 'Date Table'[Date] ),
-						CALCULATE (
-							MAX (
-								health_dashboard_fact[weight_measurement_flag]
-							)
-						) = 1
-							&& NOT ISBLANK (
-								CALCULATE (
-									MAX (
-										health_dashboard_fact[weight_lb]
-									)
-								)
-							),
-						'Date Table'[Date]
-					)
-			RETURN
-				CALCULATE (
-					MAX (
-						health_dashboard_fact[weight_lb]
-					),
-					'Date Table'[Date] = LastWeightDate
-				)
-		formatString: 0.0 "lb"
-		lineageTag: 160b54cf-b582-4a5c-b5cb-f2ac00ac5051
-
-	measure 'Peak Recorded Weight' =
-			MAXX (
-				FILTER (
-					ALLSELECTED ( 'Date Table'[Date] ),
-					CALCULATE (
-						MAX (
-							health_dashboard_fact[weight_measurement_flag]
-						)
-					) = 1
-				),
-				CALCULATE (
-					MAX (
-						health_dashboard_fact[weight_lb]
-					)
-				)
-			)
-		formatString: 0.0 "lb"
-		lineageTag: a6b176a2-ce95-4ce6-92bf-57b2f3fd78f3
 
 	measure 'Starting Recorded Weight' =
 			VAR FirstWeightDate =
@@ -922,135 +760,75 @@ table 'Date Table'
 		lineageTag: e5884180-37ae-4eb7-a180-ad0251e9a30c
 
 	measure 'Next-Day Active Energy Delta 3+' =
-			
-			VAR SelectedDrinkDates =
-			    VALUES(
-			        'health_dashboard_fact'[date]
-			    )
-			
 			VAR HeavyDrinkDates =
-			    FILTER(
-			        SelectedDrinkDates,
-			        CALCULATE(
-			            MAX(
-			                'health_dashboard_fact'[alcohol_consumption_count]
-			            )
-			        ) >= 3
+				FILTER (
+					VALUES ( health_dashboard_fact[date] ),
+					CALCULATE (
+						MAX ( health_dashboard_fact[alcohol_consumption_count] )
+					) >= 3
 			    )
-			
 			VAR SoberDates =
-			    FILTER(
-			        SelectedDrinkDates,
-			        CALCULATE(
-			            MAX(
-			                'health_dashboard_fact'[alcohol_consumption_count]
-			            )
-			        ) = 0
+				FILTER (
+					VALUES ( health_dashboard_fact[date] ),
+					CALCULATE (
+						MAX ( health_dashboard_fact[alcohol_consumption_count] )
+					) = 0
 			    )
-			
 			VAR HeavyDrinkAverage =
-			    AVERAGEX(
-			        HeavyDrinkDates,
-			        VAR DrinkDate =
-			            'health_dashboard_fact'[date]
-			
-			        RETURN
-			            CALCULATE(
-			                MAX(
-			                    'health_dashboard_fact'[active_energy_kcal]
-			                ),
-			                REMOVEFILTERS('Date Table'),
-			                REMOVEFILTERS('health_dashboard_fact'),
-			                'health_dashboard_fact'[date] = DrinkDate + 1
-			            )
-			    )
-			
+				AVERAGEX (
+					HeavyDrinkDates,
+					CALCULATE (
+						MAX ( health_dashboard_fact[Next Day Active Energy] ),
+						health_dashboard_fact[Next Day Has Imputed Values] = 0
+					)
+				)
 			VAR SoberAverage =
-			    AVERAGEX(
-			        SoberDates,
-			        VAR DrinkDate =
-			            'health_dashboard_fact'[date]
-			
-			        RETURN
-			            CALCULATE(
-			                MAX(
-			                    'health_dashboard_fact'[active_energy_kcal]
-			                ),
-			                REMOVEFILTERS('Date Table'),
-			                REMOVEFILTERS('health_dashboard_fact'),
-			                'health_dashboard_fact'[date] = DrinkDate + 1
-			            )
-			    )
-			
+				AVERAGEX (
+					SoberDates,
+					CALCULATE (
+						MAX ( health_dashboard_fact[Next Day Active Energy] ),
+						health_dashboard_fact[Next Day Has Imputed Values] = 0
+					)
+				)
 			RETURN
-			    HeavyDrinkAverage - SoberAverage
+				HeavyDrinkAverage - SoberAverage
 		lineageTag: 9d68b066-41cb-4240-a38f-3b5a14730081
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Next-Day Workout Delta 3+' =
-			
-			VAR SelectedDrinkDates =
-			    VALUES(
-			        'health_dashboard_fact'[date]
-			    )
-			
 			VAR HeavyDrinkDates =
-			    FILTER(
-			        SelectedDrinkDates,
-			        CALCULATE(
-			            MAX(
-			                'health_dashboard_fact'[alcohol_consumption_count]
-			            )
-			        ) >= 3
+				FILTER (
+					VALUES ( health_dashboard_fact[date] ),
+					CALCULATE (
+						MAX ( health_dashboard_fact[alcohol_consumption_count] )
+					) >= 3
 			    )
-			
 			VAR SoberDates =
-			    FILTER(
-			        SelectedDrinkDates,
-			        CALCULATE(
-			            MAX(
-			                'health_dashboard_fact'[alcohol_consumption_count]
-			            )
-			        ) = 0
+				FILTER (
+					VALUES ( health_dashboard_fact[date] ),
+					CALCULATE (
+						MAX ( health_dashboard_fact[alcohol_consumption_count] )
+					) = 0
 			    )
-			
 			VAR HeavyDrinkAverage =
-			    AVERAGEX(
-			        HeavyDrinkDates,
-			        VAR DrinkDate =
-			            'health_dashboard_fact'[date]
-			
-			        RETURN
-			            CALCULATE(
-			                MAX(
-			                    'health_dashboard_fact'[workout_minutes]
-			                ),
-			                REMOVEFILTERS('Date Table'),
-			                REMOVEFILTERS('health_dashboard_fact'),
-			                'health_dashboard_fact'[date] = DrinkDate + 1
-			            )
-			    )
-			
+				AVERAGEX (
+					HeavyDrinkDates,
+					CALCULATE (
+						MAX ( health_dashboard_fact[Next Day Workout Minutes] ),
+						health_dashboard_fact[Next Day Has Imputed Values] = 0
+					)
+				)
 			VAR SoberAverage =
-			    AVERAGEX(
-			        SoberDates,
-			        VAR DrinkDate =
-			            'health_dashboard_fact'[date]
-			
-			        RETURN
-			            CALCULATE(
-			                MAX(
-			                    'health_dashboard_fact'[workout_minutes]
-			                ),
-			                REMOVEFILTERS('Date Table'),
-			                REMOVEFILTERS('health_dashboard_fact'),
-			                'health_dashboard_fact'[date] = DrinkDate + 1
-			            )
-			    )
-			
+				AVERAGEX (
+					SoberDates,
+					CALCULATE (
+						MAX ( health_dashboard_fact[Next Day Workout Minutes] ),
+						health_dashboard_fact[Next Day Has Imputed Values] = 0
+					)
+				)
 			RETURN
-			    HeavyDrinkAverage - SoberAverage
+				HeavyDrinkAverage - SoberAverage
 		lineageTag: 1c4a83b0-6fa9-4876-8630-9b68f12c95fe
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
