@@ -390,6 +390,83 @@ table 'Date Table'
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: e0cee4f0-3a02-4f03-b7c9-badf980956b2
 
+	measure 'Latest Recorded Weight' =
+			VAR LastWeightDate =
+				MAXX (
+					FILTER (
+						ALLSELECTED ( 'Date Table'[Date] ),
+						CALCULATE (
+							MAX (
+								health_dashboard_fact[weight_measurement_flag]
+							)
+						) = 1
+							&& NOT ISBLANK (
+								CALCULATE (
+									MAX (
+										health_dashboard_fact[weight_lb]
+									)
+								)
+							),
+						'Date Table'[Date]
+					)
+			RETURN
+				CALCULATE (
+					MAX (
+						health_dashboard_fact[weight_lb]
+					),
+					'Date Table'[Date] = LastWeightDate
+				)
+		formatString: 0.0 "lb"
+		lineageTag: 160b54cf-b582-4a5c-b5cb-f2ac00ac5051
+
+	measure 'Peak Recorded Weight' =
+			MAXX (
+				FILTER (
+					ALLSELECTED ( 'Date Table'[Date] ),
+					CALCULATE (
+						MAX (
+							health_dashboard_fact[weight_measurement_flag]
+						)
+					) = 1
+				),
+				CALCULATE (
+					MAX (
+						health_dashboard_fact[weight_lb]
+					)
+				)
+			)
+		formatString: 0.0 "lb"
+		lineageTag: a6b176a2-ce95-4ce6-92bf-57b2f3fd78f3
+
+	measure 'Starting Recorded Weight' =
+			VAR FirstWeightDate =
+				MINX (
+					FILTER (
+						ALLSELECTED ( 'Date Table'[Date] ),
+						CALCULATE (
+							MAX (
+								health_dashboard_fact[weight_measurement_flag]
+							)
+						) = 1
+							&& NOT ISBLANK (
+								CALCULATE (
+									MAX (
+										health_dashboard_fact[weight_lb]
+									)
+								)
+							),
+						'Date Table'[Date]
+					)
+			RETURN
+				CALCULATE (
+					MAX (
+						health_dashboard_fact[weight_lb]
+					),
+					'Date Table'[Date] = FirstWeightDate
+				)
+		formatString: 0.0 "lb"
+		lineageTag: 25eeef70-f152-4dc8-a6c6-8016cbce6bd7
+
 	measure 'Current Weight (Selected)' =
 			
 			VAR LastDateWithWeight =
@@ -426,12 +503,16 @@ table 'Date Table'
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Down From Peak' =
-			
 			[Peak Recorded Weight]
-			    - [Latest Recorded Weight]
+				- [Latest Recorded Weight]
+		formatString: 0.0 "lb"
 		lineageTag: 011b6c11-58df-4ddf-9a01-4a06b4fd8f46
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+	measure 'Net Recorded Weight Change' =
+			[Latest Recorded Weight]
+				- [Starting Recorded Weight]
+		formatString: 0.0 "lb"
+		lineageTag: 6294a5d5-c7f7-4846-9092-91e79943006f
 
 	measure 'Weight Change vs Previous' =
 			
