@@ -5,8 +5,8 @@
     "x": 0,
     "y": 128,
     "z": 8000,
-    "height": 144,
-    "width": 288,
+    "height": 120,
+    "width": 320,
     "tabOrder": 8000
   },
   "visual": {
@@ -23,12 +23,13 @@
                       "Entity": "Date Table"
                     }
                   },
-                  "Property": "Drinking Days"
+                  "Property": "Drinking Day %"
                 }
               },
-              "queryRef": "Date Table.Drinking Days",
-              "nativeQueryRef": "DRINKING DAYS",
-              "displayName": "DRINKING DAYS"
+              "queryRef": "Date Table.Drinking Day %",
+              "nativeQueryRef": "DRINKING DAY RATE",
+              "displayName": "DRINKING DAY RATE",
+              "format": "0%"
             }
           ]
         }
@@ -43,7 +44,7 @@
                     "Entity": "Date Table"
                   }
                 },
-                "Property": "Drinking Days"
+                "Property": "Drinking Day %"
               }
             },
             "direction": "Descending"

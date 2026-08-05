@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "e51adea73d0e197088b0",
   "position": {
-    "x": 32.573897106951172,
-    "y": 32.573897106951172,
+    "x": 32.57389710695117,
+    "y": 32.57389710695117,
     "z": 5000,
     "height": 53.0833878779945,
-    "width": 757.64471789501238,
+    "width": 757.6447178950124,
     "tabOrder": 5000
   },
   "visual": {
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "ALCOHOL & NEXT-DAY PERFORMANCE",
+                    "value": "LIFESTYLE EFFECTS",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "24pt",

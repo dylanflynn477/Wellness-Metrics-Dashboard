@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "21a08490a0246b4a2da8",
   "position": {
-    "x": 288,
+    "x": 320,
     "y": 128,
     "z": 9000,
-    "height": 144,
-    "width": 336.00000000000006,
+    "height": 120,
+    "width": 320,
     "tabOrder": 9000
   },
   "visual": {
@@ -29,7 +29,7 @@
               "queryRef": "Date Table.Avg Drinks on Drinking Day",
               "nativeQueryRef": "AVG DRINKS / DRINKING DAY",
               "displayName": "AVG DRINKS / DRINKING DAY",
-              "format": "0.00 \"units\""
+              "format": "0.00"
             }
           ]
         }

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "b156517c9c040b05d99d",
   "position": {
-    "x": 32.573897106951172,
-    "y": 85.657284984945662,
+    "x": 32.57389710695117,
+    "y": 85.65728498494566,
     "z": 6000,
     "height": 34.98677837413274,
-    "width": 378.82235894750619,
+    "width": 378.8223589475062,
     "tabOrder": 6000
   },
   "visual": {
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Drinking patterns · Recovery · Activity",
+                    "value": "Alcohol patterns · Recovery · Activity",
                     "textStyle": {
                       "fontSize": "11pt",
                       "color": "#94a3b8"

@@ -1,8 +1,8 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
   "name": "afbb12c24c60d94138d3",
-  "displayName": "Alcohol Consumption Workout Minutes",
+  "displayName": "Lifestyle Effects",
   "displayOption": "FitToPage",
-  "height": 720,
+  "height": 1080,
   "width": 1280
 }

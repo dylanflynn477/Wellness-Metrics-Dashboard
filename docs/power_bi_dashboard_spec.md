@@ -99,6 +99,12 @@ Suggested scatterplots:
 
 Use rolling averages or weekly aggregation where daily noise is too high.
 
+## Lifestyle Effects Implementation
+
+The PBIP report consolidates the alcohol analysis into `Lifestyle Effects`. Its heatmap and workout boxplot use the shared next-day calculated columns from `health_dashboard_fact`, exclude next-day rows marked as imputed, and present descriptive associations rather than causal effects.
+
+A native clustered-column confidence-interval chart was intentionally not added during the PBIR refactor because the repository did not contain an existing error-bar definition that could be cloned safely. Add that optional visual in Power BI Desktop using `Next-Day Workout Average`, `Next-Day Workout CI Low`, `Next-Day Workout CI High`, and `Next-Day Workout N` after Desktop validation.
+
 When the ETL is run with `--impute`, use `has_imputed_values` as a report filter or tooltip marker. Keep `imputation_count` and `imputed_fields` available in drill-through so estimated days remain visible and auditable rather than silently presented as observations.
 
 ## Basic DAX Measures

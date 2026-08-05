@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "310cd27cc4d43aa5a31e",
   "position": {
-    "x": 624,
+    "x": 640,
     "y": 128,
     "z": 10000,
-    "height": 144,
-    "width": 352,
+    "height": 120,
+    "width": 320,
     "tabOrder": 10000
   },
   "visual": {
@@ -23,13 +23,13 @@
                       "Entity": "Date Table"
                     }
                   },
-                  "Property": "Next-Day Active Energy Delta 3+"
+                  "Property": "Three Plus Drink Days"
                 }
               },
-              "queryRef": "Date Table.Next-Day Active Energy Delta 3+",
-              "nativeQueryRef": "NEXT-DAY ACTIVE ENERGY - 3+ DRINKS",
-              "displayName": "NEXT-DAY ACTIVE ENERGY - 3+ DRINKS",
-              "format": "+0 \"kcal\";-0 \"kcal\";0 \"kcal\""
+              "queryRef": "Date Table.Three Plus Drink Days",
+              "nativeQueryRef": "3+ DRINK DAYS",
+              "displayName": "3+ DRINK DAYS",
+              "format": "0"
             }
           ]
         }
@@ -44,7 +44,7 @@
                     "Entity": "Date Table"
                   }
                 },
-                "Property": "Next-Day Active Energy Delta 3+"
+                "Property": "Three Plus Drink Days"
               }
             },
             "direction": "Descending"

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "4d1e64bb00150d140494",
   "position": {
-    "x": 976,
+    "x": 960,
     "y": 128,
     "z": 11000,
-    "height": 144,
-    "width": 304,
+    "height": 120,
+    "width": 320,
     "tabOrder": 11000
   },
   "visual": {
@@ -23,13 +23,13 @@
                       "Entity": "Date Table"
                     }
                   },
-                  "Property": "Next-Day Workout Delta 3+"
+                  "Property": "Usable Next-Day Workout Observations"
                 }
               },
-              "queryRef": "Date Table.Next-Day Workout Delta 3+",
-              "nativeQueryRef": "NEXT DAY WORKOUT - 3+ DRINKS",
-              "displayName": "NEXT DAY WORKOUT - 3+ DRINKS",
-              "format": "+0 \"min\";-0 \"min\";0 \"min\""
+              "queryRef": "Date Table.Usable Next-Day Workout Observations",
+              "nativeQueryRef": "USABLE NEXT-DAY RECORDS",
+              "displayName": "USABLE NEXT-DAY RECORDS",
+              "format": "0"
             }
           ]
         }
@@ -44,7 +44,7 @@
                     "Entity": "Date Table"
                   }
                 },
-                "Property": "Next-Day Workout Delta 3+"
+                "Property": "Usable Next-Day Workout Observations"
               }
             },
             "direction": "Descending"
