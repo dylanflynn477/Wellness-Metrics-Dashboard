@@ -188,6 +188,100 @@ table 'Date Table'
 		formatString: 0
 		lineageTag: 0b3b2278-9901-43ab-9fc5-6f73c352f4a2
 
+	measure 'Valid Nutrition Days 28D' =
+			VAR EndDate =
+				MAX ( 'Date Table'[Date] )
+			RETURN
+				CALCULATE (
+					[Valid Nutrition Days],
+					FILTER (
+						ALL ( 'Date Table'[Date] ),
+						'Date Table'[Date] >= EndDate - 27
+							&& 'Date Table'[Date] <= EndDate
+					)
+				)
+		formatString: 0
+		lineageTag: 5c065b67-1aaa-43fe-ac0c-24cec150aa7b
+
+	measure 'Protein Hit Days 28D' =
+			VAR EndDate =
+				MAX ( 'Date Table'[Date] )
+			RETURN
+				CALCULATE (
+					[Protein Hit Days],
+					FILTER (
+						ALL ( 'Date Table'[Date] ),
+						'Date Table'[Date] >= EndDate - 27
+							&& 'Date Table'[Date] <= EndDate
+					)
+				)
+		formatString: 0
+		lineageTag: ca03b3eb-b1e5-49a0-9aaf-bec0133250f0
+
+	measure 'Protein Adherence 28D %' =
+			DIVIDE (
+				[Protein Hit Days 28D],
+				[Valid Nutrition Days 28D]
+			)
+		formatString: 0%
+		lineageTag: 63373fef-7db5-421f-8be3-1608f21005ad
+
+	measure 'Calories 7D Valid' =
+			VAR EndDate =
+				MAX ( 'Date Table'[Date] )
+			VAR WindowDates =
+				FILTER (
+					ALL ( 'Date Table'[Date] ),
+					'Date Table'[Date] >= EndDate - 6
+						&& 'Date Table'[Date] <= EndDate
+				)
+			RETURN
+				AVERAGEX (
+					FILTER (
+						WindowDates,
+						CALCULATE (
+							MAX (
+								health_dashboard_fact[calories]
+							)
+						) >= 1200
+					),
+					CALCULATE (
+						MAX (
+							health_dashboard_fact[calories]
+						)
+					)
+				)
+		formatString: 0 "kcal"
+		lineageTag: 6255677c-8d1f-49c9-8ba5-edf02496fd2b
+
+	measure 'Protein 7D Valid' =
+			VAR EndDate =
+				MAX ( 'Date Table'[Date] )
+			VAR WindowDates =
+				FILTER (
+					ALL ( 'Date Table'[Date] ),
+					'Date Table'[Date] >= EndDate - 6
+						&& 'Date Table'[Date] <= EndDate
+				)
+			RETURN
+				AVERAGEX (
+					FILTER (
+						WindowDates,
+						CALCULATE (
+							MAX (
+								health_dashboard_fact[calories]
+							)
+						) >= 1200
+					),
+					CALCULATE (
+						MAX (
+							health_dashboard_fact[protein_g]
+						)
+					)
+				)
+		formatString: 0 "g"
+		lineageTag: 698bce40-fcba-4d42-a9b9-6eea29e4eab7
+
 	measure 'Avg Calories Overall' =
 			
 			CALCULATE ( [Avg Calories], REMOVEFILTERS ( 'Date Table' ) )
@@ -1029,4 +1123,3 @@ table 'Date Table'
 				)
 
 	annotation PBI_Id = d02a4bc8c71a45a58224c66b6e3dfb19
-
