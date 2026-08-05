@@ -483,32 +483,133 @@ table 'Date Table'
 			)
 		lineageTag: 4a64d0e5-100c-48ae-85b9-d767ea915505
 
+	measure 'Selected Days' =
+			COUNTROWS (
+				VALUES ( 'Date Table'[Date] )
+			)
+		formatString: 0
+		lineageTag: 64821524-fcf2-463f-9019-ce11685d2ca2
+
 	measure 'Drinking Days' =
 			
-			CALCULATE(
-			    DISTINCTCOUNT(
-			        'health_dashboard_fact'[date]
-			    ),
-			    KEEPFILTERS(
-			        'health_dashboard_fact'[alcohol_consumption_count] > 0
-			    )
+			CALCULATE (
+				DISTINCTCOUNT (
+					health_dashboard_fact[date]
+				),
+				KEEPFILTERS (
+					health_dashboard_fact[alcohol_consumption_count] > 0
+				)
 			)
 		formatString: 0
 		lineageTag: 5520c022-3af8-40b7-844a-e38884d6d52a
 
+	measure 'Drinking Day %' =
+			DIVIDE (
+				[Drinking Days],
+				[Selected Days]
+			)
+		formatString: 0%
+		lineageTag: 4ded9b52-f274-4fd1-a135-37cb69b242c5
+
 	measure 'Avg Drinks on Drinking Day' =
 			
-			CALCULATE(
-			    AVERAGE(
-			        'health_dashboard_fact'[alcohol_consumption_count]
-			    ),
-			    KEEPFILTERS(
-			        'health_dashboard_fact'[alcohol_consumption_count] > 0
-			    )
+			CALCULATE (
+				AVERAGE (
+					health_dashboard_fact[alcohol_consumption_count]
+				),
+				KEEPFILTERS (
+					health_dashboard_fact[alcohol_consumption_count] > 0
+				)
 			)
+		formatString: 0.00
 		lineageTag: e6ec0fbc-8d22-4d78-be47-3d9159bd59d3
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+	measure 'Three Plus Drink Days' =
+			CALCULATE (
+				DISTINCTCOUNT (
+					health_dashboard_fact[date]
+				),
+				KEEPFILTERS (
+					health_dashboard_fact[alcohol_consumption_count] >= 3
+				)
+			)
+		formatString: 0
+		lineageTag: 06926abe-eb2d-4556-aafd-da76821a9938
+
+	measure 'Usable Next-Day Workout Observations' =
+			CALCULATE (
+				COUNT (
+					health_dashboard_fact[Next Day Workout Minutes]
+				),
+				KEEPFILTERS (
+					health_dashboard_fact[Next Day Has Imputed Values] = 0
+				)
+			)
+		formatString: 0
+		lineageTag: 572c53bd-5ba4-48bc-b36b-54259b7ad0b1
+
+	measure 'Next-Day Workout Average' =
+			CALCULATE (
+				AVERAGE (
+					health_dashboard_fact[Next Day Workout Minutes]
+				),
+				KEEPFILTERS (
+					health_dashboard_fact[Next Day Has Imputed Values] = 0
+				)
+			)
+		formatString: 0 "minutes"
+		lineageTag: 78f541b6-129c-4859-8e8d-f0de72bf62e7
+
+	measure 'Next-Day Workout N' =
+			CALCULATE (
+				COUNT (
+					health_dashboard_fact[Next Day Workout Minutes]
+				),
+				KEEPFILTERS (
+					health_dashboard_fact[Next Day Has Imputed Values] = 0
+				)
+			)
+		formatString: 0
+		lineageTag: 6f8fb911-fdc8-4b2f-a758-2835296de473
+
+	measure 'Next-Day Workout SD' =
+			CALCULATE (
+				STDEV.S (
+					health_dashboard_fact[Next Day Workout Minutes]
+				),
+				KEEPFILTERS (
+					health_dashboard_fact[Next Day Has Imputed Values] = 0
+				)
+			)
+		formatString: 0 "minutes"
+		lineageTag: 3cb68bde-14bb-439b-872a-023932709d73
+
+	measure 'Next-Day Workout CI Half Width' =
+			VAR N =
+				[Next-Day Workout N]
+			RETURN
+				IF (
+					N >= 2,
+					1.96
+						* DIVIDE (
+							[Next-Day Workout SD],
+							SQRT ( N )
+						)
+				)
+		formatString: 0 "minutes"
+		lineageTag: c6626e56-1799-4d67-8a7e-9cd2ef18ff2f
+
+	measure 'Next-Day Workout CI Low' =
+			[Next-Day Workout Average]
+				- [Next-Day Workout CI Half Width]
+		formatString: 0 "minutes"
+		lineageTag: 7118f0b1-4d28-477e-9001-e5dc1f95bbac
+
+	measure 'Next-Day Workout CI High' =
+			[Next-Day Workout Average]
+				+ [Next-Day Workout CI Half Width]
+		formatString: 0 "minutes"
+		lineageTag: e5884180-37ae-4eb7-a180-ad0251e9a30c
 
 	measure 'Next-Day Active Energy Delta 3+' =
 			
