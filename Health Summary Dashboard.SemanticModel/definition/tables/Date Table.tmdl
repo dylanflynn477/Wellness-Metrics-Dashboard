@@ -458,6 +458,21 @@ table 'Date Table'
 		formatString: 0 "minutes"
 		lineageTag: 66e5dbdc-2519-435e-977c-4e3c89c46f6d
 
+	measure 'Avg Sleep Core' =
+			AVERAGE ( health_dashboard_fact[sleep_core_hours] )
+		formatString: 0.00 "hours"
+		lineageTag: 4f9bc0d3-16b4-4f76-a8b1-7e02f91c3b21
+
+	measure 'Avg Sleep Deep' =
+			AVERAGE ( health_dashboard_fact[sleep_deep_hours] )
+		formatString: 0.00 "hours"
+		lineageTag: 922afe84-ea1b-4dce-8f31-baf5e9193c68
+
+	measure 'Avg Sleep REM' =
+			AVERAGE ( health_dashboard_fact[sleep_rem_hours] )
+		formatString: 0.00 "hours"
+		lineageTag: c7d80e51-5e43-4e2e-9b77-301fca24e6d8
+
 	measure 'Calories vs Overall %' =
 			
 			DIVIDE (
