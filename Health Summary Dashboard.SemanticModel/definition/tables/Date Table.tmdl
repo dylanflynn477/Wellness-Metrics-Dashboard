@@ -188,11 +188,9 @@ table 'Date Table'
 		formatString: 0
 		lineageTag: 0b3b2278-9901-43ab-9fc5-6f73c352f4a2
 
-	measure 'Avg Calories Overall' = ```
+	measure 'Avg Calories Overall' =
 			
 			CALCULATE ( [Avg Calories], REMOVEFILTERS ( 'Date Table' ) )
-			
-			```
 		lineageTag: b1219a9f-9b62-42a7-bb9c-17f4f3dd7b33
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -218,7 +216,7 @@ table 'Date Table'
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Avg Sleep 7D' = ```
+	measure 'Avg Sleep 7D' =
 			
 			VAR EndDate = MAX ( 'Date Table'[Date] )
 			RETURN
@@ -230,8 +228,6 @@ table 'Date Table'
 			                && 'Date Table'[Date] <= EndDate
 			        )
 			    )
-			
-			```
 		lineageTag: bef8fb20-377d-49d3-839f-5288f47499a0
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -268,14 +264,12 @@ table 'Date Table'
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Calories vs Overall %' = ```
+	measure 'Calories vs Overall %' =
 			
 			DIVIDE (
 			    [Avg Calories] - [Avg Calories Overall],
 			    [Avg Calories Overall]
 			)
-			
-			```
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 684382f4-d10a-40ad-befe-4e469e7363a7
 

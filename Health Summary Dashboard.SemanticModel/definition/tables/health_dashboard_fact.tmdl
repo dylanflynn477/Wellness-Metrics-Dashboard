@@ -531,6 +531,43 @@ table health_dashboard_fact
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Drink Bucket' =
+			VAR Drinks =
+				health_dashboard_fact[alcohol_consumption_count]
+			RETURN
+				SWITCH (
+					TRUE (),
+					ISBLANK ( Drinks ), "Unknown",
+					Drinks <= 0, "0 drinks",
+					Drinks = 1, "1 drink",
+					Drinks = 2, "2 drinks",
+					"3+ drinks"
+				)
+		lineageTag: 5c750868-a40a-44ad-8223-7b6adca761ce
+		summarizeBy: none
+		sortByColumn: 'Drink Bucket Sort'
+
+		annotation SummarizationSetBy = User
+
+	column 'Drink Bucket Sort' =
+			VAR Drinks =
+				health_dashboard_fact[alcohol_consumption_count]
+			RETURN
+				SWITCH (
+					TRUE (),
+					ISBLANK ( Drinks ), 0,
+					Drinks <= 0, 1,
+					Drinks = 1, 2,
+					Drinks = 2, 3,
+					Drinks >= 3, 4,
+					0
+				)
+		formatString: 0
+		lineageTag: f758882a-1f5b-40f5-8c39-a4f557b36961
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = User
+
 	column has_imputed_values
 		dataType: string
 		lineageTag: 101f2854-6eab-41c4-b614-98216a465a27
